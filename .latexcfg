@@ -1,0 +1,4 @@
+{
+"root" : "/home/ana/github/tcc/monografia.tex"
+"toolchain" : "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOC"
+}

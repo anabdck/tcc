@@ -1,0 +1,230 @@
+% !TEX root = /home/ana/github/tcc/monografia.tex
+
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{abntex2}}
+\ProcessOptions
+
+\documentclass[
+	% -- opções da classe memoir --
+	12pt,				% tamanho da fonte
+	openright,			% capítulos começam em pág ímpar (insere página vazia caso preciso)
+	oneside,			% para impressão em verso e anverso. Oposto a oneside
+	a4paper,			% tamanho do papel.
+	% -- opções da classe abntex2 --
+	chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+	%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+	%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+	%subsubsection=TITLE,% títulos de subsubseções convertidos em letras maiúsculas
+	% -- opções do pacote babel --
+	english,			% idioma adicional para hifenização
+	french,				% idioma adicional para hifenização
+	spanish,			% idioma adicional para hifenização
+	brazil				% o último idioma é o principal do documento
+	]{abntex2}
+
+\usepackage{conf-ifsc}
+
+%---------------------------------------------------------------------%
+%---------------------------------------------------------------------%
+% Informações de dados para CAPA e FOLHA DE ROSTO
+%---------------------------------------------------------------------%
+%---------------------------------------------------------------------%
+
+\titulo{Título do TCC}
+
+\autor{Ana Cláudia Banderchuk}
+
+\local{Florianópolis}
+
+\data{2021}
+
+\orientador[Orientador:\\]{Fernando Santana Pacheco}
+
+%\coorientador[Coorientador:\\]{Joabel Moia}
+
+\tipotrabalho{Monografia (Graduação)}
+
+% O preambulo deve conter o tipo do trabalho, o objetivo, o nome da instituição e a área de concentração
+\preambulo{Trabalho de conclusão de curso submetido ao Instituto Federal de Educação, Ciência e Tecnologia de Santa Catarina como parte dos requisitos para obtenção do título de engenheiro eletrônico}
+
+\textoaprovacao{Este Trabalho foi julgado adequado para obtenção do Título de Engenheiro Eletrônico em abril de 2021 e aprovado na sua forma final pela banca examinadora do Curso de Engenharia Eletrônica do instituto Federal de Educação Ciência, e Tecnologia de Santa Catarina.}
+
+
+%---------------------------------------------------------------------%
+% Início do documento
+%---------------------------------------------------------------------%
+
+\begin{document}
+
+\selectlanguage{brazil}
+\frenchspacing
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+% \pretextual
+
+\imprimircapa
+\imprimirfolhaderosto* %(o * indica que haverá a ficha bibliográfica)
+
+%---------------------------------------------------------------------%
+% ATENÇÃO - Pergunte para a Biblioteca do IFSC
+% Inserir a ficha bibliografica -
+%
+% Para gerar a ficha catalográfica acesse:
+% http://ficha.florianopolis.ifsc.edu.br/
+% Precisa ser feito pelo navegador Mozilla Firefox
+%---------------------------------------------------------------------%
+
+\imprimirficha{pdf/fichacatalografica3.pdf}
+\cleardoublepage
+
+%---------------------------------------------------------------------%
+% Inserir folha de aprovação
+%---------------------------------------------------------------------%
+
+\imprimiraprovacao
+\cleardoublepage
+
+%---------------------------------------------------------------------%
+% Dedicatória
+%---------------------------------------------------------------------%
+%\imprimirdedicatoria{Este trabalho é dedicado às crianças adultas que,\\quando pequenas, sonharam em se tornar cientistas.}
+% ---
+
+%---------------------------------------------------------------------%
+% Agradecimentos
+%---------------------------------------------------------------------%
+%\begin{agradecimentos}
+
+
+
+
+    %\marcador{add}{Tanta gente...}
+%\end{agradecimentos}
+% ---
+
+%---------------------------------------------------------------------%
+% Epígrafe
+%---------------------------------------------------------------------%
+%\begin{epigrafe}
+%    \vspace*{\fill}
+%	\begin{flushright}
+%		\textit{``Eu não falhei, encontrei 10 mil\\
+%		soluções que não davam certo.'' \\
+%		(Thomas A. Edison)}
+%	\end{flushright}
+%\end{epigrafe}
+
+%---------------------------------------------------------------------%
+% RESUMOS
+%---------------------------------------------------------------------%
+% resumo em português
+\setlength{\absparsep}{18pt} % ajusta o espaçamento dos parágrafos do resumo
+\begin{resumo}
+    Este trabalho apresenta
+
+    \textbf{Palavras-chave}: um. dois.
+\end{resumo}
+
+% resumo em inglês
+\begin{resumo}[Abstract]
+ \begin{otherlanguage*}{english}
+    This papper presents
+
+   \vspace{\onelineskip}
+
+   \noindent
+   \textbf{Keywords}:
+ \end{otherlanguage*}
+\end{resumo}
+
+
+%---------------------------------------------------------------------%
+% inserir lista de ilustrações
+%---------------------------------------------------------------------%
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+%---------------------------------------------------------------------%
+% inserir lista de tabelas
+%---------------------------------------------------------------------%
+%\pdfbookmark[0]{\listtablename}{lot}
+%\listoftables*
+%\cleardoublepage
+
+%---------------------------------------------------------------------%
+% inserir lista de listings
+%---------------------------------------------------------------------%
+%\pdfbookmark[0]{\lstlistlistingname}{lol}
+%\listoflistings
+%\cleardoublepage
+
+%---------------------------------------------------------------------%
+% inserir lista de abreviaturas e simbolos
+%---------------------------------------------------------------------%
+%\listofabrev{tex/00-Abreviaturas}
+
+%\imprimirlistadeabreviaturas
+%\imprimirlistadesimbolos
+\cleardoublepage
+
+%---------------------------------------------------------------------%
+% inserir o sumario
+%---------------------------------------------------------------------%
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\textual
+
+% ----------------------------------------------------------
+% Inclusão dos capítulos que estão em outros arquivos .tex
+% ----------------------------------------------------------
+
+%\include{tex/00-Unidades}
+%\include{tex/01-Introducao}
+\include{tex/02-Fundamentacao}
+%\include{tex/03-Metodologia}
+%\include{tex/04-Resultados}
+%\include{tex/20-Conclusao}
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+% ----------------------------------------------------------
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{referencias}
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+%\begin{apendicesenv}
+%    \partapendices
+%    \include{tex/30-Apendices}
+%\end{apendicesenv}
+
+% ----------------------------------------------------------
+% Anexos
+% ----------------------------------------------------------
+%\begin{anexosenv}
+%    \partanexos
+%    \include{tex/40-Anexos}
+%\end{anexosenv}
+
+%---------------------------------------------------------------------
+% INDICE REMISSIVO
+%---------------------------------------------------------------------
+%\phantompart
+%\printindex
+%---------------------------------------------------------------------
+
+\end{document}
