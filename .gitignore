@@ -1,3 +1,7 @@
+## Os que adicionei - provavelmente do pacote Atom-LaTeX
+*.abrv
+*.asbl
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
