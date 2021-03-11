@@ -1,69 +1,71 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introdução}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-    Os conversores estáticos são amplamente utilizados em diversas aplicações, como carregadores de bateria de celular, sistema de iluminação, veículos elétricos, sistemas de potência, dentre outros. O uso de conversores estáticos convencionais como Buck, Boost e Buck-Boost apresentam grande usabilidade em muitas aplicações. Porém, para potências mais elevadas, tornam-se menos adequados, uma vez que o aumento da potência nesses conversores acarreta em elementos passivos maiores, sobrecarga nos elementos semicondutores e maior perda de potência, reduzindo sua eficiência \cite{ref:BI_artigo_Falcondes}.
-    
-    Buscando-se superar essas limitações à medida que a potência desses circuitos aumenta, algumas alternativas são apresentadas, e dentre elas os conversores \interleaved (intercalados). Esses conversores utilizam dois ou mais ramos com elementos ativos em paralelo, para que assim apenas uma fração da corrente total passe por cada semicondutor. Esse processo acaba reduzindo as oscilações e duplicando a frequência de comutação de saída, em um caso com dois ramos paralelos \cite{ref:BI_artigo_Falcondes}.
-    
-    Por outro lado, devido a natureza dos conversores estáticos ser inerentemente geradora de harmônicos, há uma grande necessidade de estudá-los, uma vez que cada vez mais as aplicações necessitam ser homologadas em normas de \abreviatura&{EMC}{Eletromagnetic Compatibility}{compatibilidade eletromagnética} para que os fabricantes tenham aprovação para a revenda comercial de seus produtos \cite{ref:EMC_artigo_Texas}.
-    
-    Assim, este trabalho busca verificar o comportamento de um conversor estático \mbox{CC-CC} do tipo Buck \interleaved de dois ramos paralelos do ponto de vista de compatibilidade eletromagnética e aplicar algumas técnicas para a mitigação do ruído presente nesse conversor. Neste trabalho será usada uma norma vigente com a finalidade de facilitar a visualização dos resultados obtidos, porém, não sendo o objetivo deste se adequar a ela.
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Placas de circuito impresso são de longe o método mais utilizado para o projeto de eletrônicos modernos. Elas consistem em um sanduíche de uma ou mais camadas de cobre intercaladas com uma ou mais camadas de material isolante \cite{ref:Zumbahlen} e servem de suporte para os componentes eletrônicos responsáveis pelo funcionamento de um circuito eletrônico.
+
+À medida em novas tecnologias são desenvolvidas, as placas de circuito impresso estão se tornando cada vez mais sofisticadas e delicadas \cite{ref:Hu-Wang}, de modo que a detecção de incertezas, tolerâncias, defeitos e erros de posição relativa associados ao processo de fabricação \cite{ref:Leta-Feliciano-Martins} deve ser feita com mais cautela para garantir o funcionamento do produto final.
+
+Dessa forma, a automatização da inspeção se tornou essencial para aprimorar a qualidade do processo de fabricação, já que técnicas de medição por visão computacional apresentam melhor regularidade, precisão e repetibilidade quando comparada a inspeção humana que, além da imprecisão e não-repetibilidade, está sujeita a subjetividade, fadiga e lentidão e está, ainda, associada a um alto custo \cite{ref:Leta-Feliciano-Martins}.
+
+A inspeção ótica automatizada (AOI) vem sido amplamente utilizada para detectar defeitos durante o processo de fabricação de uma PCB \cite{ref:Chin-Harlow}. Conforme a evolução dessa tecnologia, três principais métodos de detecção tem se destacado: métodos comparativos, não-referenciais e híbridos \cite{ref:Wu-Wang-Liu}. O método comparativo, mais utilizado entre eles, está susceptível à interferência da iluminação e ruídos externos, além de necessitar mecanismos de alinhamento precisos para realização da comparação \cite{ref:Hu-Wang}.
+
+
+%Em consequência da larga variedade de placas de circuito impresso no mercado, suas complexas regras de design, da ampla variação de tipos de defeitos
+
+%À medida em novas tecnologias são desenvolvidas, as placas de circuitoimpresso estão se tornando cada vez mais sofisticadas e delicadas (HU; WANG, 2020),de modo que incertezas, tolerâncias, defeitos e erros de posição relativa presentes noprocesso de fabricação (LETA; FELICIANO; MARTINS, 2008) devem ser inspecionadoscom mais cautela para garantir o funcionamento do produto final
+
+%A inspeção visual é geralmente a etapa mais cara da fabricação de uma placa de circuito impresso  \cite{ref:Putera-Ibrahim}, já que está sujeita  associados a inspeção humana \cite{ref:Leta-Feliciano-Martins}.
+
+%In recent years, automatic optical inspection (AOI) system has replaced most of human inspections, which improves the inspection precision and reduces the cost consistency [2]. Although AOI system is more convenient and efficient than human inspection, the false d
+
+%Visual inspection processes automation has become essential to improve quality in printed circuit board (PCB) manufacture. Industry requires automated inspection since, in the manufacturing processes, there are uncertainties, tolerances, defects, relative position and orientation errors, which can be analyzed by vision sensing and computer algorithms. Hence, Computer Vision measurement techniques present regularity, accuracy and repeatability in noncontact measurements and inspections. Those systems differ to the subjectivity, fatigue, slowness and high cost associated to human inspection (Leta et al., 2005). During the last years, in PCB industry there were many factors that encouraged automation. The most important one consists of the technological advances in PCB’s design and manufacture. This occurs because of the fast board functionality innovations. New electronic technologies need new PCB designs, with smaller dimensions, new components and new functionalities. This tendency is generate new challenges and principally it is causing some difficulties to human visual inspection. The necessity of reduce the spent time to produce a PCB is another important reason that forces the automation. Nowadays the machines used in the manufacture process have high productivity; hence it is not possible to spend much time using employees to detect board fails.
+
+
+
+
+
+
+
+
+
+
+
+
+    %Os conversores estáticos são amplamente utilizados em diversas aplicações, como carregadores de bateria de celular, sistema de iluminação, veículos elétricos, sistemas de potência, dentre outros. O uso de conversores estáticos convencionais como Buck, Boost e Buck-Boost apresentam grande usabilidade em muitas aplicações. Porém, para potências mais elevadas, tornam-se menos adequados, uma vez que o aumento da potência nesses conversores acarreta em elementos passivos maiores, sobrecarga nos elementos semicondutores e maior perda de potência, reduzindo sua eficiência \cite{ref:BI_artigo_Falcondes}. Buscando-se superar essas limitações à medida que a potência desses circuitos aumenta, algumas alternativas são apresentadas, e dentre elas os conversores \interleaved (intercalados). Esses conversores utilizam dois ou mais ramos com elementos ativos em paralelo, para que assim apenas uma fração da corrente total passe por cada semicondutor. Esse processo acaba reduzindo as oscilações e duplicando a frequência de comutação de saída, em um caso com dois ramos paralelos \cite{ref:BI_artigo_Falcondes}.     Por outro lado, devido a natureza dos conversores estáticos ser inerentemente geradora de harmônicos, há uma grande necessidade de estudá-los, uma vez que cada vez mais as aplicações necessitam ser homologadas em normas de \abreviatura&{EMC}{Eletromagnetic Compatibility}{compatibilidade eletromagnética} para que os fabricantes tenham aprovação para a revenda comercial de seus produtos \cite{ref:EMC_artigo_Texas}.     Assim, este trabalho busca verificar o comportamento de um conversor estático \mbox{CC-CC} do tipo Buck \interleaved de dois ramos paralelos do ponto de vista de compatibilidade eletromagnética e aplicar algumas técnicas para a mitigação do ruído presente nesse conversor. Neste trabalho será usada uma norma vigente com a finalidade de facilitar a visualização dos resultados obtidos, porém, não sendo o objetivo deste se adequar a ela.
+
     \section{Justificativa}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        
+
         % Seria interessante contextualizar algumas aplicações do conversor Buck interleaved, pois qual é a necessidade de se estudar tais técnicas em um conversor que talvez não se use? Teria que ver onde se enquadra as aplicações para tornar atrativo tal estudo
-        
-        Devido à preocupação dos fabricantes para que seus produtos tenham homologação perante as normas de EMC para obter permissão de comercialização, faz-se importante o estudo de conversores estáticos do ponto de vista de compatibilidade eletromagnética.
-        
-        Segundo \citeonline{ref:BI_phd_Peraca}, no que diz respeito a conversores estáticos, dentre as estratégias utilizadas em conversores que operam com elevadas correntes, tem-se a técnica do interleaving. Assim, torna-se importante o estudo de EMC de tal conversor, realizando uma análise do ruído conduzido e irradiado gerado por tal estrutura, bem como uma análise de possíveis técnicas para a mitigação desse ruído.
-        Sendo esse conhecimento de grande valia, tanto para o meio acadêmico quanto para a indústria.
-        
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        %Devido à preocupação dos fabricantes para que seus produtos tenham homologação perante as normas de EMC para obter permissão de comercialização, faz-se importante o estudo de conversores estáticos do ponto de vista de compatibilidade eletromagnética.         Segundo \citeonline{ref:BI_phd_Peraca}, no que diz respeito a conversores estáticos, dentre as estratégias utilizadas em conversores que operam com elevadas correntes, tem-se a técnica do interleaving. Assim, torna-se importante o estudo de EMC de tal conversor, realizando uma análise do ruído conduzido e irradiado gerado por tal estrutura, bem como uma análise de possíveis técnicas para a mitigação desse ruído.        Sendo esse conhecimento de grande valia, tanto para o meio acadêmico quanto para a indústria.
+
+
     \section{Descrição do problema}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-        
-        O conversor Buck \interleaved, por se tratar de um conversor estático de potência, produz harmônicos, principalmente devido a comutações dos semicondutores. Em geral, esses harmônicos se propagam por diferentes meios, tanto por uma conexão elétrica quanto pelo ar, podendo provocar o mal funcionamento em outros equipamentos e a si próprio. Para se evitar a geração e propagação de harmônicos, faz-se importante a aplicação de técnicas ou conjuntos de técnicas de mitigação da interferência eletromagnética.
-        
-        % O conversor Buck \interleaved, por se tratar de um conversor estático de potência, apresenta ruídos, principalmente devido a comutações dos semicondutores. Em geral, esse ruído se propaga por diferentes meios, tanto por uma conexão elétrica quanto pelo ar, podendo provocar interferência eletromagnética em outros equipamentos e a si próprio. 
-        
-        %\marcador{alterar}{Assim, o uso de técnicas como a remoção dos dissipadores do circuito, alteração dos tempos de subida no chaveamento dos transistores, uso de um ferrite \textit{bead} e reposicionamento dos elementos magnéticos (indutores) são muitas vezes utilizadas para a redução da interferência eletromagnética em conversores estáticos, por confinar o ruído dentro do conversor chaveado e/ou do componente gerador.}
-        
-        Dessa forma, a questão-problema que orienta este Trabalho de Conclusão de Curso é: Quais técnicas podem ser aplicadas e qual a eficácia dessas técnicas para a redução da interferência eletromagnética em um conversor estático do tipo Buck \interleaved?
-        
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        %O conversor Buck \interleaved, por se tratar de um conversor estático de potência, produz harmônicos, principalmente devido a comutações dos semicondutores. Em geral, esses harmônicos se propagam por diferentes meios, tanto por uma conexão elétrica quanto pelo ar, podendo provocar o mal funcionamento em outros equipamentos e a si próprio. Para se evitar a geração e propagação de harmônicos, faz-se importante a aplicação de técnicas ou conjuntos de técnicas de mitigação da interferência eletromagnética.
+
+        %Dessa forma, a questão-problema que orienta este Trabalho de Conclusão de Curso é: Quais técnicas podem ser aplicadas e qual a eficácia dessas técnicas para a redução da interferência eletromagnética em um conversor estático do tipo Buck \interleaved?
+
+
+
+
     \section{Objetivo geral}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-        Analisar quais técnicas podem ser aplicadas e qual a eficácia dessas técnicas para a redução de interferência eletromagnética em um conversor estático do tipo Buck \interleaved.
-    
-        %Analisar se o conversor estático do tipo Buck \interleaved pode ser utilizado com técnicas de \marcador*{alterar}{redução da interferência eletromagnética.}{melhorar o objetivo}
-        % o uso de técnicas de redução de ruído \marcador*{alterar}{conduzido e irradiado}{EMI} em um conversor estático do tipo Buck \interleaved.
-    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+        %Analisar quais técnicas podem ser aplicadas e qual a eficácia dessas técnicas para a redução de interferência eletromagnética em um conversor estático do tipo Buck \interleaved.
+
+
     \section{Objetivos específicos}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    
-        Com o objetivo geral apresentado, destaca-se os seguintes objetivos específicos: 
-    
+
+        Com o objetivo geral apresentado, destaca-se os seguintes objetivos específicos:
+
         \begin{alineas}
-            %\item conceituar conversores estáticos;
-            
+
             \item revisar a bibliografia referente a Buck \interleaved, apresentando a forma de funcionamento do circuito, vantagens e desvantagens;
-            
+
             \item conceituar compatibilidade eletromagnética, formas de geração de ruído e técnicas para mitigação;
-            
+
             \item projeto do conversor Buck \interleaved;
-            
-            %\item análise do circuito e placa de circuito impresso do conversor;
-            
+
             \item análise do ponto de vista de compatibilidade eletromagnética do conversor Buck \interleaved;
-            
+
             \item aplicação de técnicas para mitigação da interferência eletromagnética e análise dos resultados obtidos.
-            
+
         \end{alineas}
