@@ -8,7 +8,48 @@ Apesar de ter chamado atenção nos últimos anos com a quantidade enorme de dad
 
 Um dos objetivos da Inteligência Artificial, de acordo com \citeonline{ref:Mitchell-Michalski-Carbonell}, é fazer com que computadores realizem tarefas mais inteligentes de forma com que não haja necessidade dos seres humanos executá-las. Entretanto, um dos grandes desafios da área de IA atualmente é a execução de atividades consideradas simples e corriqueiras para pessoas, como reconhecimento de objetos e fala \cite{ref:Goodfellow-Bengio-Courville}.
 
+A Inteligência Artificial engloba a área de estudo do Aprendizado de Máquina, que por sua vez englobam as áreas do Aprendizado de Representação e Aprendizado Profundo, conforme o diagrama de Venn apresentado na \autoref{fig:fund-ia}.
 
+\begin{figure}[h!] %H
+  \centering
+  \caption{Diagrama de Venn da Inteligência Artificial e suas áreas de estudo. }
+  \includegraphics[scale=1.1]{img/img-fundamentacao-ia.pdf}
+  \label{fig:fund-ia}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
+\end{figure}
+
+Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples Sistemas Baseados em Regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresenta um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Fluxograma que diferencia as áreas de estudo da Inteligência Artificial e suas etapas de processamento de dados. }
+  \includegraphics[scale=1.1]{img/img-fundamentacao-fluxograma.pdf}
+  \label{fig:fund-fluxograma}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
+\end{figure}
+
+Sistemas Baseados em Regras não possuem componentes capazes de realizar qualquer aprendizado a partir e dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar Xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente por cientistas de dados em modelos utilizáveis \cite{ref:Edgar-Manz} \cite{ref:Robins} possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programado com eles'' \cite{ref:Woolf}.
+
+No Aprendizado de Representação (do inglês \textit{Feature Learning} ou \textit{Representation Learning}) entretanto, não há necessidade de mapear manualmente essas características \cite{ref:Goodfellow-Bengio-Courville}. Ou seja, por conta própria e de forma abstrata, os algoritmos são capazes de extrair as características importantes para a construção dos modelos utilizando redes neurais \cite{ref:Robins} \cite{ref:Lesort}. O Aprendizado Profundo, por sua vez, resolve dificuldade que o Aprendizado de Representação possui de extrair características abstratas de alto nível, tais como sotaques de um locutor \cite{ref:Goodfellow-Bengio-Courville}. Segundo \citeonline{ref:Mao-Wang-Tang-Qian}, o Aprendizado Profundo ``imita a função que o cérebro humano possui de interpretar dados usando redes neurais de várias camadas''. Um exemplo dessas variadas camadas é apresentado na \autoref{fig:fund-camadas} e uma comparação com o modelo de Aprendizado de Máquina é ilustrado na \autoref{fig:fund-aprendizados}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Ilustração das camadas de um modelo de Aprendizado Profundo.}
+  \includegraphics[scale=0.8]{img/img-fundamentacao-deep-learning.pdf}
+  \label{fig:fund-camadas}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
+\end{figure}
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Comparação entre os modelos Aprendizado de Máquina e Aprendizado Profundo.}
+  \includegraphics[scale=0.95]{img/img-fundamentacao-aprendizados.pdf}
+  \label{fig:fund-aprendizados}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Robins}}
+\end{figure}
+
+
+%
 
 %Segundo \citeonline{ref:Goodfellow-Bengio-Courville}, a Inteligência Artificial (IA) em seus primórdios foi muito utilizada para resolução de problemas matemáticos que são complexos para seres humanos, porém simples para computadores. Porém, ainda segundo \citeonline{ref:Goodfellow-Bengio-Courville}, o verdadeiro desafio da IA atualmente é resolver problemas que na verdade são tarefas simples para pessoas mas complexas para computadores, como fazer o reconhecimento de fala ou rostos em fotos.
 
@@ -17,19 +58,19 @@ Um dos objetivos da Inteligência Artificial, de acordo com \citeonline{ref:Mitc
 %Tarefas mais abstratas que podem ser descritas por uma lista de regras formais como jogar xadrez, ao contrário de tarefas mais corriqueiras como reconhecimento de objetos, onde avanços nas pesquisas foram obtidos apenas recentemente permitindo igualar habilidades humanas com as de computadores.
 
 
-\section{Aprendizagem Profunda} \label{cap:fund-aprendizagem}
+%\section{Aprendizagem Profunda} \label{cap:fund-aprendizagem}
 
-\section{Redes Neurais Profundas} \label{cap:fund-redes_profundas}
+%\section{Redes Neurais Profundas} \label{cap:fund-redes_profundas}
 
-\section{Redes Neurais Convolucionais} \label{cap:fund-redes_convolucionais}
+%\section{Redes Neurais Convolucionais} \label{cap:fund-redes_convolucionais}
 
-\section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
+%\section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
 
-    \subsection{OpenCV} \label{cap:fund-frameworks-opencv}
+%    \subsection{OpenCV} \label{cap:fund-frameworks-opencv}
 
-    \subsection{Darknet} \label{cap:fund-frameworks-darknet}
+%    \subsection{Darknet} \label{cap:fund-frameworks-darknet}
 
-    \subsection{Flask} \label{cap:fund-frameworks-flask}
+%    \subsection{Flask} \label{cap:fund-frameworks-flask}
 
 
 \begin{comment}
