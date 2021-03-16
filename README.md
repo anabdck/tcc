@@ -9,12 +9,10 @@
   1. Objetivos Específicos
   1. Estrutura do Documento
 1. Fundamentação Teórica
-  1. Métodos Detecção de Defeitos em Placas de Circuitos Impresso
-    - Métodos Comparativos
-    - Métodos Não Comparativos
-    - Métodos Híbridos
-  1. Aprendizagem profunda
-  1. Redes Neurais
+  1. Inteligência Artificial
+    1. Redes Neurais
+        - Redes Neurais Profundas
+        - Redes Neurais Convolucionais
   1. Frameworks e Bibliotecas
     - OpenCV
     - Darknet
