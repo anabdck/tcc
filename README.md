@@ -17,8 +17,9 @@
     - OpenCV
     - Darknet
     - Flask
+  1. Classificação e Detecção de defeitos
 1. Metodologia
-1. Resultados
+1. Mudar nome
   1. Treinamento da Rede Neural
   1. Interface de Programação de Aplicação
 1. Estado da Arte
