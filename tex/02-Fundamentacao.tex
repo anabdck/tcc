@@ -1,6 +1,6 @@
 \chapter{Fundamentação Teórica} \label{cap:fund}
 
-%Falta escrever essa parte. 
+%Falta escrever essa parte.
 \section{Inteligência Artificial} \label{cap:fund-ia}
 
 Apesar de ter chamado atenção nos últimos anos com a quantidade enorme de dados adquiridos e processados por grandes corporações como Google, Facebook, Amazon, e Apple \cite{ref:Lawless-Mittu-Sofge}, o termo `Inteligência Artificial' não é tão atual assim. Ele foi utilizado pela primeira vez em 1955 por John McCarthy \cite{ref:Cohen}, que conduziu no ano seguinte um workshop cuja premissa central da proposta considera que o comportamento humano inteligente consiste em processos que podem ser formalizados e reproduzidos por uma máquina \cite{ref:Harvard-AI}. %conjectura
@@ -132,18 +132,75 @@ Para a otimização dos pesos durante o treinamento de uma rede neural, em geral
 Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser nula tanto para a sigmóide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, plotada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
 
 \begin{equation} \label{eq:fund-relu}
-  \text{f(z)} = ReLU(z) = max(0, z)
+  \mathrm{{f(z)} = ReLU(z) = max(0, z)}
 \end{equation}
 
 Com a evolução das Redes Neurais na última década, diversas funções de ativação vem sendo propostas com o objetivo de melhorar o desempenho do treinamento. Um exemplo delas é a Mish (\autoref{fig:fund-funcs-mish}), proposta por \citeonline{ref:Misra} cuja função é definida pela \autoref{eq:fund-mish}.
 
 \begin{equation} \label{eq:fund-mish}
-  \text{f(z)} = x \cdot tanh(ln(1 + e^x))
+  \mathrm{{f(z)} = z \cdot tanh(ln(1 + e^z))}
 \end{equation}
 
-Segundo \citeonline{ref:Misra}, ao contrário da ReLU, a função Mish é continuamente diferenciável, evitando efeitos colaterais indesejados quando utiliza-se a otimização baseada em gradiente.
+Segundo \citeonline{ref:Misra}, ao contrário da ReLU, a função Mish é continuamente diferenciável, evitando efeitos colaterais indesejados quando utiliza-se a otimização baseada no método do gradiente.
+
+\subsection{Treinamento de Uma Rede Neural}\label{cap:fund-ia-rn-treinamento}
+
+Para o treinamento de uma Rede Neural, utiliza-se um conjunto de exemplos de treinamento $\{(x^{(1)}, y^{(1)}), \cdots, (x^{(m)}, y^{(m)})\}$, onde $x^{(i)}, y^{(i)}$ são, respectivamente, a entrada e a saída real do \textit{i-ésimo} exemplo de treinamento de um conjunto contendo m exemplos de treinamento \cite{ref:Ng}. Para cada um desses exemplos, o objetivo é fazer o cálculo dos pesos w e b de forma que a saída estimada $\hat{y}^{(i)}$ seja próxima da saída real $y^{(i)}$.
+
+O peso b é chamado de \textit{bias} e não é multiplicado a nenhum valor da entrada para caso todos os valores de x sejam nulos, a saída $\hat{y}^{(i)}$ seja diferente de zero. O cálculo desses pesos é feito de forma iterativa e geralmente são iniciados de forma aleatória.
+
+O processo de cálculo considerando um nó de uma rede neural está ilustrado na \autoref{fig:fund-etapas}, onde a função de ativação utilizada é a sigmoide e todos os valores calculados e os de entrada são representados na forma vetorial.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Estapas da atualização dos pesos de um nó em uma Rede Neural.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-etapas.pdf}
+  \label{fig:fund-etapas}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Ng}}
+\end{figure}
+
+A primeira etapa a ser computada após a passagem das entradas pela função de ativação é função de perda, que mede quão boa é a saída prevista $\hat{y}$ em comparação aos valores verdadeiros de y para apenas um conjunto de treinamento \cite{ref:Ng}.
+
+Um exemplo de função de perda que compara $\mathrm{\hat{y}}$ com y pode ser definida pela \autoref{eq:fund-perda} \cite{ref:Ng}, onde o objetivo do treinamento é obter $L(y,\hat{y}) = 0$.
+
+\begin{equation} \label{eq:fund-perda}
+  \mathrm{
+    L(y,\hat{y}) = -(y \cdot log(\hat{y}) + (1 - y) \cdot log(1 - \hat{y}))
+  }
+\end{equation}
+
+Dessa forma, como $\mathrm{\hat{y} = f(w, b)}$, é necessário encontrar valores para os pesos w e b que minimizem a função de perda $L(y,\hat{y})$. Para isso, utiliza-se o método do gradiente, um algoritmo de primeira ordem iterativo utilizado em otimização para encontrar o mínimo local de uma função \cite{ref:Yan}, exemplificado na \autoref{fig:fund-gradiente} para uma função de perda considerando apenas a variável w.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Método do gradiente para uma variável.}
+  \includegraphics[scale=1.3]{img/img-fundamentacao-gradiente.pdf}
+  \label{fig:fund-gradiente}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sauer}}
+\end{figure}
+
+
+Após serem computadas as derivadas da \autoref{fig:fund-etapas}, os pesos w e b são atualizados conforme a \autoref{eq:fund-atualizacao-w} e a \autoref{eq:fund-atualizacao-b} onde $\alpha$ representa uma taxa de aprendizado \cite{ref:Ng}.
+
+\begin{equation} \label{eq:fund-atualizacao-w}
+  \mathrm{
+    w' = w - \alpha \cdot \frac{dL}{dw}
+  }
+\end{equation}
+
+\begin{equation} \label{eq:fund-atualizacao-b}
+  \mathrm{
+    b' = b - \alpha \cdot \frac{dL}{db}
+  }
+\end{equation}
+
+A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero.
+
 
 \subsection{Redes Neurais Profundas} \label{cap:fund-ia-rn-prof}
+Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustra a \autoref{fig:fund-camadas}.
+
+
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
 \subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-conv}
 \section{Classificação e Detecção de defeitos} \label{cap:fund-frameworks}
