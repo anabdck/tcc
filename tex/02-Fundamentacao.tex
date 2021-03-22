@@ -184,24 +184,23 @@ Após serem computadas as derivadas da \autoref{fig:fund-etapas}, os pesos w e b
 
 \begin{equation} \label{eq:fund-atualizacao-w}
   \mathrm{
-    w' = w - \alpha \cdot \frac{dL}{dw}
+    w = w - \alpha \cdot \frac{dL}{dw}
   }
 \end{equation}
 
 \begin{equation} \label{eq:fund-atualizacao-b}
   \mathrm{
-    b' = b - \alpha \cdot \frac{dL}{db}
+    b = b - \alpha \cdot \frac{dL}{db}
   }
 \end{equation}
 
 A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero.
 
-
-\subsection{Redes Neurais Profundas} \label{cap:fund-ia-rn-prof}
+\subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-prof}
 Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustra a \autoref{fig:fund-camadas}.
 
-
-\subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
+Redes Neurais Convolucionais são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler}.
+%CNN is a deep neural network originally designed for image analysis
 \subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-conv}
 \section{Classificação e Detecção de defeitos} \label{cap:fund-frameworks}
 \section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
