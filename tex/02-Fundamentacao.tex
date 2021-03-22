@@ -199,8 +199,37 @@ A atualização desses pesos é feita até que a função de perda resulte valor
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-prof}
 Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustra a \autoref{fig:fund-camadas}.
 
-Redes Neurais Convolucionais são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler}.
+Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}.
+
+CNNs sempre contém dois tipos de operações básicas: as operações de convolução e \textit{pooling} \cite{ref:Eden-Ierapetritou-Towler}. Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
+
+\begin{equation} \label{eq:fund-conv}
+\mathrm{
+  y[n] = (x \ast w)[n] = \sum_{a = -\infty}^{\infty} x[a] \cdot w [n - a]
+}
+\end{equation}
+
+A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada x \cite{ref:Eden-Ierapetritou-Towler}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como os pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}. Um exemplo de uma convolução descrita pela \autoref{eq:fund-conv} utilizando um \textit{kernel} de 2 x 2 está na figura \autoref{fig:fund-kernel}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Exemplo de convolução entre dois vetores bidimensionais.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-kernel.pdf}
+  \label{fig:fund-kernel}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
+\end{figure}
+
+
+
+
+%kernel is usually a multidimensional array of parameters that are adapted by the learning algorithm
+% The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved.
+
+%In mathematics, convolution is a mathematical operation on two functions that produces a third function expressing how the shape of one is modified or filtered by the other.
+
 %CNN is a deep neural network originally designed for image analysis
+
+%CNN always contains two basic operations, namely convolution and pooling. The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved. The pooling operation, also called subsampling, is used to reduce the dimensionality of feature maps from the convolution operation. Max pooling and average pooling are the most common pooling operations used in the CNN. Due to the complicity of CNN, relu is the common choice for the activation function to transfer gradient in training by backpropagation.
 \subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-conv}
 \section{Classificação e Detecção de defeitos} \label{cap:fund-frameworks}
 \section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
