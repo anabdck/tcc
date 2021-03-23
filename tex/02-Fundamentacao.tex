@@ -196,12 +196,26 @@ Após serem computadas as derivadas da \autoref{fig:fund-etapas}, os pesos w e b
 
 A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero.
 
-\subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-prof}
-Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustra a \autoref{fig:fund-camadas}.
+\subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
+Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
 
-Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}.
+Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}. O uso de CNNs reduz os requisitos de memória e possui uma melhor eficiência estática quando comparada a redes neurais tradicionais \cite{ref:Goodfellow-Bengio-Courville}.
 
-CNNs sempre contém dois tipos de operações básicas: as operações de convolução e \textit{pooling} \cite{ref:Eden-Ierapetritou-Towler}. Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
+CNNs sempre contém dois tipos de operações básicas: as operações de convolução e \textit{pooling} \cite{ref:Eden-Ierapetritou-Towler}, além de utilizarem funções de ativação. Os componentes de uma CNN típica estão ilustrados na \autoref{fig:fund-conv}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Componentes de uma Rede Neural Convolucional típica.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-conv.pdf}
+  \label{fig:fund-conv}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
+\end{figure}
+
+\subsubsection{Operação de Convolução} \label{cap:fund-ia-rn-conv-conv}
+
+Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada x \cite{ref:Eden-Ierapetritou-Towler}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
+
+Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
 
 \begin{equation} \label{eq:fund-conv}
 \mathrm{
@@ -209,7 +223,23 @@ CNNs sempre contém dois tipos de operações básicas: as operações de convol
 }
 \end{equation}
 
-A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada x \cite{ref:Eden-Ierapetritou-Towler}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como os pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}. Um exemplo de uma convolução descrita pela \autoref{eq:fund-conv} utilizando um \textit{kernel} de 2 x 2 está na figura \autoref{fig:fund-kernel}.
+Para imagens, as convoluções ocorrem em mais que um eixo ao mesmo tempo. Se a entrada é uma imagem bidimensional I, o \textit{kernel} K provavelmente também será bidimensional, como define a \autoref{eq:fund-conv-2} \cite{ref:Goodfellow-Bengio-Courville}.
+
+\begin{equation} \label{eq:fund-conv-2}
+\mathrm{
+  Y[i, j] = (I \ast K)[i, j] = \sum_{m} \sum_{n} I[m,n] \cdot K [i-m, j-n]
+}
+\end{equation}
+
+Porém, utilizando a propriedade comutativa da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
+
+\begin{equation} \label{eq:fund-conv-3}
+\mathrm{
+ Y[i, j] = (I \ast K)[i, j] = \sum_{m} \sum_{n} I[i + m,j + n] \cdot K [m,n]
+}
+\end{equation}
+
+Um exemplo de uma convolução descrita pela \autoref{eq:fund-conv-3} utilizando um \textit{kernel} de 2 x 2 está na figura \autoref{fig:fund-kernel}.
 
 \begin{figure}[h!] %H
   \centering
@@ -219,8 +249,32 @@ A operação de convolução em uma rede neural utiliza multiplos tipos de \text
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
+\subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
+As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} e ajudam a tornar as saídas aproximadamente invariantes a pequenas variações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
+
+A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}, onde a mais utilizada em CNNs é a \textit{Max-Pooling} da \autoref{fig:fund-pool-max}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Exemplos de funções utilizadas para operação de \textit{pooling}.}
+    \begin{subfigure}[H]{.5\textwidth}
+        \centering
+        \caption{\textit{Pooling} Médio}
+        \includegraphics[scale=1.1]{img/img-fundamentacao-av-pool.pdf}
+        \label{fig:fund-pool-av}
+    \end{subfigure}
+    \begin{subfigure}[H]{.5\textwidth}
+        \centering
+        \caption{\textit{Max-Pooling}}
+        \includegraphics[scale=1.1]{img/img-fundamentacao-max-pool.pdf}
+        \label{fig:fund-pool-max}
+    \end{subfigure}
+    \indentedfont[15.5cm]{Adaptado de \citeonline{ref:Gholamalinezhad-Khosravi}}
+	\label{fig:fund-pool}
+\end{figure}
 
 
+%pooling layers are usually used immediately after convolutional layers. What the pooling layers do is simplify the information in the output from the convolutional layer
 
 %kernel is usually a multidimensional array of parameters that are adapted by the learning algorithm
 % The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved.
