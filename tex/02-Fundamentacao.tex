@@ -55,6 +55,8 @@ No Aprendizado de Representação (do inglês \textit{Feature Learning} ou \text
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Robins}}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 \section{Redes Neurais} \label{cap:fund-ia-rn}
 Ao contrário da abordagem convencional de programação, onde dizemos a um computador o que deve ser feito ao dividir um problema em pequenas tarefas para que ele execute, uma Rede Neural (do inglês \textit{Neural Network}) utiliza dados observacionais para aprender como resolver o problema \cite{ref:Nielsen}.
 
@@ -194,7 +196,85 @@ Após serem computadas as derivadas da \autoref{fig:fund-etapas}, os pesos w e b
   }
 \end{equation}
 
-A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero.
+A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero ou quando o erro está dentro de uma faixa aceitável de acordo com a métrica de avaliação utilizada.
+
+
+
+\subsection{Métricas de Avaliação} \label{cap:fund-ia-metricas}
+Determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações, é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
+
+\subsubsection{Matriz de Confusão} \label{cap:fund-ia-metricas-matriz}
+A Matriz de Confusão é uma técnica muito popular usada tanto em problemas de classificação binária quanto problemas de classificação com diversas classes, representando a contagem dos resultados da predição feitos pela rede neural e dos valores verdadeiros \cite{ref:Batarseh-Yang}. Um exemplo de matriz de confusão utiliza em classificações binárias está na \autoref{fig:fund-matriz}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Matriz de Confusão para classificação binária.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-matriz.pdf}
+  \label{fig:fund-matriz}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Batarseh-Yang}}
+\end{figure}
+
+\subsubsection{Acurácia} \label{cap:fund-ia-metricas-acuracia}
+Uma das métricas mais comuns utilizadas durante a classificação é a Acurácia \cite{ref:Batarseh-Yang}, que pode ser calculada a partir da matriz de confusão utilizando a \autoref{eq:fund-acuracia}, definida pela razão entre o número de predições corretas e o número total de predições.
+
+\begin{equation} \label{eq:fund-acuracia}
+\mathrm{
+  Acur\acute{a}cia = \frac{VN + VP}{VN + FP + FN + VP}
+}
+\end{equation}
+
+A Acurácia pode causar uma impressão incorreta se utilizada como métrica no treinamento de um conjunto de dados desequilibrados, portanto outros métodos baseados na matriz de confusão podem ser utilizados \cite{ref:Batarseh-Yang}, como os métodos de Precisão e Sensibilidade.
+
+\subsubsection{Precisão e Sensibilidade} \label{cap:fund-ia-metricas-pr}
+
+A medida de Precisão (do inglês \textit{Precision}), definida pela \autoref{eq:fund-precisao}, representa a fração de detecções feitas de forma correta; enquanto a Sensibilidade, conhecida do inglês como \textit{Sensitivity} ou \textit{Recall}, representa apenas a fração das predições verdadeiras \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-sensibilidade}. Ambas métricas fornecem informações importantes a respeito do treinamento, porém o objetivo é melhorar a Sensibilidade sem que a Precisão seja afetada \apud{ref:Chawla}{ref:Batarseh-Yang}. Uma ilustração das medidas de Precisão e Sensibilidade está na \autoref{fig:fund-pr}.
+
+\begin{equation} \label{eq:fund-precisao}
+\mathrm{
+  Precis\tilde{a}o = \frac{VP}{VP + FP}
+}
+\end{equation}
+
+\begin{equation} \label{eq:fund-sensibilidade}
+\mathrm{
+  Sensibilidade = \frac{VP}{VP + FN}
+}
+\end{equation}
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Ilustração das medidas de Precisão e Sensibilidade.}
+  \includegraphics[scale=1.7]{img/img-fundamentacao-pr.pdf}
+  \label{fig:fund-pr}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Tan}}
+\end{figure}
+
+Uma curva de Precisão em função da Sensibilidade pode ser construída ao variar o \textit{treshold} da probabilidade de um resultado pertencer a determinada classe \cite{ref:Steen}. Um exemplo dessa curva está na \autoref{fig:fund-prcurve}, onde o eixo horizontal indica a Sensibilidade e o eixo vertical, a Precisão para quatro classes distintas.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Curva da Precisão em função da Sensibilidade para quatro classes distintas.}
+  \includegraphics[scale=0.6]{img/img-fundamentacao-prcurve.png}
+  \label{fig:fund-prcurve}
+  \indentedfont[15.2cm]{\citeonline{ref:Etten}}
+\end{figure}
+
+\subsubsection{Precisão Média} \label{cap:fund-ia-metricas-pmed}
+O valor da Precisão Média de cada classe, do inglês Average Precision (AP), é encontrado ao calcular a área sob a curva da Precisão em função da Sensibilidade. Já a média desses valores, conhecida no inglês como Mean Average Precision (mAP) é feita como maneira de avaliar um conjunto de treino completo, levando em conta todas as classes treinadas \cite{ref:Tan}.
+
+\subsubsection{\textit{F-Score}} \label{cap:fund-ia-metricas-fscore}
+A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e a Sensibilidade \cite{ref:Mishra} e é feita por meio de uma média harmônica ponderada entre essas medidas \cite{ref:Batarseh-Yang}, conforme a \autoref{eq:fund-fscore} . O resultado está sempre dentro do intervalo entre zero e um e quanto maior o valor de \textit{F-Score}, melhor é a performance do modelo \cite{ref:Mishra}.
+
+\begin{equation} \label{eq:fund-fscore}
+\mathrm{
+  F-Score = 2 \cdot \frac{Precis\tilde{a}o \cdot Sensibilidade}{Precis\tilde{a}o + Sensibilidade}
+}
+\end{equation}
+
+
+% Precision is the fraction of detections reported by the model that were correct, while recall is the fraction of true events that were detected
+
+%When using precision and recall, it is common to plot a PR curve, with precision on the y-axis and recall on the x-axis. The classifier generates a score that is higher if the event to be detected occurred
 
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
 Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
@@ -213,7 +293,9 @@ CNNs sempre contém dois tipos de operações básicas: as operações de convol
 
 \subsubsection{Operação de Convolução} \label{cap:fund-ia-rn-conv-conv}
 
-Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada x \cite{ref:Eden-Ierapetritou-Towler}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
+%In convolution layers, CNN uses different kernels for convolving the input image for creating the feature maps
+
+Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
 
 Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
 
@@ -249,10 +331,20 @@ Um exemplo de uma convolução descrita pela \autoref{eq:fund-conv-3} utilizando
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-\subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
-As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} e ajudam a tornar as saídas aproximadamente invariantes a pequenas variações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
+Exemplos de convolução em imagem utilizando distintos tipos de \textit{kernel} está na \autoref{fig:fund-fifits}.
 
-A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}, onde a mais utilizada em CNNs é a \textit{Max-Pooling} da \autoref{fig:fund-pool-max}.
+\begin{figure}[h!] %H
+  \centering
+  \caption{Operações de convolução em uma imagem.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-fifits.pdf}
+  \label{fig:fund-fifits}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Albawi-Mohammed-Al-Zawi}}
+\end{figure}
+
+\subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
+As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} ao reduzir o tamanho do mapa de características \cite{ref:Gholamalinezhad-Khosravi} e ajudam a tornar as saídas aproximadamente invariantes a pequenas modificações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
+
+Espera-se que uma camada de \textit{pooling} ideal extraia semoente as informações úteis e descarte detalhes irrelevantes \cite{ref:Gholamalinezhad-Khosravi}. A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}. A operação de \textit{Max-Pooling} seleciona o pixel com maior valor dentre os pixeis de uma região (\autoref{fig:fund-pool-max}) e a operação de \textit{Pooling} médio (\autoref{fig:fund-pool-av}) faz a média entre esses pixeis.
 
 \begin{figure}[h!]
     \centering
@@ -273,18 +365,11 @@ A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}, o
 	\label{fig:fund-pool}
 \end{figure}
 
+\subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-yolo}
+\textit{You Only Look Once} (YOLO), cuja tradução direta do inglês é ``você apenas olha uma vez'', é uma rede neural dita de passagem única \cite{ref:Yan} que origina seu nome.
 
-%pooling layers are usually used immediately after convolutional layers. What the pooling layers do is simplify the information in the output from the convolutional layer
 
-%kernel is usually a multidimensional array of parameters that are adapted by the learning algorithm
-% The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved.
 
-%In mathematics, convolution is a mathematical operation on two functions that produces a third function expressing how the shape of one is modified or filtered by the other.
-
-%CNN is a deep neural network originally designed for image analysis
-
-%CNN always contains two basic operations, namely convolution and pooling. The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved. The pooling operation, also called subsampling, is used to reduce the dimensionality of feature maps from the convolution operation. Max pooling and average pooling are the most common pooling operations used in the CNN. Due to the complicity of CNN, relu is the common choice for the activation function to transfer gradient in training by backpropagation.
-\subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-conv}
 \section{Classificação e Detecção de defeitos} \label{cap:fund-frameworks}
 \section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
 \subsection{OpenCV} \label{cap:fund-frameworks-opencv}
