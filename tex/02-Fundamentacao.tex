@@ -271,9 +271,6 @@ A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e
 }
 \end{equation}
 
-
-
-
 % Precision is the fraction of detections reported by the model that were correct, while recall is the fraction of true events that were detected
 
 %When using precision and recall, it is common to plot a PR curve, with precision on the y-axis and recall on the x-axis. The classifier generates a score that is higher if the event to be detected occurred
@@ -368,11 +365,81 @@ Espera-se que uma camada de \textit{pooling} ideal extraia semoente as informaç
 \end{figure}
 
 \subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-yolo}
-\textit{You Only Look Once} (YOLO), cuja tradução direta do inglês é ``você apenas olha uma vez'', é uma rede neural dita de passagem única \cite{ref:Yan} que origina seu nome.
+\textit{You Only Look Once} (YOLO), cuja tradução direta do inglês é ``você olha apenas uma vez'', é uma rede neural de passagem única \cite{ref:Yan} onde, ao contrário de outras abordagens, uma única rede neural é aplicada na imagem para fazer a localização e a detecção do objeto, dividindo a imagem em regiões menores e fazendo a previsão e a probabilidade da detecção para cada uma das regiões \cite{ref:Redmon-Farhadi}.
+
+A rede neural YOLO possui 24 camadas convolucionais seguidas por duas camadas totalmente conectadas \cite{ref:Yan}. A arquitetura básica da primeira versão está na \autoref{fig:fund-yoloarq}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Arquitetura da Rede Neural YOLO.}
+  \includegraphics[scale=0.3]{img/img-fundamentacao-yoloarq.png}
+  \label{fig:fund-yoloarq}
+  \indentedfont[15.2cm]{\citeonline{ref:Redmon-et-al}}
+\end{figure}
+
+Atualmente, a rede neural YOLO está na versão 4, apresentando otimização em funções de ativação, processamento dos dados, treinamento, funções de perda, etc, em comparação com a versão anterior \cite{ref:Wang-et-al}. Uma comparação de desempenho com outras redes neurais utilizadas para detecção de objetos em tempo real está no gráfico da \autoref{fig:fund-yolov4}, que avalia a precisão média em função da quantidade de \textit{frames} por segundo que a rede consegue processar, utilizando o \textit{dataset} \textit{Microsoft COCO:  Common Objects in Context} \cite{ref:Lin-et-al}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Comparação da precisão média em função do processamento em \textit{frames} por segundo para diferentes redes neurais utilizadas em detecção de objetos.}
+  \includegraphics[scale=0.3]{img/img-fundamentacao-yolov4.png}
+  \label{fig:fund-yolov4}
+  \indentedfont[15.2cm]{\citeonline{ref:Bochkovskiy-Wang-Liao}}
+\end{figure}
+
+A YOLO divide a imagem em imagens menores no formato de uma grade, e para cada uma dessas divisões, são previstas caixas delimitadoras, com suas confianças e probabilidades \cite{ref:Redmon-et-al}. A maioria dessas divisões não contém um objeto detectado e a filtragem é feita com base na probabilidade da classe do objeto, onde apenas as caixas delimitadoras de maior probabilidade permanecerão \cite{ref:Sivarajkumar}. Esse processo é ilustrado na \autoref{fig:fund-yolograde}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Comparação da precisão média em função do processamento em \textit{frames} por segundo para diferentes redes neurais utilizadas em detecção de objetos.}
+  \includegraphics[scale=0.95]{img/img-fundamentacao-yolograde.pdf}
+  \label{fig:fund-yolograde}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Redmon-et-al}}
+\end{figure}
+
+A camada final é responsável por prever as probabilidades das classes treinadas e as coordenadas das caixas delimitadoras \cite{ref:Redmon-et-al}. Tanto a largura e a altura das caixas delimitadoras quanto as coordenadas x e y são normalizadas pela altura e largura da imagem, de modo que os valores fique dentro do intervalo entre zero e um \cite{ref:Redmon-et-al}.
+
+Para o treinamento, são necessárias algumas configurações de arquivos, além da adição das imagens do \textit{dataset} utilizado, a partir do \textit{download} do repositório do projeto disponibilizado por \citeonline{ref:Bochkovskiy}. As instruções a serem seguidas, conforme \citeonline{ref:Bochkovskiy}, são:
+
+\begin{itemize}
+  \item Criar o arquivo ``yolo-obj.cfg'' com o mesmo conteúdo de ``yolov4-custom.cfg'';
+  \item Alterar ``yolo-obj.cfg'' para:
+  \begin{itemize}
+    \item Considerar \textit{batches} com 64 imagens;
+    \item Subdividir cada \textit{batch} em 16 imagens (para processamento paralelo em treinamentos utilizando GPUs);
+    \item Utilizar um número máximo de \textit{batches} igual ao produto $n_{classes} \cdot 2000$
+    \item Alterar o número de passos de acordo com o número máximo de \textit{batches};
+    \item Alterar a quantidade de filtros considerando a fórmula $(n_{classes} + 5) \cdot 3$.
+  \end{itemize}
+  \item Criar o arquivo ``obj.names'' com os nomes das classes utilizadas, com cada nome em uma linha nova;
+  \item Alterar no arquivo ``obj.data'' o número de classes utilizadas;
+  \item Colocar as imagens de treinamento e teste no diretório ``obj'' que se encontra dentro de ``data'';
+  \item Criar um arquivo de texto com a extensão ``.txt'' para cada uma das imagens do \textit{dataset} no mesmo diretório em que elas estão contendo os objetos e suas respectivas coordenadas, seguindo o padrão  $<objectclass> <x_{center}> <y_{center}r> <width> <height>$ de forma que cada linha represente um objeto, onde
+  \begin{itemize}
+    \item $<objectclass>$ indica a classe do objeto de acordo com a ordem definida no arquivo ``obj.names'' com valores dentro do intervalo $[0, n_{classes} - 1]$;
+    \item $<x_{center}> <y_{center}> <width> <height>$ são valores em ponto flutuante detro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
+  \end{itemize}
+  \item Criar os arquivos de texto ``train.txt'' e ``test.txt'' que contém o nome das imagens utilizadas no treinamento e teste, respectivamente, onde para cada imagem utiliza-se uma nova linha;
+  \item Fazer o \textit{Download} de pesos pré-treinados, com intuído de acelerar o treinamento;
+  \item Iniciar o treinamento.
+\end{itemize}
+
+\section{Classificação e Detecção de Objetos} \label{cap:fund-objetos}
+
+A classificação e detecção de um objeto em uma imagem são duas tarefas distintas. Segundo \citeonline{ref:Chen-et-al}, ``a tarefa de classificação de objetos visa prever a existência de objetos dentro das imagens, enquanto a tarefa de detecção de objetos visa localizar os objetos'', como mostra a \autoref{fig:fund-deteccaoclassificacao}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Diferença entre as tarefas de classificação e detetecção de objetos em uma imagem.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-deteccaoclassificacao.pdf}
+  \label{fig:fund-deteccaoclassificacao}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sivarajkumar}}
+\end{figure}
 
 
-
-\section{Classificação e Detecção de defeitos} \label{cap:fund-frameworks}
+\subsection{IoU} \label{cap:fund-objetos-iou}
+\subsection{\textit{Datasets}} \label{cap:fund-objetos-data}
+\subsection{Defeitos em Placas de Circuito Impresso} \label{cap:fund-objetos-defeitos}
 \section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
 \subsection{OpenCV} \label{cap:fund-frameworks-opencv}
 \subsection{Darknet} \label{cap:fund-frameworks-darknet}
