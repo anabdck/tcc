@@ -271,6 +271,29 @@ A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e
 }
 \end{equation}
 
+\subsubsection{Intersecção sobre União} \label{cap:fund-ia-metricas-iou}
+Para avaliar o treinamento da rede neural para detecção de objetos e encontrar os valores verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos utilizados em métricas baseadas na matriz de confusão, discutida na \autoref{cap:fund-ia-metricas}, utiliza-se o conceito de Intersecção sobre União.
+
+A Intersecção sobre União, do inglês \textit{Intersection over Union} (IoU), também conhecida como índice de Jaccard, é a métrica mais  usada para comparar a similaridade entre duas formas arbitrárias \cite{ref:Rezatofighi-et-al}. De forma geral, o IoU pode ser calculado pela \autoref{eq:fund-iou} \cite{ref:Rezatofighi-et-al}, onde A e B representam duas formas arbitrárias.
+
+\begin{equation} \label{eq:fund-iou}
+\mathrm{
+  IoU = \frac{|A \cap B|}{|A \cup B|}
+}
+\end{equation}
+
+No caso da detecção de objetos em imagens, as formas a serem comparadas são as caixas delimitadoras desenhadas ao redor dos objetos na imagem, e a IoU é calculada pela comparação entre a caixa delimitadora detectada pela rede neural com a localização real do objeto, como ilustra a \autoref{fig:fund-iou}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Exemplo de caixa delimitadora prevista por uma rede neural em comparação com a localização real do objeto para o cálculo da IoU.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-iou.pdf}
+  \label{fig:fund-iou}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sivarajkumar}}
+\end{figure}
+
+As métricas de AP e mAP discutidas na \autoref{cap:fund-ia-metricas-pmed} são obtidas variando a IoU para cada classe em um conjunto de imagens treinadas, onde uma detecção é considerada como um verdadeiro positivo se a IoU é maior que certo limiar \cite{ref:Sivarajkumar} .
+
 % Precision is the fraction of detections reported by the model that were correct, while recall is the fraction of true events that were detected
 
 %When using precision and recall, it is common to plot a PR curve, with precision on the y-axis and recall on the x-axis. The classifier generates a score that is higher if the event to be detected occurred
@@ -312,7 +335,7 @@ Para imagens, as convoluções ocorrem em mais que um eixo ao mesmo tempo. Se a 
 }
 \end{equation}
 
-Porém, utilizando a propriedade comutativa da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
+Porém, utilizando a propriedade comuta  tiva da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
 
 \begin{equation} \label{eq:fund-conv-3}
 \mathrm{
@@ -391,7 +414,7 @@ A YOLO divide a imagem em imagens menores no formato de uma grade, e para cada u
 
 \begin{figure}[h!] %H
   \centering
-  \caption{Comparação da precisão média em função do processamento em \textit{frames} por segundo para diferentes redes neurais utilizadas em detecção de objetos.}
+  \caption{Processo de detecção e classificação na rede neural YOLO.}
   \includegraphics[scale=0.95]{img/img-fundamentacao-yolograde.pdf}
   \label{fig:fund-yolograde}
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Redmon-et-al}}
@@ -405,7 +428,7 @@ Para o treinamento, são necessárias algumas configurações de arquivos, além
   \item Criar o arquivo ``yolo-obj.cfg'' com o mesmo conteúdo de ``yolov4-custom.cfg'';
   \item Alterar ``yolo-obj.cfg'' para:
   \begin{itemize}
-    \item Considerar \textit{batches} com 64 imagens;
+    \item Considerar \textit{batches} com 64 imagens, onde um \textit{batch} representa o número de amostras a serem trabalhadas antes de atualizar os parâmetros do modelo \cite{ref:Brownlee};
     \item Subdividir cada \textit{batch} em 16 imagens (para processamento paralelo em treinamentos utilizando GPUs);
     \item Utilizar um número máximo de \textit{batches} igual ao produto $n_{classes} \cdot 2000$
     \item Alterar o número de passos de acordo com o número máximo de \textit{batches};
@@ -414,17 +437,18 @@ Para o treinamento, são necessárias algumas configurações de arquivos, além
   \item Criar o arquivo ``obj.names'' com os nomes das classes utilizadas, com cada nome em uma linha nova;
   \item Alterar no arquivo ``obj.data'' o número de classes utilizadas;
   \item Colocar as imagens de treinamento e teste no diretório ``obj'' que se encontra dentro de ``data'';
-  \item Criar um arquivo de texto com a extensão ``.txt'' para cada uma das imagens do \textit{dataset} no mesmo diretório em que elas estão contendo os objetos e suas respectivas coordenadas, seguindo o padrão  $<objectclass> <x_{center}> <y_{center}r> <width> <height>$ de forma que cada linha represente um objeto, onde
+  \item Criar um arquivo de texto com a extensão ``.txt'' para cada uma das imagens do \textit{dataset} no mesmo diretório em que elas estão contendo os objetos e suas respectivas coordenadas, seguindo o padrão  $<objectclass> <x_{center}> <y_{center}> <width> <height>$ de forma que cada linha represente um objeto, onde
   \begin{itemize}
     \item $<objectclass>$ indica a classe do objeto de acordo com a ordem definida no arquivo ``obj.names'' com valores dentro do intervalo $[0, n_{classes} - 1]$;
-    \item $<x_{center}> <y_{center}> <width> <height>$ são valores em ponto flutuante detro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
+    \item $<x_{center}> <y_{center}>$ são as coordenadas centrais da localização da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
+    \item $<width> <height>$ são a largura e a altura, respectivamente, da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
   \end{itemize}
   \item Criar os arquivos de texto ``train.txt'' e ``test.txt'' que contém o nome das imagens utilizadas no treinamento e teste, respectivamente, onde para cada imagem utiliza-se uma nova linha;
   \item Fazer o \textit{Download} de pesos pré-treinados, com intuído de acelerar o treinamento;
   \item Iniciar o treinamento.
 \end{itemize}
 
-\section{Classificação e Detecção de Objetos} \label{cap:fund-objetos}
+\section{Classificação e Detecção de Defeitos em Placas de Circuito Impresso} \label{cap:fund-pcb}
 
 A classificação e detecção de um objeto em uma imagem são duas tarefas distintas. Segundo \citeonline{ref:Chen-et-al}, ``a tarefa de classificação de objetos visa prever a existência de objetos dentro das imagens, enquanto a tarefa de detecção de objetos visa localizar os objetos'', como mostra a \autoref{fig:fund-deteccaoclassificacao}.
 
@@ -436,10 +460,67 @@ A classificação e detecção de um objeto em uma imagem são duas tarefas dist
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sivarajkumar}}
 \end{figure}
 
+Considerando Placas de Circuito Impresso (PCIs), os defeitos da etapa de fabricação são localizados e detectados antes da etapa de soldagem dos componentes. Esses defeitos podem ser classificados como circuito aberto, curto-circuito, falta de cobre, cobre excessivo, trilha desconectada e falta de estanho \cite{ref:Ding-et-al}, conforme a \autoref{fig:fund-defeitos}.
 
-\subsection{IoU} \label{cap:fund-objetos-iou}
-\subsection{\textit{Datasets}} \label{cap:fund-objetos-data}
-\subsection{Defeitos em Placas de Circuito Impresso} \label{cap:fund-objetos-defeitos}
+\begin{figure}[h!]
+    \centering
+    \caption{Tipos de defeito de fabricação em placas de circuito impresso.}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{trilha desconectada}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos.pdf}
+        \label{fig:fund-defeitos1}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{falta de estanho}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos2.pdf}
+        \label{fig:fund-defeitos2}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{falta de cobre}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos3.pdf}
+        \label{fig:fund-defeitos3}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{excesso de cobre}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos5.pdf}
+        \label{fig:fund-defeitos5}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{curto-circuito}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos4.pdf}
+        \label{fig:fund-defeitos4}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{circuito aberto}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos6.pdf}
+        \label{fig:fund-defeitos6}
+    \end{subfigure}
+    \indentedfont[15.5cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+	\label{fig:fund-defeitos}
+\end{figure}
+
+\subsection{Métodos Automatizados de Extração de Defeitos} \label{cap:fund-pcb-metodos}
+
+Técnicas automatizadas de detecção de defeitos apresentam melhor regularidade, precisão e repetibilidade quando comparada a inspeção humana que, além da imprecisão e não-repetibilidade, está sujeita a subjetividade, fadiga e lentidão e está, ainda, associada a um alto custo \cite{ref:Leta-Feliciano-Martins}.
+
+%In the last decades, different defect detection methods have been proposed in the field of PCB defect detection. Moganti [15] first proposed three categories of PCB inspection algorithms: referential approaches, non-referential approaches, and hybrid approaches.
+
+
+\subsubsection{Métodos Comparativos} \label{cap:fund-pcb-metodos-comp}
+Os métodos comparativos de detecção utilizam uma imagem de referência para extrair os objetos da imagem a ser processada.
+
+\subsubsection{Métodos Não-Referenciais} \label{cap:fund-pcb-metodos-nref}
+
+\subsubsection{Métodos Híbridos} \label{cap:fund-pcb-metodos-hib}
+
+\subsection{\textit{Datasets} Disponíveis} \label{cap:fund-pcb-datasets}
+
 \section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
 \subsection{OpenCV} \label{cap:fund-frameworks-opencv}
 \subsection{Darknet} \label{cap:fund-frameworks-darknet}
