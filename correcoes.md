@@ -1,0 +1,9 @@
+- OK {img/img-fundamentacao-fluxograma.pdf} fspacheco: Tirar a crase em "a partir das"
+- conhecimentos ao invés de serem programado com eles'' \cite{ref:Woolf}. fspacheco: ser programado ou serem programados? Quem é o sujeito? Aprendizado de máquina?
+- extraídas por cada camada. Uma comparação com o modelo de Aprendizado de Máquina é ilustrado na \autoref{fig:fund-aprendizados}. fspacheco: Ficou só uma linha de texto na página. Conferir na versão final.
+-   \caption{Comparação entre os modelos Aprendizado de Máquina e Aprendizado Profundo.} fspacheco: Uma rede neural convencional (feed-forward) entra em que categoria?
+- A função sigmóide da \autoref{fig:fund-funcs-sig}, definida por \citeonline{ref:Sharma} pela \autoref{eq:fund-sig} fspacheco: Eu escreveria: A f. sig., definida por 2.1 (Sharma,2017), é .... A Fig. 8a mostra um gráfico da f. sig.
+- são um tipo de rede neural profunda originalmente projetadas fspacheco: vai uma vírgula depois de profunda?
+-  \caption{Componentes de uma Rede Neural Convolucional típica.} fspacheco: Esse "ex ReLu" quer dizer exemplo? Se sim, troque por "p. ex., ReLu"
+- Porém, utilizando a propriedade comutativa da convolução, ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n fspacheco: Não entendi
+- a desinverter o \textit{kernel} em relação à imagem, fspacheco: Também não entendi

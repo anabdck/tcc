@@ -5,7 +5,7 @@
 
 Apesar de ter chamado atenção nos últimos anos com a quantidade enorme de dados adquiridos e processados por grandes corporações como Google, Facebook, Amazon, e Apple \cite{ref:Lawless-Mittu-Sofge}, o termo `Inteligência Artificial' não é tão atual assim. Ele foi utilizado pela primeira vez em 1955 por John McCarthy \cite{ref:Cohen}, que conduziu no ano seguinte um workshop cuja premissa central da proposta considera que o comportamento humano inteligente consiste em processos que podem ser formalizados e reproduzidos por uma máquina \cite{ref:Harvard-AI}. %conjectura
 
-Um dos objetivos da Inteligência Artificial, de acordo com \citeonline{ref:Mitchell-Michalski-Carbonell}, é fazer com que computadores realizem tarefas mais inteligentes de forma que não haja necessidade dos seres humanos executá-las. Entretanto, um dos grandes desafios da área de IA atualmente é a execução de atividades consideradas simples e corriqueiras para pessoas, como reconhecimento de objetos e fala \cite{ref:Goodfellow-Bengio-Courville}. Para ilustrar isso, a tabela da \autoref{fig:fund-dificuldades} apresenta a diferença entre o nível de dificuldade que um computador ou ser humano tem para resolver determinado problema.
+Um dos objetivos da Inteligência Artificial, de acordo com \citeonline{ref:Mitchell-Michalski-Carbonell}, é fazer com que computadores realizem tarefas mais inteligentes de forma com que não haja necessidade dos seres humanos executá-las. Entretanto, um dos grandes desafios da área de IA atualmente é a execução de atividades consideradas simples e corriqueiras para pessoas, como reconhecimento de objetos e fala \cite{ref:Goodfellow-Bengio-Courville}. Para ilustrar isso, a tabela da \autoref{fig:fund-dificuldades} apresenta a diferença entre o nível de dificuldade que um computador ou ser humano tem para resolver determinado problema.
 
 \begin{figure}[h!] %H
   \centering
@@ -15,7 +15,7 @@ Um dos objetivos da Inteligência Artificial, de acordo com \citeonline{ref:Mitc
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Rashid}}
 \end{figure}
 
-A Inteligência Artificial engloba a área de estudo de Aprendizado de Máquina, que por sua vez engloba as áreas de Aprendizado de Representação e Aprendizado Profundo, conforme o diagrama de Venn apresentado na \autoref{fig:fund-ia}.
+A Inteligência Artificial engloba a área de estudo do Aprendizado de Máquina, que por sua vez englobam as áreas do Aprendizado de Representação e Aprendizado Profundo, conforme o diagrama de Venn apresentado na \autoref{fig:fund-ia}.
 
 \begin{figure}[h!] %H
   \centering
@@ -25,7 +25,7 @@ A Inteligência Artificial engloba a área de estudo de Aprendizado de Máquina,
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples Sistemas Baseados em Regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresentam um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
+Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples Sistemas Baseados em Regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresenta um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
 
 \begin{figure}[h!] %H
   \centering
@@ -35,7 +35,7 @@ Para evidenciar as diferenças entre essas áreas de estudo, em comparação com
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-Sistemas Baseados em Regras não possuem componentes capazes de realizar qualquer aprendizado a partir de dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente em modelos utilizáveis \cite{ref:Edgar-Manz} possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programado com eles'' \cite{ref:Woolf}.
+Sistemas Baseados em Regras não possuem componentes capazes de realizar qualquer aprendizado a partir e dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar Xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente em modelos utilizáveis \cite{ref:Edgar-Manz} possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programado com eles'' \cite{ref:Woolf}.
 
 No Aprendizado de Representação (do inglês \textit{Feature Learning} ou \textit{Representation Learning}) entretanto, não há necessidade de mapear manualmente essas características \cite{ref:Goodfellow-Bengio-Courville}. Ou seja, por conta própria e de forma abstrata, os algoritmos são capazes de extrair as características importantes para a construção dos modelos utilizando redes neurais \cite{ref:Robins} \cite{ref:Lesort}. O Aprendizado Profundo, por sua vez, resolve a dificuldade que o Aprendizado de Representação possui de extrair características abstratas de alto nível, tais como sotaques de um locutor \cite{ref:Goodfellow-Bengio-Courville}. Segundo \citeonline{ref:Mao-Wang-Tang-Qian}, o Aprendizado Profundo ``imita a função que o cérebro humano possui de interpretar dados usando redes neurais de várias camadas''. Um exemplo dessas variadas camadas é apresentado na \autoref{fig:fund-camadas}, onde características distintas são extraídas por cada camada. Uma comparação com o modelo de Aprendizado de Máquina é ilustrado na \autoref{fig:fund-aprendizados}.
 
@@ -55,10 +55,12 @@ No Aprendizado de Representação (do inglês \textit{Feature Learning} ou \text
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Robins}}
 \end{figure}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
 \section{Redes Neurais} \label{cap:fund-ia-rn}
 Ao contrário da abordagem convencional de programação, onde dizemos a um computador o que deve ser feito ao dividir um problema em pequenas tarefas para que ele execute, uma Rede Neural (do inglês \textit{Neural Network}) utiliza dados observacionais para aprender como resolver o problema \cite{ref:Nielsen}.
 
-\citeonline{ref:Walczak-Cerpa} definem Redes Neurais Artificiais como modelos que ``simulam a atividade elétrica do cérebro e do sistema nervoso''. Porém, enquanto alguns tipos de redes neurais tem sido utilizadas para entender o funcionamento do cérebro, na perspectiva de Aprendizado Profundo elas não são projetadas para serem modelos realistas da função biológica \cite{ref:Goodfellow-Bengio-Courville}.
+\citeonline{ref:Walczak-Cerpa} define Redes Neurais Artificiais como modelos que ``simulam a atividade elétrica do cérebro e do sistema nervoso''. Porém enquanto alguns tipos de redes neurais tem sido utilizadas para entender o funcionamento do cérebro, na perspectiva de Aprendizado Profundo elas não são projetadas para serem modelos realistas da função biológica \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsection{Estrutura de Uma Rede Neural} \label{cap:fund-ia-rn-estrutura}
 Uma Rede Neural é composta por camadas de nós, conhecidos como neurônios, e conexões que interligam as saídas e entradas desses nós. A estrutura básica de uma Rede Neural é ilustrada na \autoref{fig:fund-nn}, onde a primeira camada de neurônios é a camada de entrada, a última camada é a camada de saída e as camadas entre elas são chamadas de camadas ocultas. Na \autoref{fig:fund-nn}, vetor $\mathrm{X}$ contém os valores de entrada, os vetores $\mathrm{a^{[l]}}$ representam as funções de ativação referentes à \textit{l-ésima} camada, e $\mathrm{\hat{y}}$ é o vetor de saída com os valores preditos. As notações utilizadas nesse capítulo respeitam as propostas por \citeonline{ref:Ng} presentes no \autoref{apendice:notacao}.
@@ -117,19 +119,19 @@ As funções de ativação desempenham um papel crucial na dinâmica de desempen
 	\label{fig:fund-funcs}
 \end{figure}
 
-A função sigmóide da \autoref{fig:fund-funcs-sig}, definida por \citeonline{ref:Sharma} pela \autoref{eq:fund-sig}, é geralmente utilizada em classificações binárias, pois o resultado está sempre no intervalo entre zero e um \cite{ref:Ng}.
+A função Sigmóide da \autoref{fig:fund-funcs-sig}, definida por \citeonline{ref:Sharma} pela \autoref{eq:fund-sig}, é geralmente utilizada em classificações binárias, pois o resultado está sempre no intervalo entre zero e um \cite{ref:Ng}.
 
 \begin{equation} \label{eq:fund-sig}
   \text{f(z)} = \sigma(z) = \frac{1}{1 + e^{-z}}
 \end{equation}
 
-Para a otimização dos pesos durante o treinamento de uma rede neural, em geral é necessário calcular o gradiente das funções de ativação. Por isso, de acordo com \citeonline{ref:Sharma}, o uso da tangente hiperbólica como função de ativação é preferível pois tem gradientes que não estão restritos a variar em uma certa direção e são mais acentuados quando comparado à sigmóide. A definição da tangente hiperbólica da \autoref{fig:fund-funcs-tanh} está na \autoref{eq:fund-tanh}.
+Para a otimização dos pesos durante o treinamento de uma rede neural, em geral é necessário calcular o gradiente das funções de ativação. Por isso, de acordo com \citeonline{ref:Sharma}, o uso da tangente hiporbólica como função de ativação é preferível pois tem gradientes que não estão restritos a variar em uma certa direção e são mais acentuados quando comparado à Sigmóide. A definição da tangente hiporbólica da \autoref{fig:fund-funcs-tanh} está na \autoref{eq:fund-tanh}.
 
 \begin{equation} \label{eq:fund-tanh}
   \text{f(z)} = tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}
 \end{equation}
 
-Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser nula tanto para a sigmóide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, mostrada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
+Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser nula tanto para a sigmóide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, plotada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
 
 \begin{equation} \label{eq:fund-relu}
   \mathrm{{f(z)} = ReLU(z) = max(0, z)}
@@ -147,7 +149,7 @@ Segundo \citeonline{ref:Misra}, ao contrário da ReLU, a função Mish é contin
 
 Para o treinamento de uma Rede Neural, utiliza-se um conjunto de exemplos de treinamento $\{(x^{(1)}, y^{(1)}), \cdots, (x^{(m)}, y^{(m)})\}$, onde $x^{(i)}, y^{(i)}$ são, respectivamente, a entrada e a saída real do \textit{i-ésimo} exemplo de treinamento de um conjunto contendo m exemplos de treinamento \cite{ref:Ng}. Para cada um desses exemplos, o objetivo é fazer o cálculo dos pesos w e b de forma que a saída estimada $\hat{y}^{(i)}$ seja próxima da saída real $y^{(i)}$.
 
-O peso b é chamado de \textit{bias} e não é multiplicado a nenhum valor da entrada; caso todos os valores de x sejam nulos, a saída $\hat{y}^{(i)}$ seja diferente de zero. O cálculo desses pesos é feito de forma iterativa e geralmente são iniciados de forma aleatória.
+O peso b é chamado de \textit{bias} e não é multiplicado a nenhum valor da entrada para caso todos os valores de x sejam nulos, a saída $\hat{y}^{(i)}$ seja diferente de zero. O cálculo desses pesos é feito de forma iterativa e geralmente são iniciados de forma aleatória.
 
 O processo de cálculo considerando um nó de uma rede neural está ilustrado na \autoref{fig:fund-etapas}, onde a função de ativação utilizada é a sigmoide e todos os valores calculados e os de entrada são representados na forma vetorial.
 
@@ -194,10 +196,110 @@ Após serem computadas as derivadas da \autoref{fig:fund-etapas}, os pesos w e b
   }
 \end{equation}
 
-A atualização desses pesos é feita até que a função de perda resulte em valores muito próximos de zero.
+A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero ou quando o erro está dentro de uma faixa aceitável de acordo com a métrica de avaliação utilizada.
+
+
+
+\subsection{Métricas de Avaliação} \label{cap:fund-ia-metricas}
+Determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações, é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
+
+\subsubsection{Matriz de Confusão} \label{cap:fund-ia-metricas-matriz}
+A Matriz de Confusão é uma técnica muito popular usada tanto em problemas de classificação binária quanto problemas de classificação com diversas classes, representando a contagem dos resultados da predição feitos pela rede neural e dos valores verdadeiros \cite{ref:Batarseh-Yang}. Um exemplo de matriz de confusão utiliza em classificações binárias está na \autoref{fig:fund-matriz}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Matriz de Confusão para classificação binária.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-matriz.pdf}
+  \label{fig:fund-matriz}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Batarseh-Yang}}
+\end{figure}
+
+\subsubsection{Acurácia} \label{cap:fund-ia-metricas-acuracia}
+Uma das métricas mais comuns utilizadas durante a classificação é a Acurácia \cite{ref:Batarseh-Yang}, que pode ser calculada a partir da matriz de confusão utilizando a \autoref{eq:fund-acuracia}, definida pela razão entre o número de predições corretas e o número total de predições.
+
+\begin{equation} \label{eq:fund-acuracia}
+\mathrm{
+  Acur\acute{a}cia = \frac{VN + VP}{VN + FP + FN + VP}
+}
+\end{equation}
+
+A Acurácia pode causar uma impressão incorreta se utilizada como métrica no treinamento de um conjunto de dados desequilibrados, portanto outros métodos baseados na matriz de confusão podem ser utilizados \cite{ref:Batarseh-Yang}, como os métodos de Precisão e Sensibilidade.
+
+\subsubsection{Precisão e Sensibilidade} \label{cap:fund-ia-metricas-pr}
+
+A medida de Precisão (do inglês \textit{Precision}), definida pela \autoref{eq:fund-precisao}, representa a fração de detecções feitas de forma correta; enquanto a Sensibilidade, conhecida do inglês como \textit{Sensitivity} ou \textit{Recall}, representa apenas a fração das predições verdadeiras \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-sensibilidade}. Ambas métricas fornecem informações importantes a respeito do treinamento, porém o objetivo é melhorar a Sensibilidade sem que a Precisão seja afetada \apud{ref:Chawla}{ref:Batarseh-Yang}. Uma ilustração das medidas de Precisão e Sensibilidade está na \autoref{fig:fund-pr}.
+
+\begin{equation} \label{eq:fund-precisao}
+\mathrm{
+  Precis\tilde{a}o = \frac{VP}{VP + FP}
+}
+\end{equation}
+
+\begin{equation} \label{eq:fund-sensibilidade}
+\mathrm{
+  Sensibilidade = \frac{VP}{VP + FN}
+}
+\end{equation}
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Ilustração das medidas de Precisão e Sensibilidade.}
+  \includegraphics[scale=1.7]{img/img-fundamentacao-pr.pdf}
+  \label{fig:fund-pr}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Tan}}
+\end{figure}
+
+Uma curva de Precisão em função da Sensibilidade pode ser construída ao variar o \textit{treshold} da probabilidade de um resultado pertencer a determinada classe \cite{ref:Steen}. Um exemplo dessa curva está na \autoref{fig:fund-prcurve}, onde o eixo horizontal indica a Sensibilidade e o eixo vertical, a Precisão para quatro classes distintas.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Curva da Precisão em função da Sensibilidade para quatro classes distintas.}
+  \includegraphics[scale=0.6]{img/img-fundamentacao-prcurve.png}
+  \label{fig:fund-prcurve}
+  \indentedfont[15.2cm]{\citeonline{ref:Etten}}
+\end{figure}
+
+\subsubsection{Precisão Média} \label{cap:fund-ia-metricas-pmed}
+O valor da Precisão Média de cada classe, do inglês Average Precision (AP), é encontrado ao calcular a área sob a curva da Precisão em função da Sensibilidade. Já a média desses valores, conhecida no inglês como Mean Average Precision (mAP) é feita como maneira de avaliar um conjunto de treino completo, levando em conta todas as classes treinadas \cite{ref:Tan}.
+
+\subsubsection{\textit{F-Score}} \label{cap:fund-ia-metricas-fscore}
+A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e a Sensibilidade \cite{ref:Mishra} e é feita por meio de uma média harmônica ponderada entre essas medidas \cite{ref:Batarseh-Yang}, conforme a \autoref{eq:fund-fscore} . O resultado está sempre dentro do intervalo entre zero e um e quanto maior o valor de \textit{F-Score}, melhor é a performance do modelo \cite{ref:Mishra}.
+
+\begin{equation} \label{eq:fund-fscore}
+\mathrm{
+  F-Score = 2 \cdot \frac{Precis\tilde{a}o \cdot Sensibilidade}{Precis\tilde{a}o + Sensibilidade}
+}
+\end{equation}
+
+\subsubsection{Intersecção sobre União} \label{cap:fund-ia-metricas-iou}
+Para avaliar o treinamento da rede neural para detecção de objetos e encontrar os valores verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos utilizados em métricas baseadas na matriz de confusão, discutida na \autoref{cap:fund-ia-metricas}, utiliza-se o conceito de Intersecção sobre União.
+
+A Intersecção sobre União, do inglês \textit{Intersection over Union} (IoU), também conhecida como índice de Jaccard, é a métrica mais  usada para comparar a similaridade entre duas formas arbitrárias \cite{ref:Rezatofighi-et-al}. De forma geral, o IoU pode ser calculado pela \autoref{eq:fund-iou} \cite{ref:Rezatofighi-et-al}, onde A e B representam duas formas arbitrárias.
+
+\begin{equation} \label{eq:fund-iou}
+\mathrm{
+  IoU = \frac{|A \cap B|}{|A \cup B|}
+}
+\end{equation}
+
+No caso da detecção de objetos em imagens, as formas a serem comparadas são as caixas delimitadoras desenhadas ao redor dos objetos na imagem, e a IoU é calculada pela comparação entre a caixa delimitadora detectada pela rede neural com a localização real do objeto, como ilustra a \autoref{fig:fund-iou}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Exemplo de caixa delimitadora prevista por uma rede neural em comparação com a localização real do objeto para o cálculo da IoU.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-iou.pdf}
+  \label{fig:fund-iou}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sivarajkumar}}
+\end{figure}
+
+As métricas de AP e mAP discutidas na \autoref{cap:fund-ia-metricas-pmed} são obtidas variando a IoU para cada classe em um conjunto de imagens treinadas, onde uma detecção é considerada como um verdadeiro positivo se a IoU é maior que certo limiar \cite{ref:Sivarajkumar} .
+
+% Precision is the fraction of detections reported by the model that were correct, while recall is the fraction of true events that were detected
+
+%When using precision and recall, it is common to plot a PR curve, with precision on the y-axis and recall on the x-axis. The classifier generates a score that is higher if the event to be detected occurred
 
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
-Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexas são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
+Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
 
 Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}. O uso de CNNs reduz os requisitos de memória e possui uma melhor eficiência estática quando comparada a redes neurais tradicionais \cite{ref:Goodfellow-Bengio-Courville}.
 
@@ -213,7 +315,9 @@ CNNs sempre contém dois tipos de operações básicas: as operações de convol
 
 \subsubsection{Operação de Convolução} \label{cap:fund-ia-rn-conv-conv}
 
-Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza múltiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada x \cite{ref:Eden-Ierapetritou-Towler}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
+%In convolution layers, CNN uses different kernels for convolving the input image for creating the feature maps
+
+Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
 
 Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
 
@@ -231,7 +335,7 @@ Para imagens, as convoluções ocorrem em mais que um eixo ao mesmo tempo. Se a 
 }
 \end{equation}
 
-Porém, utilizando a propriedade comutativa da convolução, ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
+Porém, utilizando a propriedade comuta  tiva da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
 
 \begin{equation} \label{eq:fund-conv-3}
 \mathrm{
@@ -249,10 +353,20 @@ Um exemplo de uma convolução descrita pela \autoref{eq:fund-conv-3} utilizando
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-\subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
-As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} e ajudam a tornar as saídas aproximadamente invariantes a pequenas variações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
+Exemplos de convolução em imagem utilizando distintos tipos de \textit{kernel} está na \autoref{fig:fund-fifits}.
 
-A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}, onde a mais utilizada em CNNs é a \textit{Max-Pooling} da \autoref{fig:fund-pool-max}.
+\begin{figure}[h!] %H
+  \centering
+  \caption{Operações de convolução em uma imagem.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-fifits.pdf}
+  \label{fig:fund-fifits}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Albawi-Mohammed-Al-Zawi}}
+\end{figure}
+
+\subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
+As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} ao reduzir o tamanho do mapa de características \cite{ref:Gholamalinezhad-Khosravi} e ajudam a tornar as saídas aproximadamente invariantes a pequenas modificações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
+
+Espera-se que uma camada de \textit{pooling} ideal extraia semoente as informações úteis e descarte detalhes irrelevantes \cite{ref:Gholamalinezhad-Khosravi}. A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}. A operação de \textit{Max-Pooling} seleciona o pixel com maior valor dentre os pixeis de uma região (\autoref{fig:fund-pool-max}) e a operação de \textit{Pooling} médio (\autoref{fig:fund-pool-av}) faz a média entre esses pixeis.
 
 \begin{figure}[h!]
     \centering
@@ -273,20 +387,184 @@ A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}, o
 	\label{fig:fund-pool}
 \end{figure}
 
+\subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-yolo}
+\textit{You Only Look Once} (YOLO), cuja tradução direta do inglês é ``você olha apenas uma vez'', é uma rede neural de passagem única \cite{ref:Yan} onde, ao contrário de outras abordagens, uma única rede neural é aplicada na imagem para fazer a localização e a detecção do objeto, dividindo a imagem em regiões menores e fazendo a previsão e a probabilidade da detecção para cada uma das regiões \cite{ref:Redmon-Farhadi}.
 
-%pooling layers are usually used immediately after convolutional layers. What the pooling layers do is simplify the information in the output from the convolutional layer
+A rede neural YOLO possui 24 camadas convolucionais seguidas por duas camadas totalmente conectadas \cite{ref:Yan}. A arquitetura básica da primeira versão está na \autoref{fig:fund-yoloarq}.
 
-%kernel is usually a multidimensional array of parameters that are adapted by the learning algorithm
-% The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved.
+\begin{figure}[h!] %H
+  \centering
+  \caption{Arquitetura da Rede Neural YOLO.}
+  \includegraphics[scale=0.3]{img/img-fundamentacao-yoloarq.png}
+  \label{fig:fund-yoloarq}
+  \indentedfont[15.2cm]{\citeonline{ref:Redmon-et-al}}
+\end{figure}
 
-%In mathematics, convolution is a mathematical operation on two functions that produces a third function expressing how the shape of one is modified or filtered by the other.
+Atualmente, a rede neural YOLO está na versão 4, apresentando otimização em funções de ativação, processamento dos dados, treinamento, funções de perda, etc, em comparação com a versão anterior \cite{ref:Wang-et-al}. Uma comparação de desempenho com outras redes neurais utilizadas para detecção de objetos em tempo real está no gráfico da \autoref{fig:fund-yolov4}, que avalia a precisão média em função da quantidade de \textit{frames} por segundo que a rede consegue processar, utilizando o \textit{dataset} \textit{Microsoft COCO:  Common Objects in Context} \cite{ref:Lin-et-al}.
 
-%CNN is a deep neural network originally designed for image analysis
+\begin{figure}[h!] %H
+  \centering
+  \caption{Comparação da precisão média em função do processamento em \textit{frames} por segundo para diferentes redes neurais utilizadas em detecção de objetos.}
+  \includegraphics[scale=0.3]{img/img-fundamentacao-yolov4.png}
+  \label{fig:fund-yolov4}
+  \indentedfont[15.2cm]{\citeonline{ref:Bochkovskiy-Wang-Liao}}
+\end{figure}
 
-%CNN always contains two basic operations, namely convolution and pooling. The convolution operation using multiple filters is able to extract features (feature map) from the data set, through which their corresponding spatial information can be preserved. The pooling operation, also called subsampling, is used to reduce the dimensionality of feature maps from the convolution operation. Max pooling and average pooling are the most common pooling operations used in the CNN. Due to the complicity of CNN, relu is the common choice for the activation function to transfer gradient in training by backpropagation.
-\subsubsection{\textit{You Only Look Once}} \label{cap:fund-ia-rn-conv}
-\section{Classificação e Detecção de defeitos} \label{cap:fund-frameworks}
-\section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
-\subsection{OpenCV} \label{cap:fund-frameworks-opencv}
+A YOLO divide a imagem em imagens menores no formato de uma grade, e para cada uma dessas divisões, são previstas caixas delimitadoras, com suas confianças e probabilidades \cite{ref:Redmon-et-al}. A maioria dessas divisões não contém um objeto detectado e a filtragem é feita com base na probabilidade da classe do objeto, onde apenas as caixas delimitadoras de maior probabilidade permanecerão \cite{ref:Sivarajkumar}. Esse processo é ilustrado na \autoref{fig:fund-yolograde}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Processo de detecção e classificação na rede neural YOLO.}
+  \includegraphics[scale=0.95]{img/img-fundamentacao-yolograde.pdf}
+  \label{fig:fund-yolograde}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Redmon-et-al}}
+\end{figure}
+
+A camada final é responsável por prever as probabilidades das classes treinadas e as coordenadas das caixas delimitadoras \cite{ref:Redmon-et-al}. Tanto a largura e a altura das caixas delimitadoras quanto as coordenadas x e y são normalizadas pela altura e largura da imagem, de modo que os valores fique dentro do intervalo entre zero e um \cite{ref:Redmon-et-al}.
+
+Para o treinamento, são necessárias algumas configurações de arquivos, além da adição das imagens do \textit{dataset} utilizado, a partir do \textit{download} do repositório do projeto disponibilizado por \citeonline{ref:Bochkovskiy}. As instruções a serem seguidas, conforme \citeonline{ref:Bochkovskiy}, são:
+
+\begin{itemize}
+  \item Criar o arquivo ``yolo-obj.cfg'' com o mesmo conteúdo de ``yolov4-custom.cfg'';
+  \item Alterar ``yolo-obj.cfg'' para:
+  \begin{itemize}
+    \item Considerar \textit{batches} com 64 imagens, onde um \textit{batch} representa o número de amostras a serem trabalhadas antes de atualizar os parâmetros do modelo \cite{ref:Brownlee};
+    \item Subdividir cada \textit{batch} em 16 imagens (para processamento paralelo em treinamentos utilizando GPUs);
+    \item Utilizar um número máximo de \textit{batches} igual ao produto $n_{classes} \cdot 2000$
+    \item Alterar o número de passos de acordo com o número máximo de \textit{batches};
+    \item Alterar a quantidade de filtros considerando a fórmula $(n_{classes} + 5) \cdot 3$.
+  \end{itemize}
+  \item Criar o arquivo ``obj.names'' com os nomes das classes utilizadas, com cada nome em uma linha nova;
+  \item Alterar no arquivo ``obj.data'' o número de classes utilizadas;
+  \item Colocar as imagens de treinamento e teste no diretório ``obj'' que se encontra dentro de ``data'';
+  \item Criar um arquivo de texto com a extensão ``.txt'' para cada uma das imagens do \textit{dataset} no mesmo diretório em que elas estão contendo os objetos e suas respectivas coordenadas, seguindo o padrão  $<objectclass> <x_{center}> <y_{center}> <width> <height>$ de forma que cada linha represente um objeto, onde
+  \begin{itemize}
+    \item $<objectclass>$ indica a classe do objeto de acordo com a ordem definida no arquivo ``obj.names'' com valores dentro do intervalo $[0, n_{classes} - 1]$;
+    \item $<x_{center}> <y_{center}>$ são as coordenadas centrais da localização da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
+    \item $<width> <height>$ são a largura e a altura, respectivamente, da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
+  \end{itemize}
+  \item Criar os arquivos de texto ``train.txt'' e ``test.txt'' que contém o nome das imagens utilizadas no treinamento e teste, respectivamente, onde para cada imagem utiliza-se uma nova linha;
+  \item Fazer o \textit{Download} de pesos pré-treinados, com intuído de acelerar o treinamento;
+  \item Iniciar o treinamento.
+\end{itemize}
+
+\section{Classificação e Detecção de Defeitos em Placas de Circuito Impresso} \label{cap:fund-pcb}
+
+A classificação e detecção de um objeto em uma imagem são duas tarefas distintas. Segundo \citeonline{ref:Chen-et-al}, ``a tarefa de classificação de objetos visa prever a existência de objetos dentro das imagens, enquanto a tarefa de detecção de objetos visa localizar os objetos'', como mostra a \autoref{fig:fund-deteccaoclassificacao}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Diferença entre as tarefas de classificação e detetecção de objetos em uma imagem.}
+  \includegraphics[scale=1.1]{img/img-fundamentacao-deteccaoclassificacao.pdf}
+  \label{fig:fund-deteccaoclassificacao}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sivarajkumar}}
+\end{figure}
+
+Considerando Placas de Circuito Impresso (PCIs), os defeitos da etapa de fabricação são localizados e detectados antes da etapa de soldagem dos componentes. Esses defeitos podem ser classificados como circuito aberto, curto-circuito, falta de cobre, cobre excessivo, trilha desconectada e falta de estanho \cite{ref:Ding-et-al}, conforme a \autoref{fig:fund-defeitos}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Tipos de defeito de fabricação em placas de circuito impresso.}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{trilha desconectada}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos.pdf}
+        \label{fig:fund-defeitos1}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{falta de estanho}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos2.pdf}
+        \label{fig:fund-defeitos2}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{falta de cobre}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos3.pdf}
+        \label{fig:fund-defeitos3}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{excesso de cobre}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos5.pdf}
+        \label{fig:fund-defeitos5}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{curto-circuito}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos4.pdf}
+        \label{fig:fund-defeitos4}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.3\textwidth}
+        \centering
+        \caption{circuito aberto}
+        \includegraphics[scale=0.6]{img/img-fundamentacao-defeitos6.pdf}
+        \label{fig:fund-defeitos6}
+    \end{subfigure}
+    \indentedfont[15.5cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+	\label{fig:fund-defeitos}
+\end{figure}
+
+\subsection{Métodos Automatizados de Extração de Defeitos} \label{cap:fund-pcb-metodos}
+
+Assim como os componentes eletrônicos utilizados em PCIs estão ficando cada vez menores, as placas de circuito impresso também estão diminuindo e se tornando mais delicadas e sofisticadas \cite{ref:Hu-Wang}. Dessa forma, utilizar técnicas automatizadas para detecção e classificação dos defeitos em PCIs é indispensável, já que a inspeção humana além de imprecisa, está associada também à subjetividade, fadiga, lentidão e alto custo \cite{ref:Leta-Feliciano-Martins}.
+
+Diversos métodos de detecção e classificação de defeitos em PCIs vem sendo utilizados nas últimas décadas, podendo ser classificados como métodos comparativos, não-referenciais e híbridos \apud{ref:Moganti-et-al}{ref:Ding-et-al}.
+
+\subsubsection{Métodos Comparativos} \label{cap:fund-pcb-metodos-comp}
+Os métodos comparativos de detecção, também conhecidos como métodos referenciais, utilizam uma imagem de referência para extrair os objetos da imagem a ser processada.
+
+Uma das formas de fazer a extração dos defeitos é utilizando a operação lógica de ou-exclusivo (XOR) entre as duas imagens binarizadas, de forma que se o pixel da imagem a ser testada corresponde com a imagem de referência, o resultado será um, do contrário, o resultado será zero \cite{ref:Huang-et-al}.
+
+A grande dificuldade da operação XOR é determinar o alinhamento preciso entre as duas imagens \cite{ref:Ding-et-al}, além de que ruídos externos podem mascarar os defeitos. \citeonline{ref:Huang-et-al} propõe o uso de algoritmos de registro de imagem para corrigir o desalinhamento entre as imagens. Esses algoritmos extraem as características de ambas imagens, calculando uma matriz de transformação que rotacionará a imagem teste deixando na mesma orientação da imagem de referência \cite{ref:Huang-et-al}. Já para remover os ruídos externos, é proposto por \citeonline{ref:Huang-et-al} a utilização de operações morfológicas, tais como filtros medianos, operações de fechamento e abertura. Essas operações são feitas após a operação de XOR, e uma comparação entre o resultado antes e depois das operações morfológicas está na \autoref{fig:fund-morf}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Extração de defeitos em placas de circuito impresso utilizando métodos comparativos.}
+    \begin{subfigure}[H]{0.8\textwidth}
+        \centering
+        \caption{resultados após a operação de ou-exclusivo}
+        \includegraphics[scale=0.35]{img/img-fundamentacao-morf-xor.png}
+        \label{fig:fund-morf-1}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.8\textwidth}
+        \centering
+        \caption{resultado após operações morfológicas}
+        \includegraphics[scale=0.35]{img/img-fundamentacao-morf-morf.png}
+        \label{fig:fund-morf-2}
+    \end{subfigure}
+    \indentedfont[15.5cm]{\citeonline{ref:Huang-et-al}}
+	\label{fig:fund-morf}
+\end{figure}
+
+No entanto, segundo \citeonline{ref:Ding-et-al}, obter uma imagem de referência totalmente sem defeitos em um ambiente de produção é relativamente fora da realidade, além de que problemas críticos de desalinhamento, variação de cor, variação de luz, e outras variações, tornam essa tarefa ainda mais custosa.
+
+%In the referential methods, there are several critical practical problems: misalignment, colour variation, reflectivity variation, surrounding variations and fuzzy boundary defect segmentation. Moreover, to obtain such a totally standard PCB image from actual production environment is relatively unrealistic.
+%The main difficulty of XOR operation is to determine a precise alignment of the reference image and the inspected image
+\subsubsection{Métodos Não-Referenciais} \label{cap:fund-pcb-metodos-nref}
+De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, o uso de redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, o uso de redes neurais para essa aplicação necessita de um equilíbrio entre eficiência e a alta precisão, onde detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de alto nível e detecções mais eficientes precisam de modelos menos profundos.
+
+\subsubsection{Métodos Híbridos} \label{cap:fund-pcb-metodos-hib}
+Os métodos híbridos combinam os métodos comparativo e não-referencial para a detecção e classificação de defeitos. Um exemplo para a aplicação de detecção e classificação de defeitos é a abordagem RBCNN proposta por \citeonline{ref:Huang-et-al}, onde os defeitos são inicialmente localizados utilizando métodos comparativos e posteriormente, redes neurais convolucionais são utilizadas para a classificação, conforme o fluxograma da \autoref{fig:fund-hib}.
+
+\begin{figure}[h!] %H
+  \centering
+  \caption{Fluxograma das etapas para classificação e detecção de defeitos utilizadas na abordagem híbrida RBCNN.}
+  \includegraphics[scale=0.85]{img/img-fundamentacao-hib.pdf}
+  \label{fig:fund-hib}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+\end{figure}
+
+%\subsection{\textit{Datasets} Disponíveis} \label{cap:fund-pcb-datasets}
+
+\section{\textit{Frameworks} e Bibliotecas para Detecção e Classificação de Objetos} \label{cap:fund-frameworks}
+\textit{Frameworks} e Bibliotecas são códigos utilizados para resolver problemas comuns, evitando a criação de códigos repetidos. Uma biblioteca é responsável por oferecer um conjunto de funcionalidades prontas para o uso, enquanto \textit{frameworks} são um conjunto de bibliotecas que não fornecem apenas funcionalidades, mas também a arquitetura para o desenvolvimento \cite{ref:Tamenaoul}.
+
+Considerando o contexto de detecção e classificação de objetos utilizando redes neurais, existe uma grande variedades de \textit{frameworks} e bibliotecas que podem ser utilizados, compatíveis com diferentes linguagens de programação.
+
 \subsection{Darknet} \label{cap:fund-frameworks-darknet}
+Darknet é um \textit{framework} de código aberto para redes neurais escrito em C e CUDA, com fácil instalação e suporte a computação em CPU e GPU \cite{ref:Redmon}.
+
+
+\subsection{OpenCV} \label{cap:fund-frameworks-opencv}
 \subsection{Flask} \label{cap:fund-frameworks-flask}
