@@ -119,19 +119,19 @@ As funções de ativação desempenham um papel crucial na dinâmica de desempen
 	\label{fig:fund-funcs}
 \end{figure}
 
-A função Sigmóide da \autoref{fig:fund-funcs-sig}, definida por \citeonline{ref:Sharma} pela \autoref{eq:fund-sig}, é geralmente utilizada em classificações binárias, pois o resultado está sempre no intervalo entre zero e um \cite{ref:Ng}.
+A função Sigmoide definida pela \autoref{eq:fund-sig} \citeonline{ref:Sharma}  é geralmente utilizada em classificações binárias, pois o resultado está sempre no intervalo entre zero e um \cite{ref:Ng}. A \autoref{fig:fund-funcs-sig} mostra um gráfico da função Sigmoide. 
 
 \begin{equation} \label{eq:fund-sig}
   \text{f(z)} = \sigma(z) = \frac{1}{1 + e^{-z}}
 \end{equation}
 
-Para a otimização dos pesos durante o treinamento de uma rede neural, em geral é necessário calcular o gradiente das funções de ativação. Por isso, de acordo com \citeonline{ref:Sharma}, o uso da tangente hiporbólica como função de ativação é preferível pois tem gradientes que não estão restritos a variar em uma certa direção e são mais acentuados quando comparado à Sigmóide. A definição da tangente hiporbólica da \autoref{fig:fund-funcs-tanh} está na \autoref{eq:fund-tanh}.
+Para a otimização dos pesos durante o treinamento de uma rede neural, em geral é necessário calcular o gradiente das funções de ativação. Por isso, de acordo com \citeonline{ref:Sharma}, o uso da tangente hiperbólica como função de ativação é preferível pois tem gradientes que não estão restritos a variar em uma certa direção e são mais acentuados quando comparado à sigmoide. A definição da tangente hiperbólica da \autoref{fig:fund-funcs-tanh} está na \autoref{eq:fund-tanh}.
 
 \begin{equation} \label{eq:fund-tanh}
   \text{f(z)} = tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}
 \end{equation}
 
-Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser nula tanto para a sigmóide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, plotada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
+Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser nula tanto para a sigmoide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, mostrada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
 
 \begin{equation} \label{eq:fund-relu}
   \mathrm{{f(z)} = ReLU(z) = max(0, z)}
@@ -294,14 +294,11 @@ No caso da detecção de objetos em imagens, as formas a serem comparadas são a
 
 As métricas de AP e mAP discutidas na \autoref{cap:fund-ia-metricas-pmed} são obtidas variando a IoU para cada classe em um conjunto de imagens treinadas, onde uma detecção é considerada como um verdadeiro positivo se a IoU é maior que certo limiar \cite{ref:Sivarajkumar} .
 
-% Precision is the fraction of detections reported by the model that were correct, while recall is the fraction of true events that were detected
-
-%When using precision and recall, it is common to plot a PR curve, with precision on the y-axis and recall on the x-axis. The classifier generates a score that is higher if the event to be detected occurred
 
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
 Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
 
-Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}. O uso de CNNs reduz os requisitos de memória e possui uma melhor eficiência estática quando comparada a redes neurais tradicionais \cite{ref:Goodfellow-Bengio-Courville}.
+Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda, originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}. O uso de CNNs reduz os requisitos de memória e possui uma melhor eficiência estática quando comparada a redes neurais tradicionais \cite{ref:Goodfellow-Bengio-Courville}.
 
 CNNs sempre contém dois tipos de operações básicas: as operações de convolução e \textit{pooling} \cite{ref:Eden-Ierapetritou-Towler}, além de utilizarem funções de ativação. Os componentes de uma CNN típica estão ilustrados na \autoref{fig:fund-conv}.
 
