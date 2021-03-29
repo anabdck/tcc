@@ -507,21 +507,64 @@ Considerando Placas de Circuito Impresso (PCIs), os defeitos da etapa de fabrica
 
 \subsection{Métodos Automatizados de Extração de Defeitos} \label{cap:fund-pcb-metodos}
 
-Técnicas automatizadas de detecção de defeitos apresentam melhor regularidade, precisão e repetibilidade quando comparada a inspeção humana que, além da imprecisão e não-repetibilidade, está sujeita a subjetividade, fadiga e lentidão e está, ainda, associada a um alto custo \cite{ref:Leta-Feliciano-Martins}.
+Assim como os componentes eletrônicos utilizados em PCIs estão ficando cada vez menores, as placas de circuito impresso também estão diminuindo e se tornando mais delicadas e sofisticadas \cite{ref:Hu-Wang}. Dessa forma, utilizar técnicas automatizadas para detecção e classificação dos defeitos em PCIs é indispensável, já que a inspeção humana além de imprecisa, está associada também à subjetividade, fadiga, lentidão e alto custo \cite{ref:Leta-Feliciano-Martins}.
 
-%In the last decades, different defect detection methods have been proposed in the field of PCB defect detection. Moganti [15] first proposed three categories of PCB inspection algorithms: referential approaches, non-referential approaches, and hybrid approaches.
-
+Diversos métodos de detecção e classificação de defeitos em PCIs vem sendo utilizados nas últimas décadas, podendo ser classificados como métodos comparativos, não-referenciais e híbridos \apud{ref:Moganti-et-al}{ref:Ding-et-al}.
 
 \subsubsection{Métodos Comparativos} \label{cap:fund-pcb-metodos-comp}
-Os métodos comparativos de detecção utilizam uma imagem de referência para extrair os objetos da imagem a ser processada.
+Os métodos comparativos de detecção, também conhecidos como métodos referenciais, utilizam uma imagem de referência para extrair os objetos da imagem a ser processada.
 
+Uma das formas de fazer a extração dos defeitos é utilizando a operação lógica de ou-exclusivo (XOR) entre as duas imagens binarizadas, de forma que se o pixel da imagem a ser testada corresponde com a imagem de referência, o resultado será um, do contrário, o resultado será zero \cite{ref:Huang-et-al}.
+
+A grande dificuldade da operação XOR é determinar o alinhamento preciso entre as duas imagens \cite{ref:Ding-et-al}, além de que ruídos externos podem mascarar os defeitos. \citeonline{ref:Huang-et-al} propõe o uso de algoritmos de registro de imagem para corrigir o desalinhamento entre as imagens. Esses algoritmos extraem as características de ambas imagens, calculando uma matriz de transformação que rotacionará a imagem teste deixando na mesma orientação da imagem de referência \cite{ref:Huang-et-al}. Já para remover os ruídos externos, é proposto por \citeonline{ref:Huang-et-al} a utilização de operações morfológicas, tais como filtros medianos, operações de fechamento e abertura. Essas operações são feitas após a operação de XOR, e uma comparação entre o resultado antes e depois das operações morfológicas está na \autoref{fig:fund-morf}.
+
+\begin{figure}[h!]
+    \centering
+    \caption{Extração de defeitos em placas de circuito impresso utilizando métodos comparativos.}
+    \begin{subfigure}[H]{0.8\textwidth}
+        \centering
+        \caption{resultados após a operação de ou-exclusivo}
+        \includegraphics[scale=0.35]{img/img-fundamentacao-morf-xor.png}
+        \label{fig:fund-morf-1}
+    \end{subfigure}
+    \begin{subfigure}[H]{0.8\textwidth}
+        \centering
+        \caption{resultado após operações morfológicas}
+        \includegraphics[scale=0.35]{img/img-fundamentacao-morf-morf.png}
+        \label{fig:fund-morf-2}
+    \end{subfigure}
+    \indentedfont[15.5cm]{\citeonline{ref:Huang-et-al}}
+	\label{fig:fund-morf}
+\end{figure}
+
+No entanto, segundo \citeonline{ref:Ding-et-al}, obter uma imagem de referência totalmente sem defeitos em um ambiente de produção é relativamente fora da realidade, além de que problemas críticos de desalinhamento, variação de cor, variação de luz, e outras variações, tornam essa tarefa ainda mais custosa.
+
+%In the referential methods, there are several critical practical problems: misalignment, colour variation, reflectivity variation, surrounding variations and fuzzy boundary defect segmentation. Moreover, to obtain such a totally standard PCB image from actual production environment is relatively unrealistic.
+%The main difficulty of XOR operation is to determine a precise alignment of the reference image and the inspected image
 \subsubsection{Métodos Não-Referenciais} \label{cap:fund-pcb-metodos-nref}
+De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, o uso de redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, o uso de redes neurais para essa aplicação necessita de um equilíbrio entre eficiência e a alta precisão, onde detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de alto nível e detecções mais eficientes precisam de modelos menos profundos.
 
 \subsubsection{Métodos Híbridos} \label{cap:fund-pcb-metodos-hib}
+Os métodos híbridos combinam os métodos comparativo e não-referencial para a detecção e classificação de defeitos. Um exemplo para a aplicação de detecção e classificação de defeitos é a abordagem RBCNN proposta por \citeonline{ref:Huang-et-al}, onde os defeitos são inicialmente localizados utilizando métodos comparativos e posteriormente, redes neurais convolucionais são utilizadas para a classificação, conforme o fluxograma da \autoref{fig:fund-hib}.
 
-\subsection{\textit{Datasets} Disponíveis} \label{cap:fund-pcb-datasets}
+\begin{figure}[h!] %H
+  \centering
+  \caption{Fluxograma das etapas para classificação e detecção de defeitos utilizadas na abordagem híbrida RBCNN.}
+  \includegraphics[scale=0.85]{img/img-fundamentacao-hib.pdf}
+  \label{fig:fund-hib}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+\end{figure}
 
-\section{Frameworks e Bibliotecas} \label{cap:fund-frameworks}
-\subsection{OpenCV} \label{cap:fund-frameworks-opencv}
+%\subsection{\textit{Datasets} Disponíveis} \label{cap:fund-pcb-datasets}
+
+\section{\textit{Frameworks} e Bibliotecas para Detecção e Classificação de Objetos} \label{cap:fund-frameworks}
+\textit{Frameworks} e Bibliotecas são códigos utilizados para resolver problemas comuns, evitando a criação de códigos repetidos. Uma biblioteca é responsável por oferecer um conjunto de funcionalidades prontas para o uso, enquanto \textit{frameworks} são um conjunto de bibliotecas que não fornecem apenas funcionalidades, mas também a arquitetura para o desenvolvimento \cite{ref:Tamenaoul}.
+
+Considerando o contexto de detecção e classificação de objetos utilizando redes neurais, existe uma grande variedades de \textit{frameworks} e bibliotecas que podem ser utilizados, compatíveis com diferentes linguagens de programação.
+
 \subsection{Darknet} \label{cap:fund-frameworks-darknet}
+Darknet é um \textit{framework} de código aberto para redes neurais escrito em C e CUDA, com fácil instalação e suporte a computação em CPU e GPU \cite{ref:Redmon}.
+
+
+\subsection{OpenCV} \label{cap:fund-frameworks-opencv}
 \subsection{Flask} \label{cap:fund-frameworks-flask}
