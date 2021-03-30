@@ -201,10 +201,10 @@ A atualização desses pesos é feita até que a função de perda resulte valor
 
 
 \subsection{Métricas de Avaliação} \label{cap:fund-ia-metricas}
-Determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações, é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
+Determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsubsection{Matriz de Confusão} \label{cap:fund-ia-metricas-matriz}
-A Matriz de Confusão é uma técnica muito popular usada tanto em problemas de classificação binária quanto problemas de classificação com diversas classes, representando a contagem dos resultados da predição feitos pela rede neural e dos valores verdadeiros \cite{ref:Batarseh-Yang}. Um exemplo de matriz de confusão utiliza em classificações binárias está na \autoref{fig:fund-matriz}.
+A Matriz de Confusão é uma técnica muito popular usada em problemas de classificação binária, representando a contagem dos resultados da predição feitos pela rede neural em comparação com os valores reais \cite{ref:Batarseh-Yang}, na forma de verdadeiros positivo, verdadeiros negativo, falsos positivo e falsos negativo. Um exemplo de matriz de confusão utilizada em classificações binárias está na \autoref{fig:fund-matriz}.
 
 \begin{figure}[h!] %H
   \centering
@@ -263,7 +263,7 @@ Uma curva de Precisão em função da Sensibilidade pode ser construída ao vari
 O valor da Precisão Média de cada classe, do inglês Average Precision (AP), é encontrado ao calcular a área sob a curva da Precisão em função da Sensibilidade. Já a média desses valores, conhecida no inglês como Mean Average Precision (mAP) é feita como maneira de avaliar um conjunto de treino completo, levando em conta todas as classes treinadas \cite{ref:Tan}.
 
 \subsubsection{\textit{F-Score}} \label{cap:fund-ia-metricas-fscore}
-A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e a Sensibilidade \cite{ref:Mishra} e é feita por meio de uma média harmônica ponderada entre essas medidas \cite{ref:Batarseh-Yang}, conforme a \autoref{eq:fund-fscore} . O resultado está sempre dentro do intervalo entre zero e um e quanto maior o valor de \textit{F-Score}, melhor é a performance do modelo \cite{ref:Mishra}.
+A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e a Sensibilidade \cite{ref:Mishra} e é feita por meio de uma média harmônica ponderada entre essas medidas \cite{ref:Batarseh-Yang}, conforme a \autoref{eq:fund-fscore}. O resultado está sempre dentro do intervalo entre zero e um e quanto maior o valor de \textit{F-Score}, melhor é a performance do modelo \cite{ref:Mishra}.
 
 \begin{equation} \label{eq:fund-fscore}
 \mathrm{
@@ -272,9 +272,9 @@ A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e
 \end{equation}
 
 \subsubsection{Intersecção sobre União} \label{cap:fund-ia-metricas-iou}
-Para avaliar o treinamento da rede neural para detecção de objetos e encontrar os valores verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos utilizados em métricas baseadas na matriz de confusão, discutida na \autoref{cap:fund-ia-metricas}, utiliza-se o conceito de Intersecção sobre União.
+Para avaliar o treinamento da rede neural para detecção de objetos e encontrar os valores das métricas baseadas na matriz de confusão, utiliza-se o conceito de Intersecção sobre União.
 
-A Intersecção sobre União, do inglês \textit{Intersection over Union} (IoU), também conhecida como índice de Jaccard, é a métrica mais  usada para comparar a similaridade entre duas formas arbitrárias \cite{ref:Rezatofighi-et-al}. De forma geral, o IoU pode ser calculado pela \autoref{eq:fund-iou} \cite{ref:Rezatofighi-et-al}, onde A e B representam duas formas arbitrárias.
+A Intersecção sobre União, do inglês \textit{Intersection over Union} (IoU), também conhecida como índice de Jaccard, é a métrica mais  usada para comparar a similaridade entre duas formas arbitrárias \cite{ref:Rezatofighi-et-al}. De forma geral, o IoU pode ser calculado pela \autoref{eq:fund-iou} \cite{ref:Rezatofighi-et-al}, onde a área das formas arbitrárias são representadas pelas letras A e B.
 
 \begin{equation} \label{eq:fund-iou}
 \mathrm{
@@ -282,7 +282,7 @@ A Intersecção sobre União, do inglês \textit{Intersection over Union} (IoU),
 }
 \end{equation}
 
-No caso da detecção de objetos em imagens, as formas a serem comparadas são as caixas delimitadoras desenhadas ao redor dos objetos na imagem, e a IoU é calculada pela comparação entre a caixa delimitadora detectada pela rede neural com a localização real do objeto, como ilustra a \autoref{fig:fund-iou}.
+No caso da detecção de objetos em imagens, as formas utilizadas são as caixas delimitadoras desenhadas ao redor dos objetos na imagem, de forma que a IoU é calculada por meio da comparação entre a caixa delimitadora detectada pela rede neural e a localização real do objeto, como ilustra a \autoref{fig:fund-iou}.
 
 \begin{figure}[h!] %H
   \centering
@@ -397,7 +397,9 @@ A rede neural YOLO possui 24 camadas convolucionais seguidas por duas camadas to
   \indentedfont[15.2cm]{\citeonline{ref:Redmon-et-al}}
 \end{figure}
 
-Atualmente, a rede neural YOLO está na versão 4, apresentando otimização em funções de ativação, processamento dos dados, treinamento, funções de perda, etc, em comparação com a versão anterior \cite{ref:Wang-et-al}. Uma comparação de desempenho com outras redes neurais utilizadas para detecção de objetos em tempo real está no gráfico da \autoref{fig:fund-yolov4}, que avalia a precisão média em função da quantidade de \textit{frames} por segundo que a rede consegue processar, utilizando o \textit{dataset} \textit{Microsoft COCO:  Common Objects in Context} \cite{ref:Lin-et-al}.
+Atualmente, a rede neural YOLO está na versão 4, apresentando otimização em funções de ativação (utilizando a função Mish da \autoref{fig:fund-funcs-mish} para algumas camadas), processamento dos dados, treinamento, funções de perda, etc, em comparação com a versão anterior \cite{ref:Wang-et-al}. 
+
+Uma comparação de desempenho com outras redes neurais utilizadas para detecção de objetos em tempo real está no gráfico da \autoref{fig:fund-yolov4}, que avalia a precisão média em função da quantidade de \textit{frames} por segundo que a rede consegue processar, utilizando o \textit{dataset} \textit{Microsoft COCO:  Common Objects in Context} \cite{ref:Lin-et-al}.
 
 \begin{figure}[h!] %H
   \centering
@@ -441,7 +443,7 @@ Para o treinamento, são necessárias algumas configurações de arquivos, além
     \item $<width> <height>$ são a largura e a altura, respectivamente, da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
   \end{itemize}
   \item Criar os arquivos de texto ``train.txt'' e ``test.txt'' que contém o nome das imagens utilizadas no treinamento e teste, respectivamente, onde para cada imagem utiliza-se uma nova linha;
-  \item Fazer o \textit{Download} de pesos pré-treinados, com intuído de acelerar o treinamento;
+  \item Fazer o \textit{download} de pesos pré-treinados, com intuído de acelerar o treinamento;
   \item Iniciar o treinamento.
 \end{itemize}
 
@@ -509,11 +511,11 @@ Assim como os componentes eletrônicos utilizados em PCIs estão ficando cada ve
 Diversos métodos de detecção e classificação de defeitos em PCIs vem sendo utilizados nas últimas décadas, podendo ser classificados como métodos comparativos, não-referenciais e híbridos \apud{ref:Moganti-et-al}{ref:Ding-et-al}.
 
 \subsubsection{Métodos Comparativos} \label{cap:fund-pcb-metodos-comp}
-Os métodos comparativos de detecção, também conhecidos como métodos referenciais, utilizam uma imagem de referência para extrair os objetos da imagem a ser processada.
+Os métodos comparativos de detecção, também conhecidos como métodos referenciais, utilizam uma imagem de referência para extrair os objetos da imagem a ser testada.
 
-Uma das formas de fazer a extração dos defeitos é utilizando a operação lógica de ou-exclusivo (XOR) entre as duas imagens binarizadas, de forma que se o pixel da imagem a ser testada corresponde com a imagem de referência, o resultado será um, do contrário, o resultado será zero \cite{ref:Huang-et-al}.
+Uma das formas de fazer a extração dos defeitos é utilizando a operação lógica de ou-exclusivo (XOR) entre as duas imagens binarizadas, de forma que se o pixel da imagem a ser testada corresponde com o pixel da imagem de referência, o resultado será um, do contrário, o resultado será zero \cite{ref:Huang-et-al}.
 
-A grande dificuldade da operação XOR é determinar o alinhamento preciso entre as duas imagens \cite{ref:Ding-et-al}, além de que ruídos externos podem mascarar os defeitos. \citeonline{ref:Huang-et-al} propõe o uso de algoritmos de registro de imagem para corrigir o desalinhamento entre as imagens. Esses algoritmos extraem as características de ambas imagens, calculando uma matriz de transformação que rotacionará a imagem teste deixando na mesma orientação da imagem de referência \cite{ref:Huang-et-al}. Já para remover os ruídos externos, é proposto por \citeonline{ref:Huang-et-al} a utilização de operações morfológicas, tais como filtros medianos, operações de fechamento e abertura. Essas operações são feitas após a operação de XOR, e uma comparação entre o resultado antes e depois das operações morfológicas está na \autoref{fig:fund-morf}.
+A grande dificuldade da operação XOR é determinar o alinhamento preciso entre as duas imagens \cite{ref:Ding-et-al}, além de que ruídos externos podem mascarar os defeitos. \citeonline{ref:Huang-et-al} propõe o uso de algoritmos de registro de imagem para corrigir o desalinhamento entre as imagens. Esses algoritmos extraem as características de ambas imagens, calculando uma matriz de transformação que rotacionará a imagem teste deixando na mesma orientação da imagem de referência \cite{ref:Huang-et-al}. Já para remover os ruídos externos, é proposto por \citeonline{ref:Huang-et-al} a utilização de operações morfológicas, tais como filtros medianos e operações morfológicas de fechamento e abertura. Essas operações são feitas após a operação de XOR, e uma comparação entre o resultado antes e depois das operações morfológicas está na \autoref{fig:fund-morf}.
 
 \begin{figure}[h!]
     \centering
@@ -534,10 +536,10 @@ A grande dificuldade da operação XOR é determinar o alinhamento preciso entre
 	\label{fig:fund-morf}
 \end{figure}
 
-No entanto, segundo \citeonline{ref:Ding-et-al}, obter uma imagem de referência totalmente sem defeitos em um ambiente de produção é relativamente fora da realidade, além de que problemas críticos de desalinhamento, variação de cor, variação de luz, e outras variações, tornam essa tarefa ainda mais custosa.
+No entanto, de acordo com \citeonline{ref:Ding-et-al}, obter uma imagem de referência totalmente sem defeitos em um ambiente de produção é considerado fora da realidade, além de que problemas críticos de desalinhamento, variação de cor, variação de luz, e outras variações, tornam essa tarefa ainda mais custosa.
 
 \subsubsection{Métodos Não-Referenciais} \label{cap:fund-pcb-metodos-nref}
-De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, o uso de redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, o uso de redes neurais para essa aplicação necessita de um equilíbrio entre eficiência e a alta precisão, onde detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de alto nível e detecções mais eficientes precisam de modelos menos profundos.
+De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, o uso de redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, usar redes neurais para essa aplicação implica em encontrar um equilíbrio entre eficiência e a alta precisão, já que detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de mais alto nível e detecções mais eficientes precisam de modelos menos profundos para processamentos mais rápidos.
 
 \subsubsection{Métodos Híbridos} \label{cap:fund-pcb-metodos-hib}
 Os métodos híbridos combinam os métodos comparativo e não-referencial para a detecção e classificação de defeitos. Um exemplo para a aplicação de detecção e classificação de defeitos é a abordagem RBCNN proposta por \citeonline{ref:Huang-et-al}, onde os defeitos são inicialmente localizados utilizando métodos comparativos e posteriormente, redes neurais convolucionais são utilizadas para a classificação, conforme o fluxograma da \autoref{fig:fund-hib}.
@@ -555,7 +557,7 @@ Os métodos híbridos combinam os métodos comparativo e não-referencial para a
 \section{\textit{Frameworks} e Bibliotecas para Detecção e Classificação de Objetos} \label{cap:fund-frameworks}
 \textit{Frameworks} e Bibliotecas são códigos utilizados para resolver problemas comuns, evitando a criação de códigos repetidos. Uma biblioteca é responsável por oferecer um conjunto de funcionalidades prontas para o uso, enquanto \textit{frameworks} são um conjunto de bibliotecas que não fornecem apenas funcionalidades, mas também a arquitetura para o desenvolvimento \cite{ref:Tamenaoul}.
 
-Considerando o contexto de detecção e classificação de objetos utilizando redes neurais, existe uma grande variedades de \textit{frameworks} e bibliotecas que podem ser utilizados, compatíveis com diferentes linguagens de programação.
+%Considerando o contexto de detecção e classificação de objetos utilizando redes neurais, existe uma grande variedades de \textit{frameworks} e bibliotecas que podem ser utilizados, compatíveis com diferentes linguagens de programação.
 
 \subsection{Darknet} \label{cap:fund-frameworks-darknet}
 Darknet é um \textit{framework} de código aberto para redes neurais escrito em C e CUDA, com fácil instalação e suporte a computação em CPU e GPU \cite{ref:Redmon}.
