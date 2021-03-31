@@ -145,6 +145,10 @@ Com a evolução das Redes Neurais na última década, diversas funções de ati
 
 Segundo \citeonline{ref:Misra}, ao contrário da ReLU, a função Mish é continuamente diferenciável, evitando efeitos colaterais indesejados quando utiliza-se a otimização baseada no método do gradiente.
 
+\subsection{Conjunto de Dados} \label{cap:treinamento-dataset}
+
+Utiliza-se para o treinamento da Rede Neural um conjunto de dados, conhecido no inglês como \textit{Dataset}. Geralmente, o conjunto de testes é dividido em três conjuntos menores: Treinamento, utilizado para o treinamento da rede neural; Teste, que é utilizado para saber até quando deve-se prosseguir com o treinamento; e o Conjunto de Validação, que é independente dos outros dois conjuntos \cite{ref:Crowther}.
+
 \subsection{Treinamento de Uma Rede Neural}\label{cap:fund-ia-rn-treinamento}
 
 Para o treinamento de uma Rede Neural, utiliza-se um conjunto de exemplos de treinamento $\{(x^{(1)}, y^{(1)}), \cdots, (x^{(m)}, y^{(m)})\}$, onde $x^{(i)}, y^{(i)}$ são, respectivamente, a entrada e a saída real do \textit{i-ésimo} exemplo de treinamento de um conjunto contendo m exemplos de treinamento \cite{ref:Ng}. Para cada um desses exemplos, o objetivo é fazer o cálculo dos pesos w e b de forma que a saída estimada $\hat{y}^{(i)}$ seja próxima da saída real $y^{(i)}$.
@@ -397,7 +401,7 @@ A rede neural YOLO possui 24 camadas convolucionais seguidas por duas camadas to
   \indentedfont[15.2cm]{\citeonline{ref:Redmon-et-al}}
 \end{figure}
 
-Atualmente, a rede neural YOLO está na versão 4, apresentando otimização em funções de ativação (utilizando a função Mish da \autoref{fig:fund-funcs-mish} para algumas camadas), processamento dos dados, treinamento, funções de perda, etc, em comparação com a versão anterior \cite{ref:Wang-et-al}. 
+Atualmente, a rede neural YOLO está na versão 4, apresentando otimização em funções de ativação (utilizando a função Mish da \autoref{fig:fund-funcs-mish} para algumas camadas), processamento dos dados, treinamento, funções de perda, etc, em comparação com a versão anterior \cite{ref:Wang-et-al}.
 
 Uma comparação de desempenho com outras redes neurais utilizadas para detecção de objetos em tempo real está no gráfico da \autoref{fig:fund-yolov4}, que avalia a precisão média em função da quantidade de \textit{frames} por segundo que a rede consegue processar, utilizando o \textit{dataset} \textit{Microsoft COCO:  Common Objects in Context} \cite{ref:Lin-et-al}.
 
