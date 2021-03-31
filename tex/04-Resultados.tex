@@ -3,15 +3,47 @@
 % ----------------------------------------------------------------------- %
 \chapter{Treinamento da Rede Neural para Detecção e localização de Defeitos em Placas de Circuito Impresso} \label{cap:treinamento}
 %Falta escrever essa parte.
+Nesse capítulo serão discutidas a escolha e as etapas de preparação do \textit{dataset} para o treinamento, detalhes de configurações da rede neural utilizada e os resultados obtidos.
 
+\section{Seleção do Conjunto de Dados} \label{cap:treinamento-dataset}
 
-\section{Conjunto de Dados} \label{cap:treinamento-dataset}
+Para a detecção e classificação de objetos, o conjunto de dados escolhido deve incluir além das imagens, a localização e classificação dos objetos de interesse.
+O \textit{Dataset} escolhido para a detecção e localização de defeitos em PCIs é o \textit{HRIPCB: a challenging dataset for PCB defects detection and classification}, proposto por \citeonline{ref:Huang-et-al}.
 
-%No caso da detecção e classificação de objetos, esse conjunto de dados deve incluir as imagens e a localização e classificação dos objetos de interesse.
+As imagens das placas são capturadas por uma câmera do tipo industrial com dezesseis megapixel de resolução equipada com um sensor C-MOS \cite{ref:Huang-et-al}. Após a captura e ajustes, seis tipos de defeitos são adicionados manualmente em um \textit{software} de edição de imagens, onde cada imagem contém de dois a seis defeitos da mesma categoria em diferentes lugares da placa \cite{ref:Huang-et-al}. A distribuição dos defeitos está na \autoref{tab:treinamento-dataset}.
 
-\section{Rede Neural} \label{cap:treinamento-rn}
+\begin{table}[!ht]
+\begin{center}
+\caption{Distribuição dos defeitos no conjunto de dados HRIPCB.}
+\label{tab:treinamento-dataset}
+\begin{tabular}{ccc}
+\toprule
+\textbf{Tipo do Defeito} & \textbf{Número de Imagens} & \textbf{Quantidade Total de Defeitos} \\
+\midrule \midrule
+Falta de Estanho    & 115   & 497 \\
+Falta de Cobre      & 115   & 492 \\
+Circuito Aberto     & 116   & 482 \\
+Curto-Circuito      & 116   & 491 \\
+Excesso de Cobre    & 115   & 488 \\
+Trilha Desconectada & 116   & 503 \\
+\bottomrule
+\end{tabular}
+\indentedfont[0.96\textwidth]{\citeonline{ref:Huang-et-al}}
+\end{center}
+\end{table}
+
+Para cada uma das imagens, existe um arquivo com extensão \textit{.xml} que mapeia as informações das caixas delimitadoras para cada defeito. Um exemplo desse arquivo está no \autoref{apendice:hripcb-xml}.
+
+\section{Seleção da Rede Neural} \label{cap:treinamento-rn}
+
+Defeitos em placas de circuito impresso ocupam pequenas regiões da PCI, de forma que a proporção entre a área do objeto a ser detectado e a imagem inteira é muito pequena. Sendo assim, a escolha da rede neural deve considerar um bom desempenho para detecção de pequenos objetos. Segundo \citeonline{ref:Redmon-Farhadi}, a partir da versão três, a YOLO apresentou uma melhor performance para esse tipo de detecção, sendo recomendada para essa aplicação por \citeonline{ref:Valenti-et-al}, quando o tempo de treinamento não é tão relevante. Já a versão quatro da YOLO apresenta melhor desempenho para o treinamento em GPUs quando comparada a sua versão anterior.
+
+Sendo assim, a rede neural escolhida para o treinamento da detecção de defeitos em PCIs foi a YOLO em sua quarta versão, proposta por \citeonline{ref:Bochkovskiy-Wang-Liao}.
 
 \section{Treinamento} \label{cap:treinamento-treinamento}
+O treinamento foi feito \cite{ref:Colab}.
+
+\subsection{Tranferência de Aprendizado} \label{cap:treinamento-rn}
 
 \subsection{Configuração do \textit{Dataset} para o Treinamento} \label{cap:treinamento-treinamento-config}
 
