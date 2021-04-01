@@ -425,31 +425,7 @@ A YOLO divide a imagem em imagens menores no formato de uma grade, e para cada u
 
 A camada final é responsável por prever as probabilidades das classes treinadas e as coordenadas das caixas delimitadoras \cite{ref:Redmon-et-al}. Tanto a largura e a altura das caixas delimitadoras quanto as coordenadas x e y são normalizadas pela altura e largura da imagem, de modo que os valores fique dentro do intervalo entre zero e um \cite{ref:Redmon-et-al}.
 
-Para o treinamento, são necessárias algumas configurações de arquivos, além da adição das imagens do \textit{dataset} utilizado, a partir do \textit{download} do repositório do projeto disponibilizado por \citeonline{ref:Bochkovskiy}. As instruções a serem seguidas, conforme \citeonline{ref:Bochkovskiy}, são:
-
-\begin{itemize}
-  \item Criar o arquivo ``yolo-obj.cfg'' com o mesmo conteúdo de ``yolov4-custom.cfg'';
-  \item Alterar ``yolo-obj.cfg'' para:
-  \begin{itemize}
-    \item Considerar \textit{batches} com 64 imagens, onde um \textit{batch} representa o número de amostras a serem trabalhadas antes de atualizar os parâmetros do modelo \cite{ref:Brownlee};
-    \item Subdividir cada \textit{batch} em 16 imagens (para processamento paralelo em treinamentos utilizando GPUs - Unidade de Processamento Gráfico do inglês \textit{Graphics Processing Unit});
-    \item Utilizar um número máximo de \textit{batches} igual ao produto $n_{classes} \cdot 2000$
-    \item Alterar o número de passos de acordo com o número máximo de \textit{batches};
-    \item Alterar a quantidade de filtros considerando a fórmula $(n_{classes} + 5) \cdot 3$.
-  \end{itemize}
-  \item Criar o arquivo ``obj.names'' com os nomes das classes utilizadas, com cada nome em uma linha nova;
-  \item Alterar no arquivo ``obj.data'' o número de classes utilizadas;
-  \item Colocar as imagens de treinamento e teste no diretório ``obj'' que se encontra dentro de ``data'';
-  \item Criar um arquivo de texto com a extensão ``.txt'' para cada uma das imagens do \textit{dataset} no mesmo diretório em que elas estão contendo os objetos e suas respectivas coordenadas, seguindo o padrão  $<objectclass> <x_{center}> <y_{center}> <width> <height>$ de forma que cada linha represente um objeto, onde
-  \begin{itemize}
-    \item $<objectclass>$ indica a classe do objeto de acordo com a ordem definida no arquivo ``obj.names'' com valores dentro do intervalo $[0, n_{classes} - 1]$;
-    \item $<x_{center}> <y_{center}>$ são as coordenadas centrais da localização da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
-    \item $<width> <height>$ são a largura e a altura, respectivamente, da caixa delimitadora do objeto, valores em ponto flutuante dentro do intervalo $[0.0, 1.0]$, normalizados de acordo com o tamanho da imagem utilizada.
-  \end{itemize}
-  \item Criar os arquivos de texto ``train.txt'' e ``test.txt'' que contém o nome das imagens utilizadas no treinamento e teste, respectivamente, onde para cada imagem utiliza-se uma nova linha;
-  \item Fazer o \textit{download} de pesos pré-treinados, com intuído de acelerar o treinamento;
-  \item Iniciar o treinamento.
-\end{itemize}
+Para o treinamento, são necessárias algumas configurações de arquivos, além da adição das imagens do \textit{dataset} utilizado, a partir do \textit{download} do repositório do projeto disponibilizado por \citeonline{ref:Bochkovskiy}. As instruções a serem seguidas, conforme \citeonline{ref:Bochkovskiy}, estão no \autoref{apendice:etapas-yolo}.
 
 \section{Classificação e Detecção de Defeitos em Placas de Circuito Impresso} \label{cap:fund-pcb}
 

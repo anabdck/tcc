@@ -221,6 +221,12 @@
 % ----------------------------------------------------------
 \makeindex
 
+% ----------------------------------------------------------
+% Configuração listings
+% ----------------------------------------------------------
+\captionsetup[lstlisting]{font={footnotesize,bf}}
+
+
 % --------------------------------------------------------------------------
 % Configurações para inserir código fonte de programas - pacote listings
 % --------------------------------------------------------------------------
@@ -258,19 +264,20 @@
 \definecolor{colComments}{rgb}{.4,.4,.4}
 \definecolor{colString}{rgb}{0,0,0.6}
 
-\definecolor{colBack}{rgb}{0.9,0.9,0.9} %ana banana
+\definecolor{colBack}{rgb}{0.9,0.91,0.92} %ana banana
 \definecolor{colKeys}{rgb}{0,0,0}
-\definecolor{colIdentifier}{rgb}{0,0,0.9}
+\definecolor{colIdentifier}{rgb}{0.2,0.4,0.9}
 \definecolor{colComments}{rgb}{.4,.4,.4}
-\definecolor{colString}{rgb}{0,0,0.6}
+\definecolor{colString}{rgb}{0.2,0.4,0.4}
 
 \lstset{ %
     aboveskip=\bigskipamount,
     backgroundcolor=\color{colBack},   % choose the background color; you must add \usepackage{color} or
-    basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+    %basicstyle=\ttfamily\footnotesize,       % the size of the fonts that are used for the code
+    basicstyle=\fontsize{10}{10}\selectfont\ttfamily,
     breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
     breaklines=true,                 % sets automatic line breaking
-    captionpos=n,                    % sets the caption-position to bottom
+    captionpos=t,                    % sets the caption-position to bottom
     columns=flexible,
     commentstyle=\color{colComments},    % comment style
     deletekeywords={...},            % if you want to delete keywords from the given language
