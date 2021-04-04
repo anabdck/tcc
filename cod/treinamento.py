@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 
 !git clone https://github.com/AlexeyAB/darknet
-!git clone https://github.com/Ixiaohuihuihui/Tiny-Defect-Detection-for-PCB
 
 %cd darknet
 

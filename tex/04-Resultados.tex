@@ -2,8 +2,8 @@
 % Arquivo: 04-Resultados.tex
 % ----------------------------------------------------------------------- %
 \chapter{Treinamento da Rede Neural para Detecção e localização de Defeitos em Placas de Circuito Impresso} \label{cap:treinamento}
-%Falta escrever essa parte.
-Nesse capítulo serão discutidas a escolha e as etapas de preparação do \textit{dataset} para o treinamento, detalhes de configurações da rede neural utilizada e os resultados obtidos.
+%FALTA ESCERVER ESSA PARTE.
+%Nesse capítulo serão discutidas a escolha e as etapas de preparação do \textit{dataset} para o treinamento, detalhes de configurações da rede neural utilizada e os resultados obtidos.
 
 \section{Seleção da Rede Neural e do \textit{Framework} para o Treinamento} \label{cap:treinamento-rn}
 
@@ -65,7 +65,7 @@ A estrutura de arquivos do \textit{dataset} está na \autoref{fig:resultados-hri
 
 Para o treinamento, é necessário que os arquivos do \textit{dataset} escolhido estejam de acordo com o padrão utilizado pela YOLO e as imagens estejam separadas nos subconjuntos de teste e treinamento.
 
-Os arquivos de anotação do \textit{dataset} HRIPC foram convertidos de \textit{.xml} para \textit{.txt} utilizando o textit{script} em Python que está no \autoref{apendice:conversao}.
+Os arquivos de anotação do \textit{dataset} HRIPC foram convertidos de \textit{.xml} para \textit{.txt} utilizando o \textit{script} em Python que está no \autoref{apendice:conversao}.
 Esse \textit{script} percorre as pastas de anotação de cada defeito (\autoref{fig:resultados-hripcb-estrutura}), abrindo os arquivos \textit{.xml}, convertendo os dados conforme o padrão necessário para o treinamento e salvando esses dados em um arquivo de texto.
 
 A conversão segue as Equações \ref{eq:resultados-conversao-x} e \ref{eq:resultados-conversao-y} para as coordenadas centrais $x_{center}$ e $y_{center}$ das caixas delimitadoras e as Equações \ref{eq:resultados-conversao-w} e \ref{eq:resultados-conversao-h} para a largura ($width$) e altura ($height$) das caixas delimitadoras, onde os resultados estão normalizados pela largura $x_{img}$ e altura  $y_{img}$ da imagem conforme indicado nos passos do \autoref{apendice:etapas-yolo}.
@@ -125,35 +125,66 @@ firstnumber=1,
 label=cod:conv]
 {cod/anotacoes-HRIPCB.txt}
 
-O \textit{dataset} foi dividido aleatoriamente nos sub-conjuntos treinamento e teste utilizando o \textit{script} do \autoref{apendice:divisao}, com 20\% para testes e o restante para o treinamento.  
+O \textit{dataset} foi dividido aleatoriamente nos sub-conjuntos treinamento e teste utilizando o \textit{script} do \autoref{apendice:divisao}, com 20\% dos arquivos para testes e o restante para o treinamento. Esse \textit{script} separa tanto as imagens quanto os arquivos de anotação e, além disso, também é responsável por criar os arquivos de texto \textit{train.txt} e \textit{test.txt} que lista todos os arquivos de cada subconjunto de treinamento e testes, respectivamente, necessários para o treinamento com YOLO.
 
-
-O arquivo de configuração \textit{obj.names}
+O arquivo de configuração \textit{obj.data} é o apresendado no \autoref{cod:obj-data}. Esse arquivo contém o número de classes a serem treinadas além dos caminhos para os principais arquivos requeridos para o treinamento. O arquivo \textit{obj.names} está no \autoref{cod:obj-names} que lista todas as classes treinadas.
 
 \lstinputlisting
 [caption=Arquivo de configuração \textit{obj.data}.,
-label=lst:hripcb,
 firstnumber=1,
 label=cod:obj-data]
 {cod/obj.data}
 
 \lstinputlisting
 [caption=Arquivo de configuração \textit{obj.names}.,
-label=lst:hripcb,
 firstnumber=1,
 label=cod:obj-names]
 {cod/obj.names}
 
+O arquivo de configuração das camadas da rede neural foi ajustado de acordo com o \autoref{apendice:etapas-yolo}. Sendo assim, o número máximo de \textit{batches} necessários para o treinamento foi $n_{classes} \cdot 2000 = 12000$ e a quantidade de filtros considerada foi de $(n_{classes} + 5) \cdot 3 = 33$.
 
 \section{Treinamento} \label{cap:treinamento-treinamento}
 O treinamento foi feito no Google Colaboratory, um ambiente que permite a execução de códigos Python em \textit{notebooks} Jupyter, adequado para Aprendizado de Máquina, análise de dados e educação, oferecendo recursos de computação como GPUs de forma gratuita \cite{ref:Colab}.
 
+O código completo utilizado para o treinamento está disponível no \autoref{apendice:treinamento}, contendo todos os comandos utilizados.
 
+O repositório do Darknet, disponibilizado \textit{online} por \citeonline{ref:Bochkovskiy} no endereço \url{https://github.com/AlexeyAB/darknet}, foi adicionado ao ambiente, por meio do comando \textit{git clone}. Além disso, foram manualmente adicionadas as pastas contendo os arquivos de configuração e do \textit{dataset} para o treinamento.
 
-\subsection{Tranferência de Aprendizado} \label{cap:treinamento-rn}
+Alterações no arquivo \textit{makefile} foram feitas para que o treinamento ocorresse utilizando GPU (linhas quinze a dezessete do código do \autoref{apendice:treinamento}) e em seguida compilou-se o Darknet para o treinamento.
 
+Com intuído de acelerar o treinamento, utilizou-se a transferência de aprendizado e iniciou-se a rede com os pesos da \textit{yolov4.conv.137}, pré-treinada com um \textit{dataset} contendo mais de um milhão de imagens com objetos classificados em mais mil categorias \cite{ref:Redmon-et-al}. A transferência de aprendizado consiste em acelerar um novo treinamento a partir de resultados obtidos em treinamentos anteriores \cite{ref:Cai-Bileschi-Nielsen}. 
 
 \section{Resultados} \label{cap:treinamento-resultados}
+O gráfico da \autoref{fig:resultados-grafico} mostra o resultado das métricas para o início do treinamento. Nota-se que para um pouco mais de mil e duzendos \textit{batches} a métrica de mAP, em vermelho, já estava com pico em 98\%. Da mesma forma, a função de perda, representada pelo traço azul, foi diminuindo consideravelmente conforme o andamento do treinamento.
 
+\begin{figure}[h!] %H
+  \centering
+  \caption{Estrutura de arquivos do \textit{dataset} HRIPCB.}
+  \includegraphics[scale=0.8]{img/img-resultados-grafico.png}
+  \label{fig:resultados-grafico}
+  \indentedfont[15.2cm]{Elaboração própria (2021)}
+\end{figure}
+
+Para dois mil e quinhentos \textit{batches}, os resultados das métricas calculadas estão na \autoref{tab:resultados-metricas}.
+
+\begin{table}[!h]
+  \begin{center}
+  \caption{Resultados de Precisão Média para as classes treinadas de defeitos em placas de circuito impresso.}
+  \label{tab:resultados-metricas}
+  \begin{tabular}{cccc}
+    \toprule
+    \textbf{Defeito} & \textbf{Precisão Média (AP)} \\
+    \midrule \midrule
+    Circuito Aberto     & 97.07\% \\
+    Curto-Circuito      & 98.82\% \\
+    Falta de Cobre      & 99.20\%  \\
+    Excesso de Cobre    & 96.68\% \\
+    Trilha Desconectada & 98.87\% \\
+    Falta de Estanho    & 100.00\% \\
+    \bottomrule
+  \end{tabular}
+  \indentedfont[0.96\textwidth]{Elaboração própria (2021)}
+  \end{center}
+\end{table}
 
 \chapter{Interface de Aplicação} \label{cap:api}
