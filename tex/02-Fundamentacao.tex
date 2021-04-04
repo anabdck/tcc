@@ -208,7 +208,7 @@ A atualização desses pesos é feita até que a função de perda resulte valor
 Determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsubsection{Matriz de Confusão} \label{cap:fund-ia-metricas-matriz}
-A Matriz de Confusão é uma técnica muito popular usada em problemas de classificação binária, representando a contagem dos resultados da predição feitos pela rede neural em comparação com os valores reais \cite{ref:Batarseh-Yang}, na forma de verdadeiros positivo, verdadeiros negativo, falsos positivo e falsos negativo. Um exemplo de matriz de confusão utilizada em classificações binárias está na \autoref{fig:fund-matriz}.
+A Matriz de Confusão é uma técnica muito popular usada em problemas de classificação binária, representando a contagem dos resultados da predição feitos pela rede neural em comparação com os valores reais \cite{ref:Batarseh-Yang}, na forma de verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos. Um exemplo de matriz de confusão utilizada em classificações binárias está na \autoref{fig:fund-matriz}.
 
 \begin{figure}[h!] %H
   \centering
@@ -318,7 +318,7 @@ CNNs sempre contém dois tipos de operações básicas: as operações de convol
 
 %In convolution layers, CNN uses different kernels for convolving the input image for creating the feature maps
 
-Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza multiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
+Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza múltiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
 
 Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
 
@@ -336,7 +336,7 @@ Para imagens, as convoluções ocorrem em mais que um eixo ao mesmo tempo. Se a 
 }
 \end{equation}
 
-Porém, utilizando a propriedade comuta  tiva da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
+Porém, utilizando a propriedade comutativa da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
 
 \begin{equation} \label{eq:fund-conv-3}
 \mathrm{
@@ -367,7 +367,7 @@ Exemplos de convolução em imagem utilizando distintos tipos de \textit{kernel}
 \subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
 As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} ao reduzir o tamanho do mapa de características \cite{ref:Gholamalinezhad-Khosravi} e ajudam a tornar as saídas aproximadamente invariantes a pequenas modificações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
 
-Espera-se que uma camada de \textit{pooling} ideal extraia semoente as informações úteis e descarte detalhes irrelevantes \cite{ref:Gholamalinezhad-Khosravi}. A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}. A operação de \textit{Max-Pooling} seleciona o pixel com maior valor dentre os pixeis de uma região (\autoref{fig:fund-pool-max}) e a operação de \textit{Pooling} médio (\autoref{fig:fund-pool-av}) faz a média entre esses pixeis.
+Espera-se que uma camada de \textit{pooling} ideal extraia somente as informações úteis e descarte detalhes irrelevantes \cite{ref:Gholamalinezhad-Khosravi}. A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}. A operação de \textit{Max-Pooling} seleciona o pixel com maior valor dentre os píxeis de uma região (\autoref{fig:fund-pool-max}) e a operação de \textit{Pooling} médio (\autoref{fig:fund-pool-av}) faz a média entre esses píxeis.
 
 \begin{figure}[h!]
     \centering
@@ -413,7 +413,7 @@ Uma comparação de desempenho com outras redes neurais utilizadas para detecç�
   \indentedfont[15.2cm]{\citeonline{ref:Bochkovskiy-Wang-Liao}}
 \end{figure}
 
-A YOLO divide a imagem em imagens menores no formato de uma grade, e para cada uma dessas divisões, são previstas caixas delimitadoras, com suas confianças e probabilidades \cite{ref:Redmon-et-al}. A maioria dessas divisões não contém um objeto detectado e a filtragem é feita com base na probabilidade da classe do objeto, onde apenas as caixas delimitadoras de maior probabilidade permanecerão \cite{ref:Sivarajkumar}. Esse processo é ilustrado na \autoref{fig:fund-yolograde}.
+A YOLO divide a imagem em blocos menores no formato de uma grade, e para cada uma dessas divisões, são previstas caixas delimitadoras, com suas confianças e probabilidades \cite{ref:Redmon-et-al}. A maioria dessas divisões não contém um objeto detectado e a filtragem é feita com base na probabilidade da classe do objeto, onde apenas as caixas delimitadoras de maior probabilidade permanecerão \cite{ref:Sivarajkumar}. Esse processo é ilustrado na \autoref{fig:fund-yolograde}.
 
 \begin{figure}[h!] %H
   \centering
@@ -423,7 +423,7 @@ A YOLO divide a imagem em imagens menores no formato de uma grade, e para cada u
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Redmon-et-al}}
 \end{figure}
 
-A camada final é responsável por prever as probabilidades das classes treinadas e as coordenadas das caixas delimitadoras \cite{ref:Redmon-et-al}. Tanto a largura e a altura das caixas delimitadoras quanto as coordenadas x e y são normalizadas pela altura e largura da imagem, de modo que os valores fique dentro do intervalo entre zero e um \cite{ref:Redmon-et-al}.
+A camada final é responsável por prever as probabilidades das classes treinadas e as coordenadas das caixas delimitadoras \cite{ref:Redmon-et-al}. Tanto a largura e a altura das caixas delimitadoras quanto as coordenadas x e y são normalizadas pela altura e largura da imagem, de modo que os valores fiquem dentro do intervalo entre zero e um \cite{ref:Redmon-et-al}.
 
 Para o treinamento, são necessárias algumas configurações de arquivos, além da adição das imagens do \textit{dataset} utilizado, a partir do \textit{download} do repositório do projeto disponibilizado por \citeonline{ref:Bochkovskiy}. As instruções a serem seguidas, conforme \citeonline{ref:Bochkovskiy}, estão no \autoref{apendice:etapas-yolo}.
 
@@ -495,7 +495,7 @@ Os métodos comparativos de detecção, também conhecidos como métodos referen
 
 Uma das formas de fazer a extração dos defeitos é utilizando a operação lógica de ou-exclusivo (XOR) entre as duas imagens binarizadas, de forma que se o pixel da imagem a ser testada corresponde com o pixel da imagem de referência, o resultado será um, do contrário, o resultado será zero \cite{ref:Huang-et-al}.
 
-A grande dificuldade da operação XOR é determinar o alinhamento preciso entre as duas imagens \cite{ref:Ding-et-al}, além de que ruídos externos podem mascarar os defeitos. \citeonline{ref:Huang-et-al} propõe o uso de algoritmos de registro de imagem para corrigir o desalinhamento entre as imagens. Esses algoritmos extraem as características de ambas imagens, calculando uma matriz de transformação que rotacionará a imagem teste deixando na mesma orientação da imagem de referência \cite{ref:Huang-et-al}. Já para remover os ruídos externos, é proposto por \citeonline{ref:Huang-et-al} a utilização de operações morfológicas, tais como filtros medianos e operações morfológicas de fechamento e abertura. Essas operações são feitas após a operação de XOR, e uma comparação entre o resultado antes e depois das operações morfológicas está na \autoref{fig:fund-morf}.
+A grande dificuldade da operação XOR é determinar o alinhamento preciso entre as duas imagens \cite{ref:Ding-et-al}, além de que ruídos externos podem mascarar os defeitos. \citeonline{ref:Huang-et-al} propõe o uso de algoritmos de registro de imagem para corrigir o desalinhamento entre as imagens. Esses algoritmos extraem as características de ambas imagens, calculando uma matriz de transformação que rotacionará a imagem teste deixando na mesma orientação da imagem de referência \cite{ref:Huang-et-al}. Já para remover os ruídos externos, é proposta por \citeonline{ref:Huang-et-al} a utilização de operações morfológicas, tais como filtros medianos e operações morfológicas de fechamento e abertura. Essas operações são feitas após a operação de XOR, e uma comparação entre o resultado antes e depois das operações morfológicas está na \autoref{fig:fund-morf}.
 
 \begin{figure}[h!]
     \centering
@@ -522,7 +522,7 @@ No entanto, de acordo com \citeonline{ref:Ding-et-al}, obter uma imagem de refer
 De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, o uso de redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, usar redes neurais para essa aplicação implica em encontrar um equilíbrio entre eficiência e a alta precisão, já que detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de mais alto nível e detecções mais eficientes precisam de modelos menos profundos para processamentos mais rápidos.
 
 \subsubsection{Métodos Híbridos} \label{cap:fund-pcb-metodos-hib}
-Os métodos híbridos combinam os métodos comparativo e não-referencial para a detecção e classificação de defeitos. Um exemplo para a aplicação de detecção e classificação de defeitos é a abordagem RBCNN proposta por \citeonline{ref:Huang-et-al}, onde os defeitos são inicialmente localizados utilizando métodos comparativos e posteriormente, redes neurais convolucionais são utilizadas para a classificação, conforme o fluxograma da \autoref{fig:fund-hib}.
+Os métodos híbridos combinam os métodos comparativo e não-referencial para a detecção e classificação de defeitos. Um exemplo para a aplicação de detecção e classificação de defeitos é a abordagem RBCNN proposta por \citeonline{ref:Huang-et-al}, onde os defeitos são inicialmente localizados utilizando métodos comparativos e, posteriormente, redes neurais convolucionais são utilizadas para a classificação, conforme o fluxograma da \autoref{fig:fund-hib}.
 
 \begin{figure}[h!] %H
   \centering
@@ -540,6 +540,6 @@ Os métodos híbridos combinam os métodos comparativo e não-referencial para a
 %Considerando o contexto de detecção e classificação de objetos utilizando redes neurais, existe uma grande variedades de \textit{frameworks} e bibliotecas que podem ser utilizados, compatíveis com diferentes linguagens de programação.
 
 \subsection{Darknet} \label{cap:fund-frameworks-darknet}
-Darknet é um \textit{framework} de código aberto para redes neurais escrito em C e CUDA, com fácil instalação e suporte a computação em CPU e GPU \cite{ref:Redmon}.
+Darknet é um \textit{framework} de código aberto para redes neurais escrito em C e CUDA, com fácil instalação e suporte à computação em CPU e GPU \cite{ref:Redmon}.
 
 \subsection{Flask} \label{cap:fund-frameworks-flask}
