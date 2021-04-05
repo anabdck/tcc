@@ -16,7 +16,7 @@ Sendo assim, a rede neural escolhida para o treinamento da detecção de defeito
 Para a detecção e classificação de objetos, o conjunto de dados escolhido deve incluir além das imagens, a localização e classificação dos objetos de interesse.
 O \textit{Dataset} escolhido para a detecção e localização de defeitos em PCIs é o \textit{HRIPCB: a challenging dataset for PCB defects detection and classification}, proposto por \citeonline{ref:Huang-et-al}.
 
-As imagens das placas são capturadas por uma câmera do tipo industrial com dezesseis megapixel de resolução equipada com um sensor C-MOS \cite{ref:Huang-et-al}. Após a captura e ajustes, seis tipos de defeitos são adicionados manualmente em um \textit{software} de edição de imagens, onde cada imagem contém de dois a seis defeitos da mesma categoria em diferentes lugares da placa \cite{ref:Huang-et-al}. A distribuição dos defeitos está na \autoref{tab:treinamento-dataset}.
+As imagens das placas são capturadas por uma câmera do tipo industrial com dezesseis megapixel de resolução equipada com um sensor C-MOS \cite{ref:Huang-et-al}. O \textit{dataset} baseia-se em dez diferentes tipos de PCIs sem defeitos, conforme as imagens do \autoref{apendice:hripcb-pcbs} e, após a captura e ajustes, seis tipos de defeitos são adicionados manualmente em um \textit{software} de edição de imagens, onde cada imagem contém de dois a seis defeitos da mesma categoria em diferentes lugares da placa \cite{ref:Huang-et-al}. A distribuição dos defeitos está na \autoref{tab:treinamento-dataset}.
 
 \begin{table}[!h]
 \begin{center}
@@ -152,20 +152,29 @@ O repositório do Darknet, disponibilizado \textit{online} por \citeonline{ref:B
 
 Alterações no arquivo \textit{makefile} foram feitas para que o treinamento ocorresse utilizando GPU (linhas quinze a dezessete do código do \autoref{apendice:treinamento}) e em seguida compilou-se o Darknet para o treinamento.
 
-Com intuído de acelerar o treinamento, utilizou-se a transferência de aprendizado e iniciou-se a rede com os pesos da \textit{yolov4.conv.137}, pré-treinada com um \textit{dataset} contendo mais de um milhão de imagens com objetos classificados em mais mil categorias \cite{ref:Redmon-et-al}. A transferência de aprendizado consiste em acelerar um novo treinamento a partir de resultados obtidos em treinamentos anteriores \cite{ref:Cai-Bileschi-Nielsen}. 
+Com intuído de acelerar o treinamento, utilizou-se a transferência de aprendizado e a rede foi inicializada com os pesos da \textit{yolov4.conv.137}, pré-treinada com um \textit{dataset} contendo mais de um milhão de imagens com objetos classificados em mais mil categorias \cite{ref:Redmon-et-al}. A transferência de aprendizado consiste em acelerar um novo treinamento a partir de resultados obtidos em treinamentos anteriores \cite{ref:Cai-Bileschi-Nielsen}.
 
 \section{Resultados} \label{cap:treinamento-resultados}
-O gráfico da \autoref{fig:resultados-grafico} mostra o resultado das métricas para o início do treinamento. Nota-se que para um pouco mais de mil e duzendos \textit{batches} a métrica de mAP, em vermelho, já estava com pico em 98\%. Da mesma forma, a função de perda, representada pelo traço azul, foi diminuindo consideravelmente conforme o andamento do treinamento.
+O gráfico da \autoref{fig:resultados-grafico} mostra a evolução do desempenho durante o início do treinamento. Nota-se que para um pouco mais de mil e duzendos \textit{batches} a métrica de mAP, em vermelho, já estava com pico em 98\%. Da mesma forma, a função de perda, representada pelo traço azul, foi diminuindo consideravelmente conforme os pesos da rede neural se atualizavam. Esse gráfico não está completo pois é gerado pelo Darknet e salvo em um arquivo temporário e o treinamento foi interrompido em mil e quinhentos \textit{batches} e reiniciado a partir desse ponto.
 
 \begin{figure}[h!] %H
   \centering
-  \caption{Estrutura de arquivos do \textit{dataset} HRIPCB.}
+  \caption{Desempenho do início do treinamento da rede neural.}
   \includegraphics[scale=0.8]{img/img-resultados-grafico.png}
   \label{fig:resultados-grafico}
   \indentedfont[15.2cm]{Elaboração própria (2021)}
 \end{figure}
 
-Para dois mil e quinhentos \textit{batches}, os resultados das métricas calculadas estão na \autoref{tab:resultados-metricas}.
+As métricas de treinamento para os pesos obtidos são calculadas por meio do comando do Darknet presente no \autoref{cod:map}, onde o valor da \textit{flag thresh} indica o limiar de confiabilidade da predição utilizado para as métricas baseadas em matriz de confusão e a \textit{flag points} representa o tipo de aproximação para o cálculo da métrica de AP e mAP, onde o valor 0 quer dizer que não há nenhuma aproximação para o cálculo da área da curva precisão em função da sensibilidade.
+
+\lstinputlisting
+[caption=Comando Darknet para o cálculo das métricas de avaliação da rede neural.,
+firstnumber=1,
+label=cod:map]
+{cod/darknet_map.txt}
+
+
+O treinamento foi finalizado após dois mil e quinhentos \textit{batches}, já que os resultados  apresentavam bom desempenho, conforme a \autoref{tab:resultados-metricas}, que apresenta a métrica AP calculadas para cada uma das classes treinadas e a \autoref{tab:resultados-metricas-total}, que apresenta os resultados médios das classes treinadas. O tempo de treinamento não foi cronometrado, durando aproximadamente entre quinze e vinte horas.
 
 \begin{table}[!h]
   \begin{center}
@@ -175,16 +184,99 @@ Para dois mil e quinhentos \textit{batches}, os resultados das métricas calcula
     \toprule
     \textbf{Defeito} & \textbf{Precisão Média (AP)} \\
     \midrule \midrule
-    Circuito Aberto     & 97.07\% \\
-    Curto-Circuito      & 98.82\% \\
-    Falta de Cobre      & 99.20\%  \\
-    Excesso de Cobre    & 96.68\% \\
-    Trilha Desconectada & 98.87\% \\
-    Falta de Estanho    & 100.00\% \\
+    Circuito Aberto     & 97,07\% \\
+    Curto-Circuito      & 98,82\% \\
+    Falta de Cobre      & 99,20\%  \\
+    Excesso de Cobre    & 96,68\% \\
+    Trilha Desconectada & 98,87\% \\
+    Falta de Estanho    & 100,00\% \\
     \bottomrule
   \end{tabular}
   \indentedfont[0.96\textwidth]{Elaboração própria (2021)}
   \end{center}
 \end{table}
+
+\begin{table}[!h]
+  \begin{center}
+  \caption{Métricas de Avaliação para o conjunto das classes treinadas de defeitos em placas de circuito impresso, considerando um \textit{threshold} de confiabilidade da predição de 75\%.}
+  \label{tab:resultados-metricas-total}
+  \begin{tabular}{cccc}
+    \toprule
+    \textbf{Métrica} & \textbf{Resultado} \\
+    \midrule \midrule
+    Precisão            & 99,00\% \\
+    Sensibilidade       & 94,00\% \\
+    \textit{F1-score}   & 97,00\%  \\
+    mAP                 & 98,44\% \\
+    \bottomrule
+  \end{tabular}
+  \indentedfont[0.96\textwidth]{Elaboração própria (2021)}
+  \end{center}
+\end{table}
+
+O gráfico de precisão em função da sensibilidade para cada uma das classes está na \autoref{fig:resultados-pr}. A \autoref{fig:resultados-pr-total} apresenta o mesmo gráfico considerando uma média de todas as classes para a curva de precisão em função da sensibilidade.
+Esses gráficos foram construídos variando o valor de confiabilidade da predição (\textit{flag thresh}) dentro do intervalo $[0.001, 0.99]$ para as métricas de precisão e sensibilidade utilizando o comando do \autoref{cod:map}, além de alterar a função \textit{qsort} do arquivo ``detector.c'' que está localizado dentro da pasta \textit{Darknet/src/} e recompilar o Darknet para imprimir os valores de precisão e sensibilidade, já que sem isso apenas a métrica de AP é apresentada para cada classe.
+
+
+\begin{figure}[H] %H
+  \centering
+  \caption{Curvas de precisão em função da sensibilidade para cada classe treinada.}
+  \includegraphics[scale=0.8]{img/img-resultados-pr.pdf}
+  \label{fig:resultados-pr}
+  \indentedfont[15.2cm]{Elaboração própria (2021)}
+\end{figure}
+
+\begin{figure}[H] %H
+  \centering
+  \caption{Curva de precisão em função da sensibilidade para o conjunto de classes treinado.}
+  \includegraphics[scale=0.8]{img/img-resultados-pr-total.pdf}
+  \label{fig:resultados-pr-total}
+  \indentedfont[15.2cm]{Elaboração própria (2021)}
+\end{figure}
+
+As Figuras \ref{fig:resultados-predicao-1}, \ref{fig:resultados-predicao-2} e \ref{fig:resultados-predicao-3} apresentam resultados de detecção para imagens com defeitos variados adicionados manualmente em \textit{software} de edição de imagem a partir de PCIs do \textit{dataset} sem presença de defeitos.
+Essas imagens baseiam-se nas apresentadas no \autoref{apendice:hripcb-pcbs}.
+
+\begin{figure}[H] %H
+  \centering
+  \caption{Resultado de predição para imagem com defeito, teste 1.}
+  \includegraphics[scale=0.5]{img/img-resultados-predicao-1.jpg}
+  \label{fig:resultados-predicao-1}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+\end{figure}
+
+\begin{figure}[H] %H
+  \centering
+  \caption{Resultado de predição para imagem com defeito, teste 2.}
+  \includegraphics[scale=0.5]{img/img-resultados-predicao-2.jpg}
+  \label{fig:resultados-predicao-2}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+\end{figure}
+
+\begin{figure}[!h] %H
+  \centering
+  \caption{Resultado de predição para imagem com defeito, teste 3.}
+  \includegraphics[scale=0.45]{img/img-resultados-predicao-3.jpg}
+  \label{fig:resultados-predicao-3}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Huang-et-al}}
+\end{figure}
+
+As Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2} apresentam resultados de detecção para imagens de fora do \textit{dataset}.
+
+\begin{figure}[H] %H
+  \centering
+  \caption{Resultado de predição para imagem com defeito, teste 4.}
+  \includegraphics[scale=0.95]{img/img-resultados-predicao-ruim-1.pdf}
+  \label{fig:resultados-predicao-ruim-1}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Khambhala}}
+\end{figure}
+
+\begin{figure}[!h] %H
+  \centering
+  \caption{Resultado de predição para imagem com defeito, teste 5.}
+  \includegraphics[scale=0.95]{img/img-resultados-predicao-ruim-2.pdf}
+  \label{fig:resultados-predicao-ruim-2}
+  \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Dratza}}
+\end{figure}
 
 \chapter{Interface de Aplicação} \label{cap:api}

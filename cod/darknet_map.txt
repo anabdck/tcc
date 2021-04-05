@@ -1,0 +1,1 @@
+!./darknet detector map data/obj.data cfg/yolov4_custom.cfg yolov4_custom_last.weights -thresh 0.75 -points 0
