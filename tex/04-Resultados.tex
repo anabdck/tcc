@@ -235,7 +235,7 @@ Esses gráficos foram construídos variando o valor de confiabilidade da prediç
 \end{figure}
 
 As Figuras \ref{fig:resultados-predicao-1}, \ref{fig:resultados-predicao-2} e \ref{fig:resultados-predicao-3} apresentam resultados de detecção para imagens com defeitos variados adicionados manualmente em \textit{software} de edição de imagem a partir de PCIs do \textit{dataset} sem presença de defeitos.
-Essas imagens baseiam-se nas apresentadas no \autoref{apendice:hripcb-pcbs}.
+Essas imagens baseiam-se nas apresentadas no \autoref{apendice:hripcb-pcbs}. O número indicado ao lado do nome do defeito significa a confiabilidade da predição, onde 1 indicaria uma predição 100\% confiável. 
 
 \begin{figure}[H] %H
   \centering
@@ -261,7 +261,8 @@ Essas imagens baseiam-se nas apresentadas no \autoref{apendice:hripcb-pcbs}.
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Huang-et-al}}
 \end{figure}
 
-As Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2} apresentam resultados de detecção para imagens de fora do \textit{dataset}.
+As Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2} apresentam resultados de detecção para imagens de fora do \textit{dataset}. Em ambas figuras, as setas indicam os defeitos que não foram detectados pela rede neural.
+A \autoref{fig:resultados-predicao-ruim-2} aponta os furos de vias como defeitos, já que o \textit{dataset} utilizado considera vias ou furos sem a cobertura de estanho como um defeito.
 
 \begin{figure}[H] %H
   \centering
