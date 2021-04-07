@@ -22,6 +22,8 @@ A rede neural treinada possui resultados satisfatórios para o \textit{dataset} 
   \end{center}
 \end{table}
 
-Dentre as redes neurais apresentadas na \autoref{tab:comparacao-hripcb}, apenas a TDD-Net proposta por \citeonline{ref:Ding-et-al} apresentou um melhor desempenho do que a YOLO em sua quarta versão, cujos resultados foram apontados no \autoref{cap:treinamento}.
+Dentre as redes neurais apresentadas na \autoref{tab:comparacao-hripcb}, apenas a TDD-Net proposta por \citeonline{ref:Ding-et-al} apresentou um melhor desempenho do que a YOLO em sua quarta versão, cujos resultados foram apontados no \autoref{cap:treinamento}. Esse resultado pode melhorar com o treinamento de mais \textit{batches} da rede neural, ao invés de apenas dois mil e quinhentos.
+
+Para imagens que não são do \textit{dataset} porém, os resultados apresentaram um desempenho não satisfatório, conforme mostram as Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2}. Isso é consequência do conjunto de dados escolhido, que possui apenas imagens de placas de circuito impresso dentro de um padrão, conforme as imagens do \autoref{apendice:hripcb-pcbs}, e na indústria existem diversos tipos de placas de circuito impresso, com cores e tamanhos distintos.
 
 %ainda falta finalizar
