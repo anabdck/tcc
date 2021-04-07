@@ -1,0 +1,29 @@
+\chapter{Discussão}
+
+A rede neural treinada possui resultados satisfatórios para o \textit{dataset} utilizado, conforme apresentado nas Tabelas \ref{tab:resultados-metricas} e \ref{tab:resultados-metricas-total}. A \autoref{tab:comparacao-hripcb} apresenta a métrica de mAP para diferentes estruturas de redes neurais treinadas com o mesmo conjunto de dados com a finalidade de comparação com os resultados obtidos utilizando a YOLO versão quatro.
+
+\begin{table}[!h]
+  \begin{center}
+    \caption{Comparação da utilização do conjunto de dados HRIPCB para o reconhecimento de defeitos em placas de circuito impresso para diferentes modelos de Redes Neurais.}
+    \label{tab:comparacao-hripcb}
+      \begin{tabular}{ccc}
+      \toprule
+      \textbf{Modelo} & \textbf{Referência} & \textbf{mAP} \\
+      \midrule \midrule
+      Faster R-CNN / VGG-16       & \apud{ref:Ren-et-al}{ref:Ding-et-al}    & 58,57\% \\
+      Faster R-CNN / ResNet-101   & \apud{ref:Ren-et-al}{ref:Ding-et-al}    & 94,27\% \\
+      FPN                         & \apud{ref:Lin-et-al-2}{ref:Ding-et-al}  & 92,23\% \\
+      Faster R-CNN fine-tuned     & \cite{ref:Ding-et-al}                   & 96,44\% \\
+      TDD-Net                     & \cite{ref:Ding-et-al}                   & 98,90\% \\
+      YOLO versão 4               & proposto                                & 98,44\% \\
+      \bottomrule
+      \end{tabular}
+    \indentedfont[0.96\textwidth]{Elaboração própria (2021)}
+  \end{center}
+\end{table}
+
+Dentre as redes neurais apresentadas na \autoref{tab:comparacao-hripcb}, apenas a TDD-Net proposta por \citeonline{ref:Ding-et-al} apresentou um melhor desempenho do que a YOLO em sua quarta versão, cujos resultados foram apontados no \autoref{cap:treinamento}. Esse resultado pode melhorar com o treinamento de mais \textit{batches} da rede neural, ao invés de apenas dois mil e quinhentos.
+
+Para imagens que não são do \textit{dataset} porém, os resultados apresentaram um desempenho não satisfatório, conforme mostram as Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2}. Isso é consequência do conjunto de dados escolhido, que possui apenas imagens de placas de circuito impresso dentro de um padrão, conforme as imagens do \autoref{apendice:hripcb-pcbs}, e na indústria existem diversos tipos de placas de circuito impresso, com cores e tamanhos distintos.
+
+%ainda falta finalizar
