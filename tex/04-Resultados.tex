@@ -32,6 +32,7 @@ Circuito Aberto     & 116   & 482 \\
 Curto-Circuito      & 116   & 491 \\
 Excesso de Cobre    & 115   & 488 \\
 Trilha Desconectada & 116   & 503 \\
+Total               & 693   & 2953 \\
 \bottomrule
 \end{tabular}
 \indentedfont[0.96\textwidth]{\citeonline{ref:Huang-et-al}}
@@ -298,6 +299,7 @@ A estrutura da aplicação foi construída de acordo com o apresentado na \autor
 
 As páginas \textit{web} apresentadas ao usuário utilizam HTML5, CSS3, Java Script e Bootstrap, organizadas dentro das pastas \textit{static} e \textit{templates} e o roteamento das páginas ocorre em \textit{default.py} dentro da pasta \textit{controllers}.
 
+
 O módulo de detecção \textit{detection.py} é responsável por invocar o Darknet e processar a imagem para a detecção dos defeitos utilizando os arquivos de configuração da rede neural e os pesos treinados.
 Para isso, é necessária a biblioteca \textit{libdarknet.so}, compilada para o servidor utilizado conforme o indicado nos passos do
 \autoref{apendice:conf-api}.
@@ -315,6 +317,8 @@ O Fluxograma da \autoref{fig:resultados-api-etapas} apresenta de maneira abrevia
 O endereço inicial apresenta a tela da \autoref{fig:resultados-api-1}, onde o usuário pode fazer o \textit{upload} de uma imagem para a detecção ou, ao rolar a página para baixo, pode escolher uma das quatro imagens que já estão no servidor para a detecção, conforme a tela da \autoref{fig:resultados-api-2}. É possível fazer apenas o \textit{upload} de arquivos de imagens com extensões \textit{png},\textit{jpg} ou \textit{jpeg}. Caso seja feito o \textit{upload} de outros tipos de arquivos, é feito o redirecionamento para a página inicial novamente, já que as demais extensões não são aceitas pela rede neural.
 
 Se arquivo escolhido for de uma das extensões permitidas ou o usuário escolher uma das imagens que está no servidor, a detecção dos defeitos é feita. Se a rede neural encontrar defeitos na imagem, a tela da \autoref{fig:resultados-api-3} é apresentada ao usuário, onde a indicação dos defeitos encontrados é feita por meio das caixas delimitadoras resultantes impressas na imagem processada. Uma mensagem indicando o tempo de processamento e a quantidade de defeitos encontrados é exibido ao usuário. O botão de ``\textit{Download} dos Resultados'' salva no computador do usuário um arquivo compactado contendo a imagem com as caixas delimitadoras e um arquivo de texto de anotação no padrão YOLO. Caso nenhum defeito é encontrado, a imagem original é mostrada ao usuário, além do aviso indicando o tempo de processamento, conforme a \autoref{fig:resultados-api-5}. O botão de ``\textit{Download} dos Resultados'' fica travado nesse caso.
+
+A aplicação construída não considerou o uso de GPUs, mas caso esteja disponível no servidor utilizado, o Darknet pode ser compilado para isso, melhorando o tempo de processamento da detecção que para o servidor testado varia em torno de vinte segundos.
 
 \begin{landscape}
   \begin{figure}[H] %H
