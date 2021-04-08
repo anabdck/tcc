@@ -10,14 +10,28 @@ A inspeção ótica automatizada tem sido amplamente utilizada para detectar def
 Sendo assim, esse trabalho propõe o uso de técnicas de Aprendizado Profundo para a detecção de defeitos em placas de circuito impresso, como maneira de aprimorar o processo de fabricação e melhorar a qualidade das mesmas.
 
 \section{Justificativa}
-O projeto de placas de circuito impresso tem se tornado cada vez mais complexo com o desenvolvimento de novas tecnologias de componentes eletrônicos e com a busca pela minimização dos produtos finais. Além desse fator, existe o alto custo atrelado a todo o processo de fabricação de cada placa, desde o projeto até a finalização, de forma que é fundamental que eventuais defeitos que possam ser inseridos nas linhas de fabricação das placas devem ser detectados de maneira confiável e rápida.
+O projeto de placas de circuito impresso tem se tornado cada vez mais complexo com o desenvolvimento de novas tecnologias de componentes eletrônicos e com a busca pela minimização dos produtos finais.
+Além desse fator, existe o alto custo atrelado a todo o processo de fabricação, sendo fundamental que eventuais defeitos que possam ser inseridos nas linhas de fabricação das placas devam ser detectados de maneira confiável e rápida.
 
-Dessa forma, automatizar o processo de detecção de defeitos utilizando técnicas de Aprendizado Profundo e uso de Redes Neurais permite o aprimoramento da qualidade do processo de fabricação e contribui com a funcionalidade e baixo custo do produto final.
+Dessa forma, automatizar o processo de detecção de defeitos utilizando técnicas de Aprendizado Profundo e uso de Redes Neurais permite o aprimoramento da qualidade do processo de fabricação e contribui com o funcionamento e baixo custo do produto final, além de que ao considerar a automatização desse processo, o resultado se torna mais confiável, já que o uso da inspeção humana para isso não é ideal devido a alta complexidade da grande maioria das placas na atualidade.
 
 \section{Definição do Problema}
+Os defeitos em placas de circuito impresso podem causar o mau funcionamento ou o não funcionamento do produto. Circuitos delicados que possuem sinais com derivadas de tempo altas podem ser influenciados se as trilhas por onde esses sinais se propagam estiverem com espessura diferente da projetada, caracterizando defeitos de excesso ou falta de cobre, por exemplo. Já trilhas rompidas caracterizam o defeito de circuito aberto, e impossibilitam que o sinal trafegue pela placa. Além desses, defeitos como curto-circuito ou trilhas desconectadas podem implicar no funcionamento incorreto do produto. Considerando isso, é importante que os defeitos sejam detectados ainda durante o processo de fabricação, de maneira ágil e precisa, para que o produto final cumpra com a funcionalidade pelo qual ele foi projetado.
 
-
+Dessa maneira, a questão-problema que orienta este Trabalho de Conclusão de Curso é: De que forma pode-se automatizar a inspeção de defeitos de fabricação em placas de circuito impresso de forma confiável e precisa?
 
 \section{Objetivo Geral}
+Define-se como objetivo desse trabalho a automatização da detecção de defeitos de fabricação em placas de circuito impresso utilizando um método não-referencial.
 
 \section{Objetivos Específicos}
+
+Com o objetivo geral apresentado, destaca-se os seguintes objetivos específicos:
+
+\begin{alineas}
+  \item conceituar Inteligência Artificial, abordando de maneira breve suas áreas de estudo;
+  \item realizar um levantamento teórico referente à redes neurais;
+  \item fazer a escolha de uma rede neural que seja adequada para realizar  a detecção de defeitos de fabricação em placas de circuito impresso;
+  \item treinar a rede neural escolhida;
+  \item levantar métricas de avaliação referentes à rede neural treinada, analisando os resultados obtidos e comparando com outros resultados disponíveis em bibliografia;
+  \item projetar uma aplicação \textit{web} para teste e validação dos resultados por outros usuários.
+\end{alineas}

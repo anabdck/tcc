@@ -261,16 +261,11 @@
 % Definindo cores
 % ----------------------------------------------------------
 \definecolor{hellgelb}{rgb}{1,1,0.9}
-\definecolor{colKeys}{rgb}{0,0,0}
-\definecolor{colIdentifier}{rgb}{0,0,0.9}
-\definecolor{colComments}{rgb}{.4,.4,.4}
-\definecolor{colString}{rgb}{0,0,0.6}
-
-\definecolor{colBack}{rgb}{0.9,0.91,0.92} %ana banana
-\definecolor{colKeys}{rgb}{0,0,0}
-\definecolor{colIdentifier}{rgb}{0.2,0.4,0.9}
-\definecolor{colComments}{rgb}{.4,.4,.4}
-\definecolor{colString}{rgb}{0.2,0.4,0.4}
+\definecolor{colBack}{rgb}{0.95,0.95,0.95}  % fundo
+\definecolor{colKeys}{rgb}{0.1,0.1,0.1}     % fonte
+\definecolor{colIdentifier}{rgb}{0.50,0.61,0.50}
+\definecolor{colComments}{rgb}{.5,.5,.5}
+\definecolor{colString}{rgb}{0.37,0.66,0.61}
 
 \lstset{ %
     aboveskip=\bigskipamount,
@@ -298,7 +293,7 @@
     numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
     numbersep=5pt,                   % how far the line-numbers are from the code
     numberstyle=\tiny,
-    rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+    rulecolor=\color{colComments},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
     showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
     showstringspaces=false,          % underline spaces within strings only
     showtabs=false,                  % show tabs within strings adding particular underscores
