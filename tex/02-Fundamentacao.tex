@@ -1,6 +1,7 @@
 \chapter{Fundamentação Teórica} \label{cap:fund}
 
-%Falta escrever essa parte.
+No início desse capítulo serão abordadas  as definições de Inteligência Artificial e suas áreas de estudo. Após isso, um referencial teórico sobre redes neurais com ênfase em redes neurais convolucionais será feito, considerando sua estrutura, processo de treinamento e formas de avaliação dos resultados. Por fim, os defeitos de fabricação em placas de circuito impresso e as formas possíveis de detecção disponíveis na bibliografia serão definidos.
+
 \section{Inteligência Artificial} \label{cap:fund-ia}
 
 Apesar de ter chamado atenção nos últimos anos com a quantidade enorme de dados adquiridos e processados por grandes corporações como Google, Facebook, Amazon, e Apple \cite{ref:Lawless-Mittu-Sofge}, o termo `Inteligência Artificial' não é tão atual assim. Ele foi utilizado pela primeira vez em 1955 por John McCarthy \cite{ref:Cohen}, que conduziu no ano seguinte um workshop cuja premissa central da proposta considera que o comportamento humano inteligente consiste em processos que podem ser formalizados e reproduzidos por uma máquina \cite{ref:Harvard-AI}. %conjectura
@@ -205,7 +206,7 @@ A atualização desses pesos é feita até que a função de perda resulte valor
 
 
 \subsection{Métricas de Avaliação} \label{cap:fund-ia-metricas}
-Determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
+As métricas de avaliação são utilizadas para analisar a performance de um modelo e diferentes métricas de avaliação são utilizadas para diferentes tipos de problemas \cite{ref:Srivastava}. Além disso, determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsubsection{Matriz de Confusão} \label{cap:fund-ia-metricas-matriz}
 A Matriz de Confusão é uma técnica muito popular usada em problemas de classificação binária, representando a contagem dos resultados da predição feitos pela rede neural em comparação com os valores reais \cite{ref:Batarseh-Yang}, na forma de verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos. Um exemplo de matriz de confusão utilizada em classificações binárias está na \autoref{fig:fund-matriz}.
@@ -271,7 +272,7 @@ A medida de \textit{F-Score} procura encontrar o equilíbrio entre a Precisão e
 
 \begin{equation} \label{eq:fund-fscore}
 \mathrm{
-  F-Score = 2 \cdot \frac{Precis\tilde{a}o \cdot Sensibilidade}{Precis\tilde{a}o + Sensibilidade}
+  \text{F-Score} = 2 \cdot \frac{Precis\tilde{a}o \cdot Sensibilidade}{Precis\tilde{a}o + Sensibilidade}
 }
 \end{equation}
 
@@ -296,11 +297,11 @@ No caso da detecção de objetos em imagens, as formas utilizadas são as caixas
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Sivarajkumar}}
 \end{figure}
 
-As métricas de AP e mAP discutidas na \autoref{cap:fund-ia-metricas-pmed} são obtidas variando a IoU para cada classe em um conjunto de imagens treinadas, onde uma detecção é considerada como um verdadeiro positivo se a IoU é maior que certo limiar \cite{ref:Sivarajkumar} .
 
 
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
-Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais há avanço pela rede neural, mais complexos são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
+Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais se avança através da rede neural, mais complexas
+ são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
 
 Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda, originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}. O uso de CNNs reduz os requisitos de memória e possui uma melhor eficiência estática quando comparada a redes neurais tradicionais \cite{ref:Goodfellow-Bengio-Courville}.
 
@@ -516,10 +517,10 @@ A grande dificuldade da operação XOR é determinar o alinhamento preciso entre
 	\label{fig:fund-morf}
 \end{figure}
 
-No entanto, de acordo com \citeonline{ref:Ding-et-al}, obter uma imagem de referência totalmente sem defeitos em um ambiente de produção é considerado fora da realidade, além de que problemas críticos de desalinhamento, variação de cor, variação de luz, e outras variações, tornam essa tarefa ainda mais custosa.
+No entanto, de acordo com \citeonline{ref:Ding-et-al}, obter uma imagem de referência totalmente sem defeitos em um ambiente de produção é considerado fora da realidade, além de que problemas críticos de desalinhamento, variação de cor, luz, e outros parâmetros, tornam essa tarefa ainda mais custosa.
 
 \subsubsection{Métodos Não-Referenciais} \label{cap:fund-pcb-metodos-nref}
-De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, o uso de redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, usar redes neurais para essa aplicação implica em encontrar um equilíbrio entre eficiência e a alta precisão, já que detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de mais alto nível e detecções mais eficientes precisam de modelos menos profundos para processamentos mais rápidos.
+De acordo com \citeonline{ref:Ding-et-al}, os métodos não-referenciais para detecção e classificação de defeitos são baseados na verificação de regras gerais de projeto e, nos últimos anos, redes neurais profundas tem sido empregadas nessa tarefa. Contudo, conforme \citeonline{ref:Tang-et-al}, usar redes neurais para essa aplicação implica em encontrar um equilíbrio entre eficiência e a alta precisão, já que detecções mais precisas requerem modelos de redes neurais mais profundas para obter características de mais alto nível e detecções mais eficientes precisam de modelos menos profundos para processamentos mais rápidos.
 
 \subsubsection{Métodos Híbridos} \label{cap:fund-pcb-metodos-hib}
 Os métodos híbridos combinam os métodos comparativo e não-referencial para a detecção e classificação de defeitos. Um exemplo para a aplicação de detecção e classificação de defeitos é a abordagem RBCNN proposta por \citeonline{ref:Huang-et-al}, onde os defeitos são inicialmente localizados utilizando métodos comparativos e, posteriormente, redes neurais convolucionais são utilizadas para a classificação, conforme o fluxograma da \autoref{fig:fund-hib}.
