@@ -36,7 +36,7 @@ Para evidenciar as diferenças entre essas áreas de estudo, em comparação com
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-Sistemas baseados em regras não possuem componentes capazes de realizar qualquer aprendizado a partir e dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar Xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente em modelos utilizáveis \cite{ref:Edgar-Manz} possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programados com eles'' \cite{ref:Woolf}.
+Sistemas baseados em regras não possuem componentes capazes de realizar qualquer aprendizado a partir e dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar Xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente em modelos utilizáveis \cite{ref:Edgar-Manz}, possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programados com eles [conhecimentos]'' \cite{ref:Woolf}. %``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programados com eles [conhecimentos]'' \cite{ref:Woolf}.
 
 No aprendizado de representação (do inglês \textit{Feature Learning} ou \textit{Representation Learning}) entretanto, não há necessidade de mapear manualmente essas características \cite{ref:Goodfellow-Bengio-Courville}. Ou seja, por conta própria e de forma abstrata, os algoritmos são capazes de extrair as características importantes para a construção dos modelos utilizando redes neurais \cite{ref:Robins} \cite{ref:Lesort}. O aprendizado profundo, por sua vez, resolve a dificuldade que o aprendizado de representação possui de extrair características abstratas de alto nível, tais como sotaques de um locutor \cite{ref:Goodfellow-Bengio-Courville}. Segundo \citeonline{ref:Mao-Wang-Tang-Qian}, o aprendizado profundo ``imita a função que o cérebro humano possui de interpretar dados usando redes neurais de várias camadas''. Um exemplo dessas variadas camadas é apresentado na \autoref{fig:fund-camadas}, onde características distintas são extraídas por cada camada. Uma comparação com o modelo de aprendizado de máquina é ilustrado na \autoref{fig:fund-aprendizados}.
 
@@ -312,9 +312,10 @@ CNNs sempre contém dois tipos de operações básicas: as operações de convol
 
 \subsubsection{Operação de Convolução} \label{cap:fund-ia-rn-conv-conv}
 
-%In convolution layers, CNN uses different kernels for convolving the input image for creating the feature maps
+Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. No domínio de processamento de sinais, a convolução é utilizada para descrever a saída de um sistema linear e invariante no tempo (LIT) a uma entrada por meio da resposta ao impulso, que ``é uma caracterização completa [...] de um sistema LIT" \cite{ref:Oppenheim-Schafer}
 
-Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. A operação de convolução em uma rede neural utiliza múltiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} usualmente é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
+
+A operação de convolução em uma rede neural utiliza múltiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} é a resposta ao impulso de um sistema, geralmente um filtro. Ele é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
 
 Na sua forma discreta, a operação de convolução pode ser definida pela \autoref{eq:fund-conv} \cite{ref:Goodfellow-Bengio-Courville}, onde x representa a entrada e w representa o \textit{kernel} utilizado.
 
@@ -332,7 +333,9 @@ Para imagens, as convoluções ocorrem em mais de um eixo ao mesmo tempo. Se a e
 }
 \end{equation}
 
-Porém, utilizando a propriedade comutativa da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor. Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
+Porém, utilizando a propriedade comutativa da convolução ao inverter a ordem dos fatores I e K, a implementação se torna mais direta, já que há menos variação no intervalo válido de valores de m e n \cite{ref:Goodfellow-Bengio-Courville}, pois o \textit{kernel} é menor, conforme a \autoref{eq:fund-conv-3}. Essa Equação apresenta a operação de convolução utilizada em redes neurais convolucionais, conhecida como correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}.
+
+%Além disso, para desinverter o \textit{kernel} em relação à imagem, utiliza-se a operação chamada correlação cruzada \cite{ref:Goodfellow-Bengio-Courville}, como mostra a \autoref{eq:fund-conv-3}.
 
 \begin{equation} \label{eq:fund-conv-3}
 \mathrm{
