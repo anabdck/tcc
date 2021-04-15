@@ -2,7 +2,7 @@
 
 Um levantamento teórico foi elaborado, conceitualizando Inteligência artificial e suas áreas de estudo. Além disso, teorias relevantes para o entendimento e avaliação de redes neurais foram abordadas.
 
-Defeitos de fabricação em placas de circuito impresso foram delimitados e um \textit{dataset} completo foi encontrado para a utilização no treinamento de uma rede neural, empregada para automatizar a extração de defeitos de fabricação de maneira não-referencial. Utilizar essa forma de extração de defeitos em uma linha de fabricação, além de ser mais eficiente e precisa, contribui para o custo do produto final, pois não considera a inspeção humana que está associada a um alto custo, além de imprecisão, não-repetibilidade e fadiga.
+Defeitos de fabricação em placas de circuito impresso foram delimitados e um \textit{dataset} completo foi encontrado para a utilização no treinamento de uma rede neural, empregada para automatizar a extração de defeitos de fabricação de maneira não-referencial. Utilizar essa forma de extração de defeitos em uma linha de fabricação, além de ser mais eficiente e precisa, contribui para a redução de custo do produto final.
 
 A rede neural YOLO foi escolhida considerando que defeitos em placa de circuito impresso geralmente ocupam uma proporção pequena quando comparada ao tamanho da placa inteira. Essa rede neural foi treinada, e seus resultados são considerados satisfatórios para o \textit{dataset} escolhido, conforme apresentado nas Tabelas \ref{tab:resultados-metricas} e \ref{tab:resultados-metricas-total}.
 
@@ -21,15 +21,15 @@ A \autoref{tab:comparacao-hripcb} apresenta a métrica de mAP para diferentes es
       FPN                         & \apud{ref:Lin-et-al-2}{ref:Ding-et-al}  & 92,23\% \\
       Faster R-CNN fine-tuned     & \cite{ref:Ding-et-al}                   & 96,44\% \\
       TDD-Net                     & \cite{ref:Ding-et-al}                   & 98,90\% \\
-      YOLO versão 4               & proposto                                & 98,44\% \\
+      YOLO versão 4               & este trabalho                                & 98,44\% \\
       \bottomrule
       \end{tabular}
     \indentedfont[0.96\textwidth]{Elaboração própria (2021)}
   \end{center}
 \end{table}
 
-Dentre as redes neurais apresentadas na \autoref{tab:comparacao-hripcb}, apenas a TDD-Net proposta por \citeonline{ref:Ding-et-al} demonstra um melhor desempenho do que a YOLO em sua quarta versão, cujos resultados foram apontados no \autoref{cap:treinamento}. Esses resultados podem ser aprimorados com o treinamento de mais \textit{batches} da rede neural, ao invés de apenas dois mil e quinhentos.
+Dentre as redes neurais apresentadas na \autoref{tab:comparacao-hripcb}, apenas a TDD-Net proposta por \citeonline{ref:Ding-et-al} demonstra um melhor desempenho do que a YOLO em sua quarta versão, cujos resultados foram apontados no \autoref{cap:treinamento}. Esses resultados podem ser aprimorados com o treinamento de mais \textit{batches} da rede neural, ao invés de apenas 2500.
 
-Para imagens que não são do \textit{dataset} porém, os resultados apresentaram um desempenho não satisfatório, conforme mostram as Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2}. Isso é consequência do conjunto de dados escolhido, que possui apenas imagens de placas de circuito impresso dentro de um padrão, conforme as imagens do \autoref{apendice:hripcb-pcbs}, ao contrário do que ocorre na indústria, onde existem diversos tipos de placas de circuito impresso, com cores, tamanhos e outras características distintas.
+Para imagens que não são do \textit{dataset}, porém, os resultados apresentaram um desempenho não satisfatório, conforme mostram as Figuras \ref{fig:resultados-predicao-ruim-1} e \ref{fig:resultados-predicao-ruim-2}. Isso é consequência do conjunto de dados escolhido, que possui apenas imagens de placas de circuito impresso dentro de um padrão, conforme as imagens do \autoref{apendice:hripcb-pcbs}, ao contrário do que ocorre na indústria, onde existem diversos tipos de placas de circuito impresso, com cores, tamanhos e outras características distintas.
 
 Uma interface de aplicação \textit{web} foi projetada, onde o usuário pode fazer o \textit{upload} de uma imagem ou escolher uma disponível no servidor para a detecção de defeitos de fabricação. Além disso, existe a possibilidade de fazer o \textit{download} do arquivo de anotação e da imagem com as caixas delimitadoras obtidos, caso algum defeito seja encontrado na imagem. Para melhorar o desempenho da detecção, pode-se considerar um servidor com acesso a GPU, diminuindo o tempo de espera do usuário para a obtenção dos resultados.

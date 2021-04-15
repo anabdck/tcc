@@ -26,7 +26,7 @@ A Inteligência Artificial engloba a área de estudo do Aprendizado de Máquina,
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples Sistemas Baseados em Regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresenta um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
+Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples sistemas baseados em regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresenta um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
 
 \begin{figure}[h!] %H
   \centering
@@ -36,7 +36,7 @@ Para evidenciar as diferenças entre essas áreas de estudo, em comparação com
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-Sistemas Baseados em Regras não possuem componentes capazes de realizar qualquer aprendizado a partir e dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar Xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente em modelos utilizáveis \cite{ref:Edgar-Manz} possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programado com eles'' \cite{ref:Woolf}.
+Sistemas Baseados em Regras não possuem componentes capazes de realizar qualquer aprendizado a partir e dados \cite{ref:Goodfellow-Bengio-Courville} e são utilizados para resolução de problemas e/ou execução de tarefas que podem ser descritos por uma lista de regras formais, como por exemplo jogar Xadrez. Ao contrários desses sistemas, o Aprendizado de Máquina (do inglês \textit{Machine Learning}) utiliza algoritmos computacionais para transformar características reunidas empiricamente em modelos utilizáveis \cite{ref:Edgar-Manz} possuindo a capacidade ``de se aprimorar [...], aprendendo novos conhecimentos ao invés de serem programados com eles'' \cite{ref:Woolf}.
 
 No Aprendizado de Representação (do inglês \textit{Feature Learning} ou \textit{Representation Learning}) entretanto, não há necessidade de mapear manualmente essas características \cite{ref:Goodfellow-Bengio-Courville}. Ou seja, por conta própria e de forma abstrata, os algoritmos são capazes de extrair as características importantes para a construção dos modelos utilizando redes neurais \cite{ref:Robins} \cite{ref:Lesort}. O Aprendizado Profundo, por sua vez, resolve a dificuldade que o Aprendizado de Representação possui de extrair características abstratas de alto nível, tais como sotaques de um locutor \cite{ref:Goodfellow-Bengio-Courville}. Segundo \citeonline{ref:Mao-Wang-Tang-Qian}, o Aprendizado Profundo ``imita a função que o cérebro humano possui de interpretar dados usando redes neurais de várias camadas''. Um exemplo dessas variadas camadas é apresentado na \autoref{fig:fund-camadas}, onde características distintas são extraídas por cada camada. Uma comparação com o modelo de Aprendizado de Máquina é ilustrado na \autoref{fig:fund-aprendizados}.
 
@@ -61,7 +61,7 @@ No Aprendizado de Representação (do inglês \textit{Feature Learning} ou \text
 \section{Redes Neurais} \label{cap:fund-ia-rn}
 Ao contrário da abordagem convencional de programação, onde dizemos a um computador o que deve ser feito ao dividir um problema em pequenas tarefas para que ele execute, uma Rede Neural (do inglês \textit{Neural Network}) utiliza dados observacionais para aprender como resolver o problema \cite{ref:Nielsen}.
 
-\citeonline{ref:Walczak-Cerpa} definem Redes Neurais Artificiais como modelos que ``simulam a atividade elétrica do cérebro e do sistema nervoso''. Porém enquanto alguns tipos de Redes Reurais tem sido utilizadas para entender o funcionamento do cérebro, na perspectiva de Aprendizado Profundo elas não são projetadas para serem modelos realistas da função biológica \cite{ref:Goodfellow-Bengio-Courville}.
+\citeonline{ref:Walczak-Cerpa} definem Redes Neurais Artificiais como modelos que ``simulam a atividade elétrica do cérebro e do sistema nervoso''. Porém enquanto alguns tipos de Redes Neurais tem sido utilizadas para entender o funcionamento do cérebro, na perspectiva de Aprendizado Profundo elas não são projetadas para serem modelos realistas da função biológica \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsection{Estrutura de uma Rede Neural} \label{cap:fund-ia-rn-estrutura}
 Uma Rede Neural é composta por camadas de nós, conhecidos como neurônios, e conexões que interligam as saídas e entradas desses nós. A estrutura básica de uma Rede Neural é ilustrada na \autoref{fig:fund-nn}, onde a primeira camada de neurônios é a camada de entrada, a última camada é a camada de saída e as camadas entre elas são chamadas de camadas ocultas. Na \autoref{fig:fund-nn}, vetor $\mathrm{X}$ contém os valores de entrada, os vetores $\mathrm{a^{[l]}}$ representam as funções de ativação referentes à \textit{l-ésima} camada, e $\mathrm{\hat{y}}$ é o vetor de saída com os valores preditos. As notações utilizadas nesse capítulo respeitam as propostas por \citeonline{ref:Ng} presentes no \autoref{apendice:notacao}.
@@ -202,7 +202,7 @@ A atualização desses pesos é feita até que a função de perda resulte valor
 
 
 \subsection{Métricas de Avaliação} \label{cap:fund-ia-metricas}
-As métricas de avaliação são utilizadas para analisar a performance de um modelo e diferentes métricas de avaliação são utilizadas para diferentes tipos de problemas \cite{ref:Srivastava}. Além disso, determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
+As métricas de avaliação são utilizadas para analisar a performance de um modelo, sendo que diferentes métricas são utilizadas para diferentes tipos de problemas \cite{ref:Srivastava}. Além disso, determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsubsection{Matriz de Confusão} \label{cap:fund-ia-metricas-matriz}
 A Matriz de Confusão é uma técnica muito popular usada em problemas de classificação binária, representando a contagem dos resultados da predição feitos pela rede neural em comparação com os valores reais \cite{ref:Batarseh-Yang}, na forma de verdadeiros positivos, verdadeiros negativos, falsos positivos e falsos negativos. Um exemplo de matriz de confusão utilizada em classificações binárias está na \autoref{fig:fund-matriz}.
@@ -296,8 +296,7 @@ No caso da detecção de objetos em imagens, as formas utilizadas são as caixas
 
 
 \subsection{Redes Neurais Convolucionais} \label{cap:fund-ia-rn-conv}
-Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais se avança através da rede neural, mais complexas
- são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
+Redes Neurais Profundas são caracterizadas por sua grande quantidade de camadas ocultas. Cada uma das camadas é responsável pelo treinamento de um conjunto distinto de dados com base na saída da camada anterior, de forma que quanto mais se avança através da rede neural, mais complexas são as características que os nós podem reconhecer \cite{ref:Nicholson}, como ilustrado na \autoref{fig:fund-camadas}.
 
 Redes Neurais Convolucionais, do inglês \textit{convolutional neural networks} (CNN), são um tipo de rede neural profunda, originalmente projetadas para análise de imagens \cite{ref:Eden-Ierapetritou-Towler} e tem sido empregadas para esse tipo de processamento desde 1995 \cite{ref:Yan}. O uso de CNNs reduz os requisitos de memória e possui uma melhor eficiência estática quando comparada a redes neurais tradicionais \cite{ref:Goodfellow-Bengio-Courville}.
 
@@ -325,7 +324,7 @@ Na sua forma discreta, a operação de convolução pode ser definida pela \auto
 }
 \end{equation}
 
-Para imagens, as convoluções ocorrem em mais que um eixo ao mesmo tempo. Se a entrada é uma imagem bidimensional I, o \textit{kernel} K provavelmente também será bidimensional, como define a \autoref{eq:fund-conv-2} \cite{ref:Goodfellow-Bengio-Courville}.
+Para imagens, as convoluções ocorrem em mais de um eixo ao mesmo tempo. Se a entrada é uma imagem bidimensional I, o \textit{kernel} K provavelmente também será bidimensional, como define a \autoref{eq:fund-conv-2} \cite{ref:Goodfellow-Bengio-Courville}.
 
 \begin{equation} \label{eq:fund-conv-2}
 \mathrm{
@@ -541,12 +540,12 @@ Darknet é um \textit{framework} de código aberto para redes neurais escrito em
 
 \subsection{Flask} \label{cap:fund-frameworks-flask}
 Flask é um \textit{framework} para \textit{web} escrito em Python, comumente utilizado por empresas como ferramenta para soluções rápidas e simples \cite{ref:Copperwaite-Leifer}.
-Flask também é escalável para desenvolvimento de aplicativos de grande escala \cite{ref:Aggarwal}, fornecendo um conjunto de bibliotecas para lidar com tarefas mais comuns de desenvolvimento \textit{web} \cite{ref:Copperwaite-Leifer}. \citeonline{ref:Copperwaite-Leifer} lista algumas de suas principais funcionalidades:
+Flask também é escalável para desenvolvimento de aplicativos de grande escala \cite{ref:Aggarwal}, fornecendo um conjunto de bibliotecas para lidar com tarefas mais comuns de desenvolvimento \textit{web} \cite{ref:Copperwaite-Leifer}. \citeonline{ref:Copperwaite-Leifer} listam algumas de suas principais funcionalidades:
 
 \begin{itemize}
   \item Roteamento de URLs tornando o mapeamento mais fácil para o código;
-  \item Gerenciamento de sessão e proteção de cookies;
-  \item Depurador interativo baseado na web;
+  \item Gerenciamento de sessão e proteção de \textit{cookies};
+  \item Depurador interativo baseado na \textit{web};
   \item Gerenciamento de configuração de aplicativo flexível e fácil de usar;
   \item Análise de solicitação HTTP.
 \end{itemize}
