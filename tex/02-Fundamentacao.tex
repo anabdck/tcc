@@ -61,7 +61,7 @@ No aprendizado de representação (do inglês \textit{Feature Learning} ou \text
 \section{Redes Neurais} \label{cap:fund-ia-rn}
 Ao contrário da abordagem convencional de programação, onde dizemos a um computador o que deve ser feito ao dividir um problema em pequenas tarefas para que ele execute, uma rede neural (do inglês \textit{Neural Network}) utiliza dados observacionais para aprender como resolver o problema \cite{ref:Nielsen}.
 
-\citeonline{ref:Walczak-Cerpa} definem redes neurais artificiais como modelos que ``simulam a atividade elétrica do cérebro e do sistema nervoso''. Porém enquanto alguns tipos de redes neurais tem sido utilizadas para entender o funcionamento do cérebro, na perspectiva de Aprendizado Profundo elas não são projetadas para serem modelos realistas da função biológica \cite{ref:Goodfellow-Bengio-Courville}.
+%\citeonline{ref:Walczak-Cerpa} definem redes neurais artificiais como modelos que ``simulam a atividade elétrica do cérebro e do sistema nervoso''. Porém enquanto alguns tipos de redes neurais tem sido utilizadas para entender o funcionamento do cérebro, na perspectiva de Aprendizado Profundo elas não são projetadas para serem modelos realistas da função biológica \cite{ref:Goodfellow-Bengio-Courville}.
 
 \subsection{Estrutura de uma Rede Neural} \label{cap:fund-ia-rn-estrutura}
 Uma rede neural é composta por camadas de nós, conhecidos como neurônios, e conexões que interligam as saídas e entradas desses nós. A estrutura básica de uma rede neural é ilustrada na \autoref{fig:fund-nn}, onde a primeira camada de neurônios é a camada de entrada, a última camada é a camada de saída e as camadas entre elas são chamadas de camadas ocultas. Na \autoref{fig:fund-nn}, vetor $\mathrm{X}$ contém os valores de entrada, os vetores $\mathrm{a^{[l]}}$ representam as funções de ativação referentes à \textit{l-ésima} camada, e $\mathrm{\hat{y}}$ é o vetor de saída com os valores preditos. As notações utilizadas nesse capítulo respeitam as propostas por \citeonline{ref:Ng} presentes no \autoref{apendice:notacao}.
@@ -74,7 +74,13 @@ Uma rede neural é composta por camadas de nós, conhecidos como neurônios, e c
   \indentedfont[15.2cm]{Elaboração própria (2021)}
 \end{figure}
 
-São nos neurônios que ocorrem as computações. A \autoref{fig:fund-no} mostra um diagrama de um nó de uma rede neural, onde os pesos representados por b e $\mathrm{w_k}$ são responsáveis por atribuir significância às entradas com relação à tarefa que o algoritmo está tentando aprender \cite{ref:Nicholson}. Esses produtos são então somados e passam por uma função de ativação.
+São nos neurônios que ocorrem as computações. A \autoref{fig:fund-no} mostra um diagrama de um nó de uma rede neural, onde os pesos representados por b e $\mathrm{w_k}$ são responsáveis por atribuir significância às entradas com relação à tarefa que o algoritmo está tentando aprender \cite{ref:Nicholson}. Os produtos entre as entradas e os pesos são somados, conforme apresenta a \autoref{eq:fund-z}, e após isso, passam por uma função de ativação.
+
+\begin{equation} \label{eq:fund-z}
+\mathrm{
+  z = \sum_{n = 1}^{k} x_n \cdot w_n + b
+}
+\end{equation}
 
 \begin{figure}[H] %H
   \centering
@@ -120,7 +126,7 @@ As funções de ativação desempenham um papel crucial na dinâmica de desempen
 	\label{fig:fund-funcs}
 \end{figure}
 
-A função Sigmoide definida pela \autoref{eq:fund-sig} \cite{ref:Sharma}  é geralmente utilizada em classificações binárias, pois o resultado está sempre no intervalo entre zero e um \cite{ref:Ng}. A \autoref{fig:fund-funcs-sig} mostra um gráfico da função Sigmoide.
+Uma das funções mais comumente utilizadas é a função Sigmoide, definida pela \autoref{eq:fund-sig} \cite{ref:Sharma}. A \autoref{fig:fund-funcs-sig} mostra um gráfico dessa função.
 
 \begin{equation} \label{eq:fund-sig}
   \text{f(z)} = \sigma(z) = \frac{1}{1 + e^{-z}}
@@ -132,7 +138,7 @@ Para a otimização dos pesos durante o treinamento de uma rede neural, em geral
   \text{f(z)} = tanh(z) = \frac{e^{z} - e^{-z}}{e^{z} + e^{-z}}
 \end{equation}
 
-Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser nula tanto para a sigmoide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, mostrada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
+Porém, para valores muito grandes ou muito pequenos de $\mathrm{z}$, a derivada resultante, utilizada no gradiente, tende a ser zero tanto para a sigmoide quanto para a tangente hiperbólica \cite{ref:Ng} o que geralmente causa lentidão no treinamento \cite{ref:Misra}. Para que isso não ocorra, utiliza-se a função ReLU, do inglês \textit{Rectified Linear Unit}, mostrada na \autoref{fig:fund-funcs-relu} e definida na \autoref{eq:fund-relu}. A ReLU é a função de ativação mais utilizada \cite{ref:Ng} e é a função padrão recomendada para uso com a maioria das redes neurais \cite{ref:Goodfellow-Bengio-Courville}.
 
 \begin{equation} \label{eq:fund-relu}
   \mathrm{{f(z)} = ReLU(z) = max(0, z)}
@@ -150,7 +156,7 @@ Segundo \citeonline{ref:Misra}, ao contrário da ReLU, a função Mish é contin
 
 Para o treinamento de uma rede neural, utiliza-se um conjunto de exemplos de treinamento $\{(x^{(1)}, y^{(1)}), \cdots, (x^{(m)}, y^{(m)})\}$, onde $x^{(i)}, y^{(i)}$ são, respectivamente, a entrada e a saída real do \textit{i-ésimo} exemplo de treinamento de um conjunto contendo m exemplos de treinamento \cite{ref:Ng}. Para cada um desses exemplos, o objetivo é fazer o cálculo dos pesos w e b de forma que a saída estimada $\hat{y}^{(i)}$ seja próxima da saída real $y^{(i)}$.
 
-O peso b é chamado de \textit{bias} e não é multiplicado a nenhum valor da entrada para caso todos os valores de x sejam nulos, a saída $\hat{y}^{(i)}$ seja diferente de zero \cite{ref:Ng}. O cálculo desses pesos é feito de forma iterativa e geralmente são iniciados de forma aleatória \cite{ref:Ng}.
+O peso b é chamado de \textit{bias} e não é multiplicado a nenhum valor da entrada. O cálculo desses pesos é feito de forma iterativa e geralmente são iniciados de forma aleatória \cite{ref:Ng}.
 
 O processo de cálculo considerando um nó de uma rede neural está ilustrado na \autoref{fig:fund-etapas}, onde a função de ativação utilizada é a sigmoide e todos os valores calculados e os de entrada são representados na forma vetorial.
 
@@ -172,7 +178,7 @@ Um exemplo de função de perda que compara $\mathrm{\hat{y}}$ com y pode ser de
   }
 \end{equation}
 
-Dessa forma, como $\mathrm{\hat{y} = f(w, b)}$, é necessário encontrar valores para os pesos w e b que minimizem a função de perda $L(y,\hat{y})$. Para isso, utiliza-se o método do gradiente, um algoritmo de primeira ordem iterativo utilizado em otimização para encontrar o mínimo local de uma função \cite{ref:Yan}, exemplificado na \autoref{fig:fund-gradiente} para uma função de perda considerando apenas a variável w.
+Dessa forma, como $\mathrm{\hat{y} = f(w, b)}$, é necessário encontrar valores para os pesos w e b que minimizem a função de perda $L(y,\hat{y})$. Para isso, utiliza-se por exemplo o método do gradiente, um de muitos métodos encontrados na literatura. O método do gradiente é um algoritmo de primeira ordem iterativo utilizado em otimização para encontrar o mínimo local de uma função \cite{ref:Yan}, exemplificado na \autoref{fig:fund-gradiente} para uma função de perda considerando apenas a variável w.
 
 \begin{figure}[h!] %H
   \centering
@@ -197,9 +203,7 @@ Após serem computadas as derivadas da \autoref{fig:fund-etapas}, os pesos w e b
   }
 \end{equation}
 
-A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero ou quando o erro está dentro de uma faixa aceitável de acordo com a métrica de avaliação utilizada.
-
-
+A atualização desses pesos é feita até que a função de perda resulte valores muito próximos de zero a métrica de avaliação utilizada resulte em um valor que esteja dentro de uma faixa aceitável.
 
 \subsection{Métricas de Avaliação} \label{cap:fund-ia-metricas}
 As métricas de avaliação são utilizadas para analisar a performance de um modelo, sendo que diferentes métricas são utilizadas para diferentes tipos de problemas \cite{ref:Srivastava}. Além disso, determinar os objetivos de treinamento em uma rede neural em termos de qual métrica de erro será utilizada é uma etapa necessária, já que para a maioria das aplicações é impossível obter erro zero absoluto. \cite{ref:Goodfellow-Bengio-Courville}.
@@ -250,7 +254,7 @@ A medida de precisão (do inglês \textit{Precision}), definida pela \autoref{eq
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Tan}}
 \end{figure}
 
-Uma curva de precisão em função da sensibilidade pode ser construída ao variar o limiar, conhecido no inglês como \textit{treshold}, da probabilidade de um resultado pertencer a determinada classe \cite{ref:Steen}. Um exemplo dessa curva está na \autoref{fig:fund-prcurve}, onde o eixo horizontal indica a sensibilidade e o eixo vertical, a precisão para quatro classes distintas.
+Uma curva de precisão em função da sensibilidade pode ser construída ao variar o limiar, conhecido no inglês como \textit{threshold}, da probabilidade de um resultado pertencer a determinada classe \cite{ref:Steen}. Um exemplo dessa curva está na \autoref{fig:fund-prcurve}, onde o eixo horizontal indica a sensibilidade e o eixo vertical, a precisão para quatro classes distintas.
 
 \begin{figure}[h!] %H
   \centering
@@ -364,7 +368,7 @@ Exemplos de convolução em imagem utilizando distintos tipos de \textit{kernel}
 \end{figure}
 
 \subsubsection{Operação de \textit{Pooling}} \label{cap:fund-ia-rn-conv-pool}
-As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} ao reduzir o tamanho do mapa de características \cite{ref:Gholamalinezhad-Khosravi} e ajudam a tornar as saídas aproximadamente invariantes a pequenas modificações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
+As operações de \textit{pooling} geralmente são utilizadas após as camadas de convolução para simplificar as informações das saídas dessas camadas \cite{ref:Nielsen} ao reduzir o tamanho do mapa de características \cite{ref:Gholamalinezhad-Khosravi} e ajudar a tornar as saídas aproximadamente invariantes a pequenas modificações da entrada \cite{ref:Goodfellow-Bengio-Courville}.
 
 Espera-se que uma camada de \textit{pooling} ideal extraia somente as informações úteis e descarte detalhes irrelevantes \cite{ref:Gholamalinezhad-Khosravi}. A \autoref{fig:fund-pool} apresenta algumas das funções de \textit{pooling}. A operação de \textit{Max-Pooling} seleciona o pixel com maior valor dentre os píxeis de uma região (\autoref{fig:fund-pool-max}) e a operação de \textit{Pooling} médio (\autoref{fig:fund-pool-av}) faz a média entre esses píxeis.
 
