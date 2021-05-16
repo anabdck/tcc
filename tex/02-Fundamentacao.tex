@@ -4,7 +4,7 @@ No início desse capítulo serão abordadas  as definições de Inteligência Ar
 
 \section{Inteligência Artificial} \label{cap:fund-ia}
 
-Apesar de ter chamado atenção nos últimos anos com a quantidade enorme de dados adquiridos e processados por grandes corporações como Google, Facebook, Amazon, e Apple \cite{ref:Lawless-Mittu-Sofge}, o termo `Inteligência Artificial' não é tão atual assim. Ele foi utilizado pela primeira vez em 1955 por John McCarthy \cite{ref:Cohen}, que conduziu no ano seguinte um workshop cuja premissa central da proposta considera que o comportamento humano inteligente consiste em processos que podem ser formalizados e reproduzidos por uma máquina \cite{ref:Harvard-AI}. %conjectura
+Apesar de ter chamado atenção nos últimos anos com a quantidade enorme de dados adquiridos e processados por grandes corporações como Google, Facebook, Amazon e Apple \cite{ref:Lawless-Mittu-Sofge}, o termo `Inteligência Artificial' não é tão atual assim. Ele foi utilizado pela primeira vez em 1955 por John McCarthy \cite{ref:Cohen}, que conduziu no ano seguinte um workshop cuja premissa central da proposta considera que o comportamento humano inteligente consiste em processos que podem ser formalizados e reproduzidos por uma máquina \cite{ref:Harvard-AI}. %conjectura
 
 Um dos objetivos da IA, de acordo com \citeonline{ref:Mitchell-Michalski-Carbonell}, é fazer com que computadores realizem tarefas mais inteligentes de forma com que não haja necessidade dos seres humanos executá-las. Entretanto, um dos grandes desafios da área de IA atualmente é a execução de atividades consideradas simples e corriqueiras para pessoas, como reconhecimento de objetos e fala \cite{ref:Goodfellow-Bengio-Courville}. Para ilustrar isso, a tabela da \autoref{fig:fund-dificuldades} apresenta a diferença entre o nível de dificuldade que um computador ou ser humano tem para resolver determinado problema.
 
@@ -16,7 +16,7 @@ Um dos objetivos da IA, de acordo com \citeonline{ref:Mitchell-Michalski-Carbone
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Rashid}}
 \end{figure}
 
-A Inteligência Artificial engloba a área de estudo do Aprendizado de Máquina, que por sua vez englobam as áreas do Aprendizado de Representação e Aprendizado Profundo, conforme o diagrama de Venn apresentado na \autoref{fig:fund-ia}.
+A Inteligência Artificial engloba a área de estudo do Aprendizado de Máquina, que por sua vez engloba as áreas do Aprendizado de Representação e Aprendizado Profundo, conforme o diagrama de Venn apresentado na \autoref{fig:fund-ia}.
 
 \begin{figure}[h!] %H
   \centering
@@ -26,7 +26,7 @@ A Inteligência Artificial engloba a área de estudo do Aprendizado de Máquina,
   \indentedfont[15.2cm]{Adaptado de \citeonline{ref:Goodfellow-Bengio-Courville}}
 \end{figure}
 
-Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples sistemas baseados em regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresenta um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
+Para evidenciar as diferenças entre essas áreas de estudo, em comparação com simples sistemas baseados em regras, \citeonline{ref:Goodfellow-Bengio-Courville} apresentam um fluxograma com as etapas de processamento entre a entrada e a saída de dados para cada uma delas, presente na \autoref{fig:fund-fluxograma}.
 
 \begin{figure}[h!] %H
   \centering
@@ -316,7 +316,7 @@ CNNs sempre contém dois tipos de operações básicas: as operações de convol
 
 \subsubsection{Operação de Convolução} \label{cap:fund-ia-rn-conv-conv}
 
-Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. No domínio de processamento de sinais, a convolução é utilizada para descrever a saída de um sistema linear e invariante no tempo (LIT) a uma entrada por meio da resposta ao impulso, que ``é uma caracterização completa [...] de um sistema LIT" \cite{ref:Oppenheim-Schafer}
+Convolução é uma operação matemática onde duas funções produzem uma terceira função que expressa como o formato de uma é modificado ou filtrado pela outra \cite{ref:Yan}. No domínio de processamento de sinais, a convolução é utilizada para descrever a saída de um sistema linear e invariante no tempo (LIT) a uma entrada por meio da resposta ao impulso, que é ``uma caracterização completa [...] de um sistema LIT'' \cite{ref:Oppenheim-Schafer}.
 
 
 A operação de convolução em uma rede neural utiliza múltiplos tipos de \textit{kernel} para extrair as características do conjunto de dados da entrada \cite{ref:Eden-Ierapetritou-Towler}, geralmente uma imagem, e cria mapas de características a partir dela \cite{ref:Gholamalinezhad-Khosravi}. O \textit{kernel} é a resposta ao impulso de um sistema, geralmente um filtro. Ele é um vetor de parâmetros multidimensional que é adaptado pelo algoritmo de aprendizado \cite{ref:Goodfellow-Bengio-Courville}, assim como ocorre a atualização dos pesos w e b vistos na \autoref{cap:fund-ia-rn-treinamento}.
